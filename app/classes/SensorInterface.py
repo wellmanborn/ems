@@ -8,6 +8,8 @@ from app.tasks import log_alarm
 
 class SensorInterface(ConvertData):
 
+    sensor_id = None
+    sensor_title = None
     sensor_type = None
     value = None
     alarm = False
@@ -34,6 +36,8 @@ class SensorInterface(ConvertData):
             self.db_id = SensorDetail.db_id
             self.byte_id = SensorDetail.byte_id
             self.bit_id = SensorDetail.bit_id
+            self.sensor_title = SensorDetail.title
+            self.sensor_id = SensorDetail.id
             response = self.get_sensor_data()
             log_alarm.delay(self.sensor_type, SensorDetail.id, self.db_id, self.byte_id, self.bit_id, self.alarm)
             self.device.set_status("")
@@ -46,7 +50,8 @@ class SensorInterface(ConvertData):
         """ must be implemented in child classes """
 
     def send_response_data(self, additional_data = None):
-        data = {"sensor": self.sensor_type, "db_id": str(self.db_id),
+        data = {"sensor_title": self.sensor_title, "sensor_id": self.sensor_id,
+                "sensor": self.sensor_type, "db_id": str(self.db_id),
                 "byte_id": self.byte_id, "bit_id": self.bit_id,
                 "value": self.value, "alarm": self.alarm}
         if additional_data != None:

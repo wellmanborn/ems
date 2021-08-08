@@ -25,12 +25,12 @@
                             {{ form.title.errors }}
                         {% endif %}
                     </div>
-{#                    {% if request.user.is_superuser %}#}
-{#                        <div class="form-group">#}
-{#                            <label>{{ form.db_id.label }}</label>#}
-{#                            {{ form.db_id }}#}
-{#                        </div>#}
-{#                    {% endif %}#}
+                    {% if request.user.is_superuser and edit != True %}
+                        <div class="form-group">
+                            <label>{{ form.db_id.label }}</label>
+                            {{ form.db_id }}
+                        </div>
+                    {% endif %}
                 </div>
                 {% if edit %}
                     <div class="col-md-4">

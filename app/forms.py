@@ -22,6 +22,7 @@ AIRCONDITIONER_MANUAL_CHOICES=[(1,'تنظیمات دستی'),
 AIRCONDITIONER_STATUS_CHOICES=[(1,'روشن'),
                                (0,'خاموش')]
 
+
 class TemperatureForm(forms.Form):
     title = forms.CharField(label="شناسه سنسور دما",
                             required=True,

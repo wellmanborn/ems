@@ -20,6 +20,10 @@ app.conf.beat_schedule = {
         'task': 'app.tasks.read_from_plc',
         'schedule': 1.0
     },
+    'every-1-minute': {
+        'task': 'app.tasks.read_from_plc_and_insert_to_database',
+        'schedule': 60.5
+    },
 }
 
 # CELERY_BEAT_SCHEDULE = {

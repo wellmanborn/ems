@@ -55,6 +55,7 @@ class LogAlarm(models.Model):
     alarm = models.CharField(max_length=255, blank=False)
     alarm_count = models.BigIntegerField(blank=False, default=1)
 
+
 class Profile(models.Model):
     user = models.OneToOneField(
         User,
@@ -63,3 +64,19 @@ class Profile(models.Model):
     )
     job_title = models.CharField(max_length=300, blank=False)
     mobile = models.CharField(db_index=True, max_length=20, blank=False)
+
+
+class LogSensorData(models.Model):
+    sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
+    sensor_title = models.CharField(blank=False, max_length=255)
+    sensor_type = models.CharField(blank=False, max_length=255, choices=SENSOR_TYPE)
+    db_id = models.IntegerField(blank=False)
+    byte_id = models.IntegerField(blank=True, default=0)
+    bit_id = models.IntegerField(blank=True, default=0)
+    value = models.IntegerField(blank=False, default=0)
+    alarm = models.IntegerField(blank=True, default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['created_at']

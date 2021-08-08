@@ -17,7 +17,6 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            print("logged in")
             return redirect('/')
     return render(request, 'login.html')
 

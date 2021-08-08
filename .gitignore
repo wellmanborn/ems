@@ -1,3 +1,9 @@
 venv
 app/migrations
 ems/settings.py
+.idea
+__pycache__
+logs
+celerybeat-schedule.bak
+celerybeat-schedule.dat
+celerybeat-schedule.dir

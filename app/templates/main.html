@@ -232,9 +232,9 @@
             shadowSize: 5,
             shadowVerticalOffset: 5,
             decimals: 2,
-            textRenderer: function (val) {
-                return parseFloat(val);
-            },
+            {% comment %}textRenderer: function (val) {
+                    return parseFloat(val);
+            },{% endcomment %}
             customSectors: {
                 ranges: [{
                     color: "#0055ff",
@@ -276,9 +276,9 @@
                 shadowSize: 10,
                 shadowVerticalOffset: 10,
                 decimals: 2,
-                textRenderer: function (val) {
+                {% comment %}textRenderer: function (val) {
                     return parseFloat(val);
-                },
+                },{% endcomment %}
                 customSectors: {
                     ranges: [{
                         color: "#0055ff",
