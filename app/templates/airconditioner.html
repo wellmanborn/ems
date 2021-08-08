@@ -1,0 +1,82 @@
+{% extends "pinkdesh/index.html" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+
+        </div>
+    </div>
+    <div class="panel-box">
+        <h4>ایجاد تهویه هوا</h4>
+        <form role="form" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{ form.title.label }}</label>
+                        {{ form.title }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{ form.airconditioner_count.label }}</label>
+                        {{ form.airconditioner_count }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    {% if request.user.is_superuser %}
+                        <div class="form-group">
+                            <label>{{ form.db_id.label }}</label>
+                            {{ form.db_id }}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form.byte_id.label }}</label>
+                            {{ form.byte_id }}
+                        </div>
+                    {% endif %}
+                </div>
+                {% comment %}<div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{ form.byte_id.label }}</label>
+                        {{ form.byte_id }}
+                    </div>
+                    <div class="form-group">
+                        <label>{{ form.bit_id.label }}</label>
+                        {{ form.bit_id }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{ form.manual.label }}</label>
+                        {{ form.manual }}
+                    </div>
+                </div>{% endcomment %}
+            </div>
+            <div style="display: flow-root">
+                <button class="btn btn-sm btn-theme pull-left m-t-n-xs" type="submit">ثبت سنسور</button>
+            </div>
+
+
+            {% comment %}<div class="form-group"><label>Password</label> <input type="password" placeholder="Password" class="form-control"></div>
+            <div>
+                <button class="btn btn-sm btn-theme pull-right m-t-n-xs" type="submit"><strong>Log in</strong></button>
+                <label> <input type="checkbox" class="i-checks"> Remember me </label>
+            </div>{% endcomment %}
+        </form>
+    </div>
+
+    {% comment %}<form method="post" data-parsley-validate>
+          <div class="card-header">
+            ایجاد سازمان جدید
+          </div>
+          <div class="card-body">
+              {% csrf_token %}
+              <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">{{ form.title.label }}</label>
+                <div class="col-sm-6">
+                    {{ form.title }}
+                </div>
+              </div>
+          </div>
+    </form>{% endcomment %}
+{% endblock %}

@@ -1,0 +1,403 @@
+{% extends "pinkdesh/index.html" %}
+{% load static %}
+{% block body %}
+    <div class="grid-stack">
+        {% for temperature in temperatures %}
+            <div class="grid-stack-item">
+                <div class="grid-stack-item-content">
+                    {% if request.user.is_staff %}
+                    <a class="sensor-edit" href="/sensors/edit/{{ temperature.id }}">
+                        <i class="fa fa-pencil-alt"></i>
+                    </a>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <a class="sensor-delete" href="/sensors/delete/{{ temperature.id }}">
+                            <i class="fa fa-times-circle"></i>
+                        </a>
+                    {% endif %}
+                    <h4 class="sensor-title">{{ temperature.title }}</h4>
+                    <div class="sensor-gauge" id="temperature-{{ temperature.db_id }}"></div>
+                </div>
+            </div>
+        {% endfor %}
+        {% for humidity in humidities %}
+            <div class="grid-stack-item">
+                <div class="grid-stack-item-content">
+                    {% if request.user.is_staff %}
+                    <a class="sensor-edit" href="/sensors/edit/{{ humidity.id }}">
+                        <i class="fa fa-pencil-alt"></i>
+                    </a>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <a class="sensor-delete" href="/sensors/delete/{{ humidity.id }}">
+                            <i class="fa fa-times-circle"></i>
+                        </a>
+                    {% endif %}
+                    <h4 class="sensor-title">{{ humidity.title }}</h4>
+                    <div class="sensor-gauge" id="humidity-{{ humidity.db_id }}"></div>
+                </div>
+            </div>
+        {% endfor %}
+        {% for power in powers %}
+            <div class="grid-stack-item">
+                <div class="grid-stack-item-content" id="power-{{ power.db_id }}">
+                    {% if request.user.is_staff %}
+                        <a class="sensor-edit" href="/sensors/edit/{{ power.id }}">
+                            <i class="fa fa-pencil-alt"></i>
+                        </a>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <a class="sensor-delete" href="/sensors/delete/{{ power.id }}">
+                            <i class="fa fa-times-circle"></i>
+                        </a>
+                    {% endif %}
+                    <h4 class="sensor-title">{{ power.title }}</h4>
+                    <img class="electricity-icon ok" src="{% static 'pinkdesh/images/electricity-green.png' %}" />
+                    <img class="electricity-icon danger" src="{% static 'pinkdesh/images/electricity.png' %}" />
+                </div>
+            </div>
+        {% endfor %}
+        {% for waterleakage in waterleakages %}
+            <div class="grid-stack-item">
+                <div class="grid-stack-item-content" id="waterleakage-{{ waterleakage.db_id }}">
+                    {% if request.user.is_staff %}
+                        <a class="sensor-edit" href="/sensors/edit/{{ waterleakage.id }}">
+                            <i class="fa fa-pencil-alt"></i>
+                        </a>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <a class="sensor-delete" href="/sensors/delete/{{ waterleakage.id }}">
+                            <i class="fa fa-times-circle"></i>
+                        </a>
+                    {% endif %}
+                    <h4 class="sensor-title">{{ waterleakage.title }}</h4>
+                    <img class="water-leakage-icon ok" src="{% static 'pinkdesh/images/waterleakage-green.png' %}" />
+                    <img class="water-leakage-icon danger" src="{% static 'pinkdesh/images/waterleakage.png' %}" />
+                </div>
+            </div>
+        {% endfor %}
+        {% for door in doors %}
+            <div class="grid-stack-item">
+                <div class="grid-stack-item-content" id="door-{{ door.db_id }}">
+                    {% if request.user.is_staff %}
+                        <a class="sensor-edit" href="/sensors/edit/{{ door.id }}">
+                            <i class="fa fa-pencil-alt"></i>
+                        </a>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <a class="sensor-delete" href="/sensors/delete/{{ door.id }}">
+                            <i class="fa fa-times-circle"></i>
+                        </a>
+                    {% endif %}
+                    <h4 class="sensor-title">{{ door.title }}</h4>
+                    <img class="door-detector-icon ok" src="{% static 'pinkdesh/images/door-green.png' %}" />
+                    <img class="door-detector-icon danger" src="{% static 'pinkdesh/images/door.png' %}" />
+                </div>
+            </div>
+        {% endfor %}
+        {% for smoke in smokes %}
+            <div class="grid-stack-item">
+                <div class="grid-stack-item-content" id="smoke-{{ smoke.db_id }}-{{ smoke.byte_id }}-{{ smoke.bit_id }}">
+                    {% if request.user.is_staff %}
+                        <a class="sensor-edit" href="/sensors/edit/{{ smoke.id }}">
+                            <i class="fa fa-pencil-alt"></i>
+                        </a>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <a class="sensor-delete" href="/sensors/delete/{{ smoke.id }}">
+                            <i class="fa fa-times-circle"></i>
+                        </a>
+                    {% endif %}
+                    <h4 class="sensor-title">{{ smoke.title }}</h4>
+                    <img class="smoke-detector-icon ok" src="{% static 'pinkdesh/images/smoke-green.png' %}" />
+                    <img class="smoke-detector-icon danger" src="{% static 'pinkdesh/images/smoke.png' %}" />
+                </div>
+            </div>
+        {% endfor %}
+        {% for fuse in fuses %}
+            <div class="grid-stack-item">
+                <div class="grid-stack-item-content" id="fuse-{{ fuse.db_id }}-{{ fuse.byte_id }}-{{ fuse.bit_id }}">
+                    {% if request.user.is_staff %}
+                        <a class="sensor-edit" href="/sensors/edit/{{ fuse.id }}">
+                            <i class="fa fa-pencil-alt"></i>
+                        </a>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <a class="sensor-delete" href="/sensors/delete/{{ fuse.id }}">
+                            <i class="fa fa-times-circle"></i>
+                        </a>
+                    {% endif %}
+                    <h4 class="sensor-title">{{ fuse.title }}</h4>
+                    <img class="fuse-detector-icon ok" src="{% static 'pinkdesh/images/fuse-green.png' %}" />
+                    <img class="fuse-detector-icon danger" src="{% static 'pinkdesh/images/fuse.png' %}" />
+                </div>
+            </div>
+        {% endfor %}
+        {% for airconditioner in airconditioners %}
+            <div class="grid-stack-item">
+                <div class="grid-stack-item-content" id="airconditioner-{{ airconditioner.db_id }}-{{ airconditioner.byte_id }}-{{ airconditioner.bit_id }}">
+                    {% if request.user.is_staff %}
+                        <a class="sensor-edit" href="/sensors/edit/airconditioner/{{ airconditioner.id }}">
+                            <i class="fa fa-pencil-alt"></i>
+                        </a>
+                    {% endif %}
+                    <h4 class="sensor-title">{{ airconditioner.title }}</h4>
+                    <div class="airconditioner-averages">
+                        <div style="margin: 0 auto;">
+                            <span>Tmp: <span id="average-temperature-{{ airconditioner.bit_id }}"></span></span> -
+                            <span>Hum: <span id="average-humidity-{{ airconditioner.bit_id }}"></span></span>
+                        </div>
+                    </div>
+                    <img class="air-conditioner-icon on" style="display:block;" src="{% static 'pinkdesh/images/air-conditioner-green.png' %}" />
+                    <img class="air-conditioner-icon off" style="display:none;" src="{% static 'pinkdesh/images/air-conditioner-red.png' %}" />
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+         toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-left",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "10000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+    $(function(){ //DOM Ready
+        $(".menu-toggle").click();
+
+        let width = $(document).width();
+
+        let column = 6
+        let height = '25vw'
+
+        if (width < 500) {
+            column = 1
+            height = "100vh"
+        } else if (width <= 700) {
+            column = 2
+            height = "50vh"
+        } else if (width <= 1000) {
+            column = 5
+            height = "20vh"
+        } else if (width <= 1366) {
+            column = 6
+            height = "16.66666vh"
+        } else if (width <= 1500) {
+            column = 7
+            height = "14.285714vh"
+        } else if (width <= 1700) {
+            column = 8
+            height = "12.5vh"
+        } else if (width <= 1920) {
+            column = 9
+            height = "11.1111111vh"
+        } else if (width <= 2100) {
+            column = 10
+            height = "10vh"
+        } else if (width <= 2400) {
+            column = 11
+            height = "9.090909vh"
+        } else {
+            column = 12
+            height = "8.3333333vh"
+        }
+
+        GridStack.init({column: column, height: height});
+
+        const temperatures = [];
+        {% for temperature in temperatures %}
+            temperatures[{{ temperature.db_id }}] =  new JustGage({
+            id: "{{ temperature.type }}-{{ temperature.db_id }}",
+            value: 18,
+            min: 0,
+            max: 80,
+            gaugeWidthScale: 0.6,
+            showInnerShadow: true,
+            shadowOpacity: 0.8,
+            shadowSize: 5,
+            shadowVerticalOffset: 5,
+            decimals: 2,
+            textRenderer: function (val) {
+                return parseFloat(val);
+            },
+            customSectors: {
+                ranges: [{
+                    color: "#0055ff",
+                    lo: 0,
+                    hi: {{ temperature.config.very_low }}-0.01
+                },{
+                    color: "#02a6ba",
+                    lo: {{ temperature.config.very_low }}-0.01,
+                    hi: {{ temperature.config.low }}-0.01
+                },{
+                    color: "#38c300",
+                    lo: {{ temperature.config.low }},
+                    hi: {{ temperature.config.high }}-0.01
+                },{
+                    color: "#ff8600",
+                    lo: {{ temperature.config.high }}-0.01,
+                    hi: {{ temperature.config.very_high }}-0.01
+                },{
+                    color: "#ff0000",
+                    lo: {{ temperature.config.very_high }}-0.01,
+                    hi: 100
+                }]
+            },
+            counter: true,
+            valueFontColor: "#FFF",
+        });
+        {% endfor %}
+
+        const humidities = [];
+        {% for humidity in humidities %}
+                humidities[{{ humidity.db_id }}] =  new JustGage({
+                id: "{{ humidity.type }}-{{ humidity.db_id }}",
+                value: 40.50,
+                min: 0,
+                max: 100,
+                gaugeWidthScale: 1,
+                showInnerShadow: true,
+                shadowOpacity: 1,
+                shadowSize: 10,
+                shadowVerticalOffset: 10,
+                decimals: 2,
+                textRenderer: function (val) {
+                    return parseFloat(val);
+                },
+                customSectors: {
+                    ranges: [{
+                        color: "#0055ff",
+                        lo: 0,
+                        hi: {{ humidity.config.very_low }}-0.01
+                    },{
+                        color: "#02a6ba",
+                        lo: {{ humidity.config.very_low }}-0.01,
+                        hi: {{ humidity.config.low }}-0.01
+                    },{
+                        color: "#38c300",
+                        lo: {{ humidity.config.low }}-0.01,
+                        hi: {{ humidity.config.high }}-0.01
+                    },{
+                        color: "#ff8600",
+                        lo: {{ humidity.config.high }}-0.01,
+                        hi: {{ humidity.config.very_high }}-0.01
+                    },{
+                        color: "#ff0000",
+                        lo: {{ humidity.config.very_high }}-0.01,
+                        hi: 100
+                    }]
+                },
+                counter: true,
+                valueFontColor: "#FFF",
+            });
+            {% endfor %}
+
+
+       /* $(window).on('load resize', function(){
+            // resizeGrid();
+        });*/
+
+       let socket = new WebSocket('ws://' + window.location.host + '/ws/sensor/data/')
+
+        socket.onmessage = function(event){
+            let response = JSON.parse(event.data);
+            let data = response.data
+            if(typeof response != 'object' || jQuery.isEmptyObject(data)) {
+                if(response.message){
+                    toastr["error"](response.message);
+                }else{
+                    toastr["error"]("مشکلس در دریافت اطلاعات از دستگاه وجود دارد");
+                }
+                $(".topbar").addClass("alert-danger")
+            }else{
+                $(".topbar").removeClass("alert-danger")
+            }
+
+            $.each(data, function(i, dt){
+                if(dt.sensor === "temperature") {
+                    temperatures[dt.db_id].refresh(dt.value);
+                    if(dt.alarm == 3 || dt.alarm == 4){
+                        $("#temperature-" + dt.db_id).parent().addClass("danger")
+                    }else{
+                        $("#temperature-" + dt.db_id).parent().removeClass("danger")
+                    }
+                }
+                if(dt.sensor === "humidity") {
+                    humidities[dt.db_id].refresh(dt.value);
+                    if(dt.alarm == 3 || dt.alarm == 4){
+                        $("#humidity-" + dt.db_id).parent().addClass("danger")
+                    }else{
+                        $("#humidity-" + dt.db_id).parent().removeClass("danger")
+                    }
+                }
+                if(dt.sensor === "power") {
+                    if(dt.alarm == 3 || dt.alarm == 4){
+                        $("#power-" + dt.db_id).addClass("danger")
+                    }else{
+                        $("#power-" + dt.db_id).removeClass("danger")
+                    }
+                }
+                if(dt.sensor === "waterleakage") {
+                    if(dt.alarm == 3 || dt.alarm == 4){
+                        $("#waterleakage-" + dt.db_id).addClass("danger")
+                    }else{
+                        $("#waterleakage-" + dt.db_id).removeClass("danger")
+                    }
+                }
+                if(dt.sensor === "door") {
+                    if(dt.alarm == 3 || dt.alarm == 4){
+                        $("#door-" + dt.db_id).addClass("danger")
+                    }else{
+                        $("#door-" + dt.db_id).removeClass("danger")
+                    }
+                }
+                if(dt.sensor === "smoke") {
+                    if(dt.value){
+                        $("#smoke-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("danger")
+                    }else{
+                        $("#smoke-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("danger")
+                    }
+                }
+                if(dt.sensor === "fuse") {
+                    if(dt.alarm){
+                        $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("danger")
+                    }else{
+                        $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("danger")
+                    }
+                }
+                if(dt.sensor === "airconditioner") {
+                    img_on = $("#airconditioner-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).find("img.on")
+                    img_off = $("#airconditioner-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).find("img.off")
+                    $("#average-temperature-" + dt.bit_id).text(dt.avg_tmp)
+                    $("#average-humidity-" + dt.bit_id).text(dt.avg_hum)
+                    if(!dt.value){
+                        $(img_on).css("display", "block")
+                        $(img_off).css("display", "none")
+                    }else{
+                        $(img_on).css("display", "none")
+                        $(img_off).css("display", "block")
+                    }
+                }
+                $("#top-menu-text").html("آخرین بروزرسانی " + "<span dir='ltr'>" + dt.time + "</span>")
+            });
+            {#document.getElementById("app").innerText = response.message#}
+        };
+    });
+
+</script>
+{% endblock %}

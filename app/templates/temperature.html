@@ -1,0 +1,110 @@
+{% extends "pinkdesh/index.html" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+
+        </div>
+    </div>
+    <div class="panel-box">
+        <h4>
+            {% if edit %}
+            ویرایش سنسور دما
+            {% else %}
+                ایجاد سنسور دما
+            {% endif %}
+        </h4>
+        <form role="form" method="post" data-parsley-validate>
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{ form.title.label }}</label>
+                        {{ form.title }}
+                        {% if form.title.errors %}
+                            {{ form.title.errors }}
+                        {% endif %}
+                    </div>
+{#                    {% if request.user.is_superuser %}#}
+{#                        <div class="form-group">#}
+{#                            <label>{{ form.db_id.label }}</label>#}
+{#                            {{ form.db_id }}#}
+{#                        </div>#}
+{#                    {% endif %}#}
+                </div>
+                {% if edit %}
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>{{ form.very_high.label }}</label>
+                            {{ form.very_high }}
+                            {% if form.very_high.errors %}
+                                {{ form.very_high.errors }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form.high.label }}</label>
+                            {{ form.high }}
+                            {% if form.high.errors %}
+                                {{ form.high.errors }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form.low.label }}</label>
+                            {{ form.low }}
+                            {% if form.low.errors %}
+                                {{ form.low.errors }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ form.very_low.label }}</label>
+                            {{ form.very_low }}
+                            {% if form.very_low.errors %}
+                                {{ form.very_low.errors }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>{{ form.offset.label }}</label>
+                            {{ form.offset }}
+                            {% if form.offset.errors %}
+                                {{ form.offset.errors }}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div style="display: flow-root">
+                <button class="btn btn-sm btn-theme pull-left m-t-n-xs" type="submit">
+                    {% if edit %}
+                    ویرایش سنسور
+                    {% else %}
+                    ثبت سنسور
+                    {% endif %}
+                </button>
+            </div>
+
+
+            {% comment %}<div class="form-group"><label>Password</label> <input type="password" placeholder="Password" class="form-control"></div>
+            <div>
+                <button class="btn btn-sm btn-theme pull-right m-t-n-xs" type="submit"><strong>Log in</strong></button>
+                <label> <input type="checkbox" class="i-checks"> Remember me </label>
+            </div>{% endcomment %}
+        </form>
+    </div>
+
+    {% comment %}<form method="post" data-parsley-validate>
+          <div class="card-header">
+            ایجاد سازمان جدید
+          </div>
+          <div class="card-body">
+              {% csrf_token %}
+              <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">{{ form.title.label }}</label>
+                <div class="col-sm-6">
+                    {{ form.title }}
+                </div>
+              </div>
+          </div>
+    </form>{% endcomment %}
+{% endblock %}

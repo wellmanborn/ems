@@ -1,0 +1,21 @@
+{% extends "pinkdesh/account.html" %}
+
+{% block body %}
+<div class="locksreen-col text-center">
+    <h3>Login to Azma EMS</h3>
+    <form class="m-t" role="form" method="post">
+        {% csrf_token %}
+         <div class="form-group">
+            <input type="text" name="username" class="form-control" placeholder="Username" required="">
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Passowrd" required="">
+        </div>
+        <button type="submit" class="btn btn-theme btn-lg btn-block ">Login</button><br>
+        {% comment %}<a href="#"><small>Forgot password?</small></a>{% endcomment %}
+{% comment %}<p class=" text-center"><small>Do not have an account?</small></p>
+<a href="register.html">Create an account</a><br><br>{% endcomment %}
+        <p>Copyright AZMA GROUP © 2020</p>
+    </form>
+</div>
+{% endblock %}

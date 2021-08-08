@@ -1,0 +1,46 @@
+{% extends "pinkdesh/index.html" %}
+
+{% block body %}
+    <div class="panel-box">
+
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li class=""><a href="/setting/airconditioner">تنظیمات Air Conditioner</a></li>
+                <li class="active"><a href="/setting/sms">تنظیمات پیامک</a></li>
+                <li class=""><a  href="/setting/email">تنظیمات ایمیل</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                    <div class="panel-body">
+                        <form role="form" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.url.label }}</label>
+                                            {{ form.url }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.username.label }}</label>
+                                            {{ form.username }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.password.label }}</label>
+                                            {{ form.password }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flow-root">
+                                    <button class="btn btn-sm btn-theme pull-left m-t-n-xs" type="submit">ارسال </button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

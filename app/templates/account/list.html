@@ -1,0 +1,51 @@
+{% extends "pinkdesh/index.html" %}
+
+{% block body %}
+    {% load jformat %}
+    <div class="panel-box">
+        <h4>
+            لیست کاربران
+        </h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ردیف</th>
+                        <th>نام کاربری</th>
+                        <th>نام</th>
+                        <th>نام خانوادگی</th>
+                        <th>دسترسی</th>
+                        <th>تاریخ ایجاد</th>
+                        <th>وضعیت</th>
+                        <th>آخرین ورود</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>{% if user.is_staff %}ادمین{% else %}مشاهده{% endif %}</td>
+                        <td dir="ltr">{{ user.date_joined|jformat:"%Y-%m-%d %H:%M:%S" }}</td>
+                        <td>{% if user.is_active %}فعال{% else %}غیرفعال{% endif %}</td>
+                        <td dir="ltr">{{ user.last_login|jformat:"%Y-%m-%d %H:%M:%S" }}</td>
+                        <td>
+                            <div class="btn-group" style="position:absolute;">
+                              <button type="button" class="btn btn-xs btn-border-theme dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                عملیات <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="/accounts/edit/{{ user.id }}">ویرایش</a></li>
+                                <li><a href="/accounts/change/password/user/{{ user.id }}">تغییر رمز عبور</a></li>
+                              </ul>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+{% endblock %}

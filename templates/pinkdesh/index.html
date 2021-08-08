@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+<head>
+    {% load static %}
+    <title>EMS - AZMAGROUP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="{% static 'pinkdesh/images/favicon.ico' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'pinkdesh/images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'pinkdesh/images/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'pinkdesh/images/favicon-16x16.png' %}">
+    <link href="{% static 'pinkdesh/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'pinkdesh/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'pinkdesh/css/metisMenu.css' %}" rel="stylesheet">
+    <link href="{% static 'pinkdesh/css/morris-0.4.3.min.css' %}" rel="stylesheet">
+    <link href="{% static 'pinkdesh/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'pinkdesh/css/gridstack.min.css' %}" rel="stylesheet">
+    <link href="{% static 'pinkdesh/css/gridstack-extra.min.css' %}" rel="stylesheet">
+    <link href="{% static 'pinkdesh/css/toastr.min.css' %}" rel="stylesheet">
+    <link href="{% static 'pinkdesh/css/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'pinkdesh/css/rtl.css' %}" rel="stylesheet">
+    <script src="{% static 'pinkdesh/js/modernizr.js' %}"></script>
+
+</head>
+<body class="fixed-left">
+
+<div id="wrapper">
+
+    <!--top bar-->
+    <div class="topbar">
+        <div class="topbar-first">
+            <div class="text-center">
+                <a href="/" class="logo">
+                    <img src="{% static 'pinkdesh/images/azmagroup-logo.png' %}" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="menu-toggle">
+            <i class="fa fa-bars"></i>
+        </div>
+        <ul class="nav navbar-nav  top-right-nav hidden-xs">
+            <li style="padding-top: 20px;color: #f7b03e;">
+                <span id="top-menu-text"></span>
+            </li>
+            <li class="dropdown profile-link hidden-xs">
+                <div class="clearfix">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{% static 'pinkdesh/images/avatar.png' %}" alt="">
+                        <span>{{ reques.user.username }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>{{ request.user.username }}</li>
+                        <li><a href="/accounts/logout">خروج از برنامه</a></li>
+                    </ul>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+    <!--end top bar-->
+
+    <!--left menu start-->
+    <div class="side-menu left" id="side-menu">
+
+        <ul class="metismenu clearfix" id="menu">
+            <li class="profile-menu visible-xs">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="{% static 'pinkdesh/images/user.png' %}" alt="">
+                    <span>{{ request.user.username }}</span>
+                </a>
+                <ul class="dropdown-menu profile-drop">
+                    <li>{{ request.user.username }}</li>
+                    {% comment %}<li><a href="#">Account</a></li>
+                    <li><a href="#">Settings</a></li>{% endcomment %}
+                    <li><a href="/accounts/logout">Logout</a></li>
+                </ul>
+            </li>
+            <li {% if request.path == "/"   %} class="active" {% endif %}><a href="/"><i class="fa fa-home"></i><span>داشبورد</span></a></li>
+
+            {% if request.user.is_superuser %}
+                <li>
+                    <a href="#"><i class="fas fa-chart-bar"></i> <span>سنسورها</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/sensors/create/temperature">ایجاد سنسور دما</a></li>
+                        <li><a href="/sensors/create/humidity">ایجاد سنسور رطوبت</a></li>
+                        <li><a href="/sensors/create/power">ایجاد سنسور برق</a></li>
+                        <li><a href="/sensors/create/smoke">ایجاد سنسور دود</a></li>
+                        <li><a href="/sensors/create/door">ایجاد سنسور درب</a></li>
+                        <li><a href="/sensors/create/waterleakage">ایجاد سنسور نشت آب</a></li>
+                        <li><a href="/sensors/create/fuse">ایجاد سنسور فیوز</a></li>
+                        <li><a href="/sensors/add/airconditioner">ایجاد سنسور تهویه هوا</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+            {% if request.user.is_staff %}
+                <li {% if request.path == "/setting/airconditioner" or request.path == "/setting/sms" or request.path == "/setting/email"   %} class="active" {% endif %}><a href="/setting/airconditioner"><i class="fa fa-cog"></i><span>تنظیمات</span></a></li>
+            {% endif %}
+            {% if request.user.is_staff %}
+                <li {% if request.path == "/accounts/" or request.path == "/accounts/create" %} class="active" {% endif %}>
+                    <a href="#"><i class="fas fa-user-friends"></i> <span>کاربران</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li {% if request.path == "/accounts/" %} class="active" {% endif %}><a href="/accounts">لیست کاربران</a></li>
+                        <li {% if request.path == "/accounts/create" %} class="active" {% endif %}><a href="/accounts/create">ایجاد کاربر جدید</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+    <!--left menu end-->
+    <div class="content-page  equal-height">
+        <div class="content">
+            <div class="container">
+                {% block body %}
+                {% endblock %}
+            </div><!--content-->
+        </div><!--content page-->
+    </div><!--end wrapper-->
+</div>
+<!-- Plugins  -->
+<script src="{% static 'pinkdesh/js/jquery.min.js' %}"></script>
+<script src="{% static 'pinkdesh/js/gridstack-h5.js' %}"></script>
+<script src="{% static 'pinkdesh/js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'pinkdesh/js/metisMenu.js' %}"></script>
+<script src="{% static 'pinkdesh/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'pinkdesh/js/raphael-2.2.8.min.js' %}"></script>
+<script src="{% static 'pinkdesh/js/justgage.js' %}"></script>
+<script src="{% static 'pinkdesh/js/core.js' %}"></script>
+<script src="{% static 'pinkdesh/js/mediaquery.js' %}"></script>
+<script src="{% static 'pinkdesh/js/equalize.js' %}"></script>
+<script src="{% static 'pinkdesh/js/toastr.min.js' %}"></script>
+<script src="{% static 'pinkdesh/js/parsley.min.js' %}"></script>
+<script src="{% static 'pinkdesh/js/i18n/fa.js' %}"></script>
+<script src="{% static 'pinkdesh/js/app.js' %}"></script>
+
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-left",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "10000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "success" %}
+                toastr["success"]("{{ message }}");
+            {% endif %}
+            {% if message.tags == "error" %}
+                toastr["error"]("{{ message }}");
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</script>
+{% block script %}
+{% endblock %}
+</body>
+</html>

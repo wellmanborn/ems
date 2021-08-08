@@ -1,0 +1,160 @@
+@font-face{
+    font-family:IRANSans;
+    font-style:normal;
+    font-weight:700;
+    src:url(../fonts/IranSans/IRANSansWeb_Bold.f2cb5d5.eot);
+    src:url(../fonts/IranSans/IRANSansWeb_Bold.43a0ecf.woff2) format("woff2"),
+    url(../fonts/IranSans/IRANSansWeb_Bold.e4ed975.woff) format("woff"),
+    url(../fonts/IranSans/IRANSansWeb_Bold.ebec177.ttf) format("truetype")
+}
+@font-face{
+    font-family:IRANSans;
+    font-style:normal;
+    font-weight:400;
+    src:url(../fonts/IranSans/IRANSansWeb.d393186.eot);
+    src:url(../fonts/IranSans/IRANSansWeb.0b5055a.woff2) format("woff2"),
+    url(../fonts/IranSans/IRANSansWeb.66b5cb3.woff) format("woff"),
+    url(../fonts/IranSans/IRANSansWeb.c26a9eb.ttf) format("truetype")
+}
+body{
+    text-align: right;
+    direction: rtl;
+    font-weight:normal;
+    font-size:1.3rem;
+    font-family: 'IRANSans',-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial, serif;
+}
+.content-page {
+    margin-left: 0px;
+    margin-right: 240px;
+}
+.topbar-first {
+    background: #f7b03e;
+    border-bottom: 1px solid #f7b03e;
+    float: right;
+    height: 57px;
+    line-height: 40px;
+    position: relative;
+    width: 240px;
+    z-index: 1;
+}
+.topbar .menu-toggle,
+.topbar .app-search,
+.topbar .profile-link img,
+.side-menu .profile-menu img,
+.widget-row .widget-box .first-widget
+{
+    float: right!important;
+}
+.app-search i {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    right: auto;
+    font-size: 20px;
+}
+.top-right-nav {
+    padding-left: 30px;
+    float: left !important;
+}
+@media (min-width: 768px){
+    .navbar-nav>li {
+        float: right;
+    }
+}
+.widget-box div i {
+    float: left!important;
+}
+.text-right {
+    text-align: left !important;
+}
+.page-title h3 {
+    margin-right: 0;
+    margin-left: 30px;
+}
+.page-title i {
+    margin-left: 5px;
+    margin-right: 0;
+}
+.metismenu .arrow {
+    float: left;
+}
+.metismenu>li>a i {
+    margin-left: 10px;
+    margin-right: 0;
+}
+.nav.nav-second-level{
+    padding-right: 0;
+}
+.nav.nav-second-level>li>a {
+    padding-left: 10px;
+    padding-right: 30px;
+}
+.metismenu .fa.arrow:before {
+    content: "\f105";
+}
+.footer {
+    right: 240px;
+    text-align: right !important;
+    padding: 20px 30px;
+    position: absolute;
+    left: 0;
+}
+body.widescreen.fixed-left .side-menu .metismenu>li .nav-second-level{
+    right:70px;
+    left:auto;
+}
+body.widescreen.fixed-left .content-page{
+    margin-right: 70px;
+    margin-left: 0px;
+}
+body.widescreen.fixed-left .footer{
+    right: 70px;
+    left: auto;
+}
+th {
+    text-align: right;
+}
+.sidebar {
+    right: -270px;
+    left: auto;
+}
+.sidebar.active {
+    left: 0;
+    right: auto;
+}
+body.widescreen.fixed-left .side-menu {
+    right: 0;
+    left: auto;
+}
+.col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
+    float: right;
+}
+label {
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+.panel-box h4 {
+    font-size: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+    padding: 10px 0;
+}
+.toast-message {
+    font-size: 1.5rem;
+}
+.errorlist,
+.parsley-errors-list{
+    color: red;
+    padding: 4px 0;
+    list-style-type: none;
+    font-size: 1.2rem;
+}
+.nav {
+    padding-right: 0;
+}
+.nav-tabs > li {
+    float: right !important;
+}
+.dropdown-menu > li > a {
+    text-align: right;
+}

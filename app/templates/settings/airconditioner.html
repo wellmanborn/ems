@@ -1,0 +1,66 @@
+{% extends "pinkdesh/index.html" %}
+
+{% block body %}
+    <div class="panel-box">
+
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="/setting/airconditioner">تنظیمات Air Conditioner</a></li>
+                <li class=""><a href="/setting/sms">تنظیمات پیامک</a></li>
+                <li class=""><a  href="/setting/email">تنظیمات ایمیل</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                    <div class="panel-body">
+                        <form role="form" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.set_point_on.label }}</label>
+                                            {{ form.set_point_on }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ form.set_point_off.label }}</label>
+                                            {{ form.set_point_off }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ form.set_point_humidity.label }}</label>
+                                            {{ form.set_point_humidity }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.start_first_hour.label }}</label>
+                                            {{ form.start_first_hour }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ form.start_second_hour.label }}</label>
+                                            {{ form.start_second_hour }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ form.start_third_hour.label }}</label>
+                                            {{ form.start_third_hour }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.control_method.label }}</label>
+                                            {{ form.control_method }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{ form.time_for_over_range.label }}</label>
+                                            {{ form.time_for_over_range }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flow-root">
+                                    <button class="btn btn-sm btn-theme pull-left m-t-n-xs" type="submit">ثبت سنسور</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

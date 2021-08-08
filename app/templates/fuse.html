@@ -1,0 +1,56 @@
+{% extends "pinkdesh/index.html" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+
+        </div>
+    </div>
+    <div class="panel-box">
+        <h4>
+            {% if edit != True %}
+                ایجاد سنسور فیوز
+            {% else %}
+                ویرایش سنسور فیوز
+            {% endif %}
+        </h4>
+        <form role="form" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{ form.title.label }}</label>
+                        {{ form.title }}
+                    </div>
+                    {% if edit != True %}
+                        <div class="form-group">
+                            <label>{{ form.db_id.label }}</label>
+                            {{ form.db_id }}
+                        </div>
+                    {% endif %}
+                </div>
+                {% if edit != True %}
+                    <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{ form.byte_id.label }}</label>
+                        {{ form.byte_id }}
+                    </div>
+                    <div class="form-group">
+                        <label>{{ form.bit_id.label }}</label>
+                        {{ form.bit_id }}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div style="display: flow-root">
+                <button class="btn btn-sm btn-theme pull-left m-t-n-xs" type="submit">
+                    {% if edit != True %}
+                        ثبت سنسور
+                    {% else %}
+                        ویرایش سنسور
+                    {% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

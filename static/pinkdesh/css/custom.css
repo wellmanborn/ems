@@ -1,0 +1,198 @@
+.widget-box div i {
+    float: right!important;
+}
+.topbar .menu-toggle,
+.topbar .app-search,
+.topbar .profile-link img,
+.side-menu .profile-menu img,
+.widget-row .widget-box .first-widget
+{
+    float: left!important;
+}
+.topbar-first{
+    background: #f7b03e;
+    border-bottom: 1px solid #f7b03e;
+    float: left;
+    height: 57px;
+    line-height: 40px;
+    position: relative;
+    width: 240px;
+    z-index: 1;
+}
+div.grid-stack div .grid-stack-item-content{
+    background: #272a31;
+}
+div.grid-stack div .grid-stack-item-content img.danger{
+    display: none;
+}
+div.grid-stack div .grid-stack-item-content img.ok{
+    display: block;
+}
+div.grid-stack div .grid-stack-item-content.danger{
+    /*background: #272a31 !important;*/
+    -webkit-animation: danger-alert 1s infinite; /* Safari 4+ */
+    -moz-animation:    danger-alert 1s infinite; /* Fx 5+ */
+    -o-animation:      danger-alert 1s infinite; /* Opera 12+ */
+    animation:         danger-alert 1s infinite; /* IE 10+, Fx 29+ */
+}
+div.grid-stack div .grid-stack-item-content.danger img.danger{
+    display: block;
+}
+div.grid-stack div .grid-stack-item-content.danger img.ok{
+    display: none;
+}
+.grid-stack-item > .grid-stack-item-content {
+    inset: 4px !important;
+}
+
+/*.grid-stack>.grid-stack-item{min-width:12.5% !important;}
+.grid-stack>.grid-stack-item[gs-w='1']{width:12.5% !important;}.grid-stack>.grid-stack-item[gs-x='1']{left:12.5% !important;}
+.grid-stack>.grid-stack-item[gs-w='2']{width:25% !important;}  .grid-stack>.grid-stack-item[gs-x='2']{left:25% !important;}
+.grid-stack>.grid-stack-item[gs-w='3']{width:37.5% !important;}.grid-stack>.grid-stack-item[gs-x='3']{left:37.5% !important;}
+.grid-stack>.grid-stack-item[gs-w='4']{width:50% !important;}  .grid-stack>.grid-stack-item[gs-x='4']{left:50% !important;}
+.grid-stack>.grid-stack-item[gs-w='5']{width:62.5% !important;} .grid-stack>.grid-stack-item[gs-x='5']{left:62.5% !important;}
+.grid-stack>.grid-stack-item[gs-w='6']{width:75% !important;}  .grid-stack>.grid-stack-item[gs-x='6']{left:75% !important;}
+.grid-stack>.grid-stack-item[gs-w='7']{width:87.5% !important;} .grid-stack>.grid-stack-item[gs-x='7']{left:87.5% !important;}
+.grid-stack>.grid-stack-item[gs-w='8']{width:100% !important;}*/
+
+#gaugeValue {
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fafafa), color-stop(100%, #f3f3f3));
+    background-image: -webkit-linear-gradient(#fafafa, #f3f3f3);
+    background-image: -moz-linear-gradient(#fafafa, #f3f3f3);
+    background-image: -o-linear-gradient(#fafafa, #f3f3f3);
+    background-image: -ms-linear-gradient(#fafafa, #f3f3f3);
+    background-image: linear-gradient(#fafafa, #f3f3f3);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+}
+h4.sensor-title{
+    padding: 10px 10px 0 10px;
+    text-align: center;
+}
+.smoke-detector-icon{
+    width: 100%;
+    padding: 2rem 4rem;
+}
+.fuse-detector-icon{
+    width: 100%;
+    padding: 2rem 4rem;
+}
+.door-detector-icon {
+    width: 100%;
+    padding: 3rem 6.5rem;
+}
+.air-conditioner-icon{
+    width: 100%;
+    padding: 4rem 4rem;
+}
+.water-leakage-icon {
+    width: 100%;
+    padding: 2rem 4rem;
+}
+.electricity-icon{
+    width: 100%;
+    padding: 2rem 4.5rem;
+}
+@-webkit-keyframes danger-alert {
+    0%, 39% {
+        background-color: #272a31;
+    }
+    40%, 100% {
+        background-color: #b70000;
+    }
+}
+.logo img{
+    height: 56px;
+}
+@media only screen and (min-width: 1580px) and (min-width: 1600px) {
+    .grid-stack-item > .grid-stack-item-content .sensor-gauge {
+        margin: -17px 10px;
+    }
+}
+.grid-stack-item-content.on .air-conditioner-icon.on,
+.grid-stack-item-content.off .air-conditioner-icon.off{
+    display: block;
+}
+.grid-stack-item-content.on .air-conditioner-icon.off,
+.grid-stack-item-content.off .air-conditioner-icon.on{
+    display: none;
+}
+.grid-stack-item-content > .sensor-edit {
+    font-size: 13px;
+    position: absolute;
+    left: 1.3rem;
+    top: 1.3rem;
+    display: none;
+}
+.grid-stack-item-content:hover > .sensor-edit{
+    display: block;
+}
+.grid-stack-item-content > .sensor-delete {
+    font-size: 13px;
+    position: absolute;
+    right: 1.3rem;
+    top: 1.3rem;
+    display: none;
+    color: red;
+}
+.grid-stack-item-content:hover > .sensor-delete{
+    display: block;
+}
+.loader{
+    width: 100%;
+    background: #535353;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 57px;
+    right: 70px;
+    z-index: 999999;
+    opacity: .8;
+}
+#id_control_method,
+#id_status{
+    list-style-type: none;
+    padding-right: 10px;
+}
+.topbar.alert-danger{
+    -webkit-animation: danger-alert 1s infinite !important; /* Safari 4+ */
+    -moz-animation:    danger-alert 1s infinite !important; /* Fx 5+ */
+    -o-animation:      danger-alert 1s infinite !important; /* Opera 12+ */
+    animation:         danger-alert 1s infinite !important; /* IE 10+, Fx 29+ */
+}
+.content-page > .content {
+    padding-top: 78px;
+}
+
+element.style {
+}
+.topbar .menu-toggle, .topbar .app-search, .topbar .profile-link img, .side-menu .profile-menu img, .widget-row .widget-box .first-widget {
+    float: right!important;
+}
+.topbar .menu-toggle, .topbar .app-search, .topbar .profile-link img, .side-menu .profile-menu img, .widget-row .widget-box .first-widget {
+    float: left!important;
+}
+.menu-toggle {
+    padding: 5px 20px;
+}
+.top-right-nav li {
+    padding: 5px 10px;
+}
+.profile-link a {
+    padding-top: 7px;
+}
+.airconditioner-averages{
+    position: absolute;
+    top: 22%;
+    font-size: 1.2rem;
+    color: #B0B0B0;
+    width: 100%;
+    display: flex;
+}

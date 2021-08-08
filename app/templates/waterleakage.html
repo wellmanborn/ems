@@ -1,0 +1,60 @@
+{% extends "pinkdesh/index.html" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+
+        </div>
+    </div>
+    <div class="panel-box">
+        <h4>
+            {% if edit != True %}
+                ایجاد سنسور نشت آب
+            {% else %}
+                ویرایش سنسور نشت آب
+            {% endif %}
+        </h4>
+        <form role="form" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{ form.title.label }}</label>
+                        {{ form.title }}
+                    </div>
+                    {% if request.user.is_superuser and edit != True %}
+                        <div class="form-group">
+                            <label>{{ form.db_id.label }}</label>
+                            {{ form.db_id }}
+                        </div>
+                    {% endif %}
+                </div>
+                {% if request.user.is_superuser %}
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>{{ form.start_value.label }}</label>
+                            {{ form.start_value }}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if edit %}
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>{{ form.time.label }}</label>
+                            {{ form.time }}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div style="display: flow-root">
+                <button class="btn btn-sm btn-theme pull-left m-t-n-xs" type="submit">
+                    {% if edit != True %}
+                        ثبت سنسور
+                    {% else %}
+                        ویرایش سنسور
+                    {% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

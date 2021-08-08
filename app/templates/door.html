@@ -1,0 +1,107 @@
+{% extends "pinkdesh/index.html" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+
+        </div>
+    </div>
+    <div class="panel-box">
+        <h4>
+            {% if edit != True %}
+                ایجاد سنسور درب
+            {% else %}
+                ویرایش سنسور درب
+            {% endif %}
+        </h4>
+        <form role="form" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>{{ form.title.label }}</label>
+                        {{ form.title }}
+                    </div>
+                    {% if request.user.is_superuser %}
+                        <div class="form-group">
+                            <label>{{ form.db_id.label }}</label>
+                            {{ form.db_id }}
+                        </div>
+                    {% endif %}
+                </div>
+                {% if edit == True %}
+                    <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{ form.start_hour.label }}</label>
+                                {{ form.start_hour }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{ form.start_min.label }}</label>
+                                {{ form.start_min }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{ form.end_hour.label }}</label>
+                                {{ form.end_hour }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{ form.end_min.label }}</label>
+                                {{ form.end_min }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {% endif %}
+                {% if request.user.is_superuser %}
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>{{ form.start_value.label }}</label>
+                            {{ form.start_value }}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div style="display: flow-root">
+                <button class="btn btn-sm btn-theme pull-left m-t-n-xs" type="submit">
+                    {% if edit != True %}
+                        ثبت سنسور
+                    {% else %}
+                        ویرایش سنسور
+                    {% endif %}
+                </button>
+            </div>
+
+
+            {% comment %}<div class="form-group"><label>Password</label> <input type="password" placeholder="Password" class="form-control"></div>
+            <div>
+                <button class="btn btn-sm btn-theme pull-right m-t-n-xs" type="submit"><strong>Log in</strong></button>
+                <label> <input type="checkbox" class="i-checks"> Remember me </label>
+            </div>{% endcomment %}
+        </form>
+    </div>
+
+    {% comment %}<form method="post" data-parsley-validate>
+          <div class="card-header">
+            ایجاد سازمان جدید
+          </div>
+          <div class="card-body">
+              {% csrf_token %}
+              <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">{{ form.title.label }}</label>
+                <div class="col-sm-6">
+                    {{ form.title }}
+                </div>
+              </div>
+          </div>
+    </form>{% endcomment %}
+{% endblock %}
