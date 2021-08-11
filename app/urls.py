@@ -19,7 +19,6 @@ from app.views import index, sensors, accounts
 
 urlpatterns = [
     path('', index.index),
-    path('test', index.test),
     path('sensors/create/<sensor_type>', sensors.add_sensor),
     path('sensors/edit/<id>', sensors.edit_sensor),
 

@@ -1,7 +1,4 @@
-from time import sleep
-
 from django.contrib.auth.decorators import login_required
-from django.http import response, HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -27,7 +24,3 @@ def index(request):
         "fuses": fuses,
         "airconditioners": airconditioners
     })
-
-def test(request):
-    sleepy.delay()
-    return HttpResponse("test")

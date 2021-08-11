@@ -1,8 +1,7 @@
-from app.classes.ConvertData import ConvertData
-from app.classes.SensorInterface import SensorInterface
+from app.classes.SensorABC import SensorABC
 
 
-class Temperature(SensorInterface, ConvertData):
+class Temperature(SensorABC):
 
     sensor_type = "temperature"
     config = {

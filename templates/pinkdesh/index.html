@@ -98,7 +98,7 @@ and open the template in the editor.
                 </li>
             {% endif %}
             {% if request.user.is_staff %}
-                <li {% if request.path == "/setting/airconditioner" or request.path == "/setting/sms" or request.path == "/setting/email"   %} class="active" {% endif %}><a href="/setting/airconditioner"><i class="fa fa-cog"></i><span>تنظیمات</span></a></li>
+                <li {% if request.path == "/setting/airconditioner" or request.path == "/setting/sms" or request.path == "/setting/email"   %} class="active" {% endif %}><a href="/setting/sms"><i class="fa fa-cog"></i><span>تنظیمات</span></a></li>
             {% endif %}
             {% if request.user.is_staff %}
                 <li {% if request.path == "/accounts/" or request.path == "/accounts/create" %} class="active" {% endif %}>

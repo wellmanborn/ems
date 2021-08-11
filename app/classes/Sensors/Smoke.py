@@ -1,8 +1,7 @@
-from app.classes.ConvertData import ConvertData
-from app.classes.SensorInterface import SensorInterface
+from app.classes.SensorABC import SensorABC
 
 
-class Smoke(SensorInterface, ConvertData):
+class Smoke(SensorABC):
 
     sensor_type = "smoke"
 

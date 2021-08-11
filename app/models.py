@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 SENSOR_TYPE = (
     ('temperature', 'دما'),
@@ -16,6 +17,12 @@ SENSOR_TYPE = (
     ('aircondition', 'سنسور نور')
 )
 
+NOTIFICATION_TYPE = (
+    ('info', _('success')),
+    ('success', _('success')),
+    ('warning', _('warning')),
+    ('error', _('error')),
+)
 
 # Create your models here.
 class Sensor(models.Model):
@@ -45,7 +52,7 @@ class Setting(models.Model):
         ordering = ['created_at']
 
 
-class LogAlarm(models.Model):
+class AlarmLog(models.Model):
     sensor_id = models.IntegerField(blank=False)
     sensor_type = models.CharField(max_length=255, blank=False)
     db_id = models.IntegerField(blank=False)
@@ -54,6 +61,9 @@ class LogAlarm(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     alarm = models.CharField(max_length=255, blank=False)
     alarm_count = models.BigIntegerField(blank=False, default=1)
+
+    class Meta:
+        db_table = 'app_alarm_log'
 
 
 class Profile(models.Model):
@@ -64,9 +74,11 @@ class Profile(models.Model):
     )
     job_title = models.CharField(max_length=300, blank=False)
     mobile = models.CharField(db_index=True, max_length=20, blank=False)
+    send_sms= models.BooleanField(default=True)
+    dashboard_row_num = models.IntegerField(null=True)
 
 
-class LogSensorData(models.Model):
+class SensorDataLog(models.Model):
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
     sensor_title = models.CharField(blank=False, max_length=255)
     sensor_type = models.CharField(blank=False, max_length=255, choices=SENSOR_TYPE)
@@ -75,6 +87,18 @@ class LogSensorData(models.Model):
     bit_id = models.IntegerField(blank=True, default=0)
     value = models.IntegerField(blank=False, default=0)
     alarm = models.IntegerField(blank=True, default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['created_at']
+        db_table = 'app_sensor_data_log'
+
+
+class Notification(models.Model):
+    message = models.TextField(blank=False)
+    type = models.CharField(max_length=24, choices=NOTIFICATION_TYPE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -4,7 +4,8 @@ import logging
 
 from jdatetime import datetime
 
-from app.models import LogAlarm as LogAlarmModel, LogSensorData
+from app.classes.Notification import send_notification
+from app.models import AlarmLog as AlarmLogModel, SensorDataLog as SensorDataLogModel, Notification as NotificationModel
 from app.classes.Sensor import Sensor
 from app.models import Sensor as SensorModel
 from channels.layers import get_channel_layer
@@ -35,7 +36,7 @@ def read_from_plc_and_insert_to_database():
 
     for dt in data:
         if 'sensor' in dt:
-            log = LogSensorData(sensor_id=dt["sensor_id"], sensor_title=dt["sensor_title"], sensor_type=dt["sensor"],
+            log = SensorDataLogModel(sensor_id=dt["sensor_id"], sensor_title=dt["sensor_title"], sensor_type=dt["sensor"],
                                 db_id=dt["db_id"], byte_id=dt["byte_id"], bit_id=dt["bit_id"],
                                 value=dt["value"], alarm=int(dt["alarm"]))
             log.save()
@@ -43,18 +44,20 @@ def read_from_plc_and_insert_to_database():
 
 
 @shared_task
-def log_alarm(sensor_type, sensor_id, db_id, byte_id, bit_id, alarm):
-    if alarm == False or alarm == 0:
-        sensor = LogAlarmModel.objects.filter(db_id=db_id, sensor_id=sensor_id, byte_id=byte_id,
-                                              bit_id=bit_id, sensor_type=sensor_type)
-        if sensor:
-            sensor.delete()
-            # @todo send notification
-    else:
-        sensor = LogAlarmModel.objects.get_or_create(db_id=db_id, sensor_id=sensor_id, byte_id=byte_id,
-                                                     bit_id=bit_id, sensor_type=sensor_type)[0]
-        if sensor.alarm != str(alarm):
+def log_alarm(sensor_title, sensor_type, sensor_id, db_id, byte_id, bit_id, alarm):
+    if int(alarm) >= 3:
+        sensor = AlarmLogModel.objects.get_or_create(db_id=int(db_id), sensor_id=int(sensor_id), byte_id=int(byte_id),
+                                                     bit_id=int(bit_id), sensor_type=sensor_type)[0]
+        if str(sensor.alarm) != str(alarm):
             sensor.alarm = str(alarm)
             sensor.save()
-            # @todo send notification
+            message = "سنسور " + sensor_title + " خطایی دارد "
+            send_notification("error", message)
+    else:
+        sensor = AlarmLogModel.objects.filter(db_id=int(db_id), sensor_id=int(sensor_id), byte_id=int(byte_id),
+                                              bit_id=int(bit_id), sensor_type=sensor_type)
+        if sensor:
+            sensor[0].delete()
+            message = "سنسور " + sensor_title + " به حالت نرمال رسید "
+            send_notification("success", message)
     return None

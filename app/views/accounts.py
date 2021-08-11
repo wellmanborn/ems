@@ -44,12 +44,14 @@ def create(request):
                 email = form.cleaned_data['email']
                 mobile = form.cleaned_data['mobile']
                 permissions = form.cleaned_data['permissions']
+                dashboard_row_num = None
 
                 user = User.objects.create(first_name=first_name, username=username, last_name=last_name,
                                              email=email,is_staff=permissions)
                 user.set_password(password)
                 user.save()
-                profile = Profile.objects.create(job_title=job_title, mobile=mobile,user_id=user.id)
+                profile = Profile.objects.create(job_title=job_title, mobile=mobile,user_id=user.id,
+                                                 dashboard_row_num=dashboard_row_num)
                 profile.save()
                 messages.success(request, 'با موفقیت افزوده شد')
                 return redirect("/accounts")

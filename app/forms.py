@@ -516,23 +516,35 @@ class SmsForm(forms.Form):
                           widget=forms.TextInput(
                               attrs={
                                   "placeholder": "آدرس url را وارد نمایید",
-                                  "class": "form-control"
+                                  "class": "form-control text-left",
+                                   "dir": "ltr"
                               }
                           ))
-    username = forms.CharField(label="username",
+    username = forms.CharField(label="نام کاربری",
                                required=True,
                                widget=forms.TextInput(
                                    attrs={
-                                       "placeholder": "username را وارد نمایید",
-                                       "class": "form-control"
+                                       "placeholder": "نام کاربری را وارد نمایید",
+                                       "class": "form-control text-left",
+                                       "dir": "ltr"
                                    }
                                ))
-    password = forms.CharField(label="آدرس url",
+    password = forms.CharField(label="رمزعبور",
                                required=True,
                                widget=forms.TextInput(
                                    attrs={
-                                       "placeholder": "password را وارد نمایید",
-                                       "class": "form-control"
+                                       "placeholder": "رمز عبور را وارد نمایید",
+                                       "class": "form-control text-left",
+                                       "dir": "ltr"
+                                   }
+                               ))
+    originator = forms.CharField(label="شماره ارسال",
+                               required=True,
+                               widget=forms.TextInput(
+                                   attrs={
+                                       "placeholder": "شماره ارسال را وارد نمایید",
+                                       "class": "form-control text-left",
+                                       "dir": "ltr"
                                    }
                                ))
 

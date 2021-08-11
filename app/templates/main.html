@@ -360,7 +360,7 @@
                     }
                 }
                 if(dt.sensor === "door") {
-                    if(dt.alarm == 3 || dt.alarm == 4){
+                    if(!dt.value){
                         $("#door-" + dt.db_id).addClass("danger")
                     }else{
                         $("#door-" + dt.db_id).removeClass("danger")

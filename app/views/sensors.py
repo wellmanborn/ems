@@ -75,7 +75,7 @@ def add_airconditioner(request):
         if form.is_valid():
             db_id = int(request.POST['db_id']) if 'db_id' in request.POST else 64
             byte_id = int(request.POST['byte_id']) if 'byte_id' in request.POST else 42
-            config = Airconditioner().get_airconditioner_config(db_id)
+            config = Airconditioner().get_config(db_id)
             airconditioner = Setting.objects.get_or_create(key="air_conditioner")
             airconditioner[0].config = config
             airconditioner[0].save()
@@ -114,7 +114,7 @@ def setting_airconditioner(request):
             airconditioner.config["manual_air3_on"] = airconditioner.config["manual_air3_on"]
             airconditioner.config["manual_air4_on"] = airconditioner.config["manual_air4_on"]
             airconditioner.save()
-            Airconditioner().set_airconditioner_config(airconditioner.config, 64)
+            Airconditioner().set_data(None, airconditioner.config, 64)
             messages.success(request, 'با موفقیت ویرایش شد')
         else:
             messages.error(request, 'حطایی رخ داد، لطفا مجددا تلاش نمایید')
@@ -154,15 +154,38 @@ def edit_airconditioner(request, id=None):
     else:
         form = AirconditionerEditForm()
         form.initial["title"] = airconditioner.title
-        status = setting.config["manual_air" + str(int(airconditioner.config["bit_id"]) + 1) + "_on"]
+        status = setting.config["manual_air" + str(int(airconditioner.bit_id) + 1) + "_on"]
         form.initial["status"] = 1 if status else 0
 
     return render(request, 'airconditioner_edit.html', {'form': form, "manual": manual})
 
 @login_required
 def setting_sms(request):
-    form = SmsForm()
-    return render(request, 'settings/sms.html', {'form': form})
+    airconditioner_setting = Setting.objects.filter(key="air_conditioner").count()
+    sms_setting = Setting.objects.get_or_create(key="sms")[0]
+    if request.method == 'POST':
+        form = SmsForm(request.POST)
+        if form.is_valid():
+            config = {
+                "username": form.cleaned_data["username"],
+                "password": form.cleaned_data["password"],
+                "url": form.cleaned_data["url"],
+                "originator": form.cleaned_data["originator"],
+            }
+
+            sms_setting.config = config
+            sms_setting.save()
+
+            messages.success(request, 'با موفقیت ویرایش شد')
+        else:
+            messages.error(request, 'حطایی رخ داد، لطفا مجددا تلاش نمایید')
+    else:
+        form = SmsForm()
+        form.initial["username"] = sms_setting.config["username"] if "username" in sms_setting.config else None
+        form.initial["password"] = sms_setting.config["password"] if "password" in sms_setting.config else None
+        form.initial["url"] = sms_setting.config["url"] if "url" in sms_setting.config else None
+        form.initial["originator"] = sms_setting.config["originator"] if "originator" in sms_setting.config else None
+    return render(request, 'settings/sms.html', {'form': form, 'airconditioner_setting': airconditioner_setting})
 
 @login_required
 def setting_email(request):

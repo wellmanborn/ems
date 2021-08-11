@@ -1,7 +1,7 @@
-from app.classes.SensorInterface import SensorInterface
+from app.classes.SensorABC import SensorABC
 
 
-class Power(SensorInterface):
+class Power(SensorABC):
 
     sensor_type = "power"
 

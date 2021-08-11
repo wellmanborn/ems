@@ -4,9 +4,10 @@ logger = logging.getLogger('django')
 from app.classes.Device import Device
 from app.classes.ConvertData import ConvertData
 from app.tasks import log_alarm
+from abc import ABC, abstractmethod
 
 
-class SensorInterface(ConvertData):
+class SensorABC(ABC, ConvertData):
 
     sensor_id = None
     sensor_title = None
@@ -39,13 +40,15 @@ class SensorInterface(ConvertData):
             self.sensor_title = SensorDetail.title
             self.sensor_id = SensorDetail.id
             response = self.get_sensor_data()
-            log_alarm.delay(self.sensor_type, SensorDetail.id, self.db_id, self.byte_id, self.bit_id, self.alarm)
+            log_alarm.delay(self.sensor_title, self.sensor_type, SensorDetail.id, self.db_id, self.byte_id,
+                            self.bit_id, self.alarm)
             self.device.set_status("")
             return response
         except Exception as e:
             logger.error(e)
-            raise Exception(SensorDetail.type + str(SensorDetail.db_id) + e)
+            raise Exception(str(e))
 
+    @abstractmethod
     def get_sensor_data(self):
         """ must be implemented in child classes """
 
@@ -59,12 +62,15 @@ class SensorInterface(ConvertData):
                 data[dt] = val
         return data
 
-    def set_data(self, SensorDetail, config):
+    def set_data(self, SensorDetail, config, db_id = None):
         try:
             self.device.set_status("writing")
-            self.db_id = SensorDetail.db_id
-            self.byte_id = SensorDetail.byte_id
-            self.bit_id = SensorDetail.bit_id
+            if SensorDetail != None:
+                self.db_id = SensorDetail.db_id
+                self.byte_id = SensorDetail.byte_id
+                self.bit_id = SensorDetail.bit_id
+            else:
+                self.db_id = db_id
             self.config = config
             self.set_sensor_data()
             self.device.set_status("")
@@ -73,6 +79,7 @@ class SensorInterface(ConvertData):
             logger.error(e)
             raise Exception(e)
 
+    @abstractmethod
     def set_sensor_data(self):
         """ must be implemented in child classes"""
 
@@ -87,5 +94,6 @@ class SensorInterface(ConvertData):
             logger.error(e)
             raise Exception(e)
 
+    @abstractmethod
     def get_sensor_config(self):
         """ must be implemented in child classes"""

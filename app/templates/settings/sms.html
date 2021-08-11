@@ -5,9 +5,11 @@
 
         <div class="tabs-container">
             <ul class="nav nav-tabs">
-                <li class=""><a href="/setting/airconditioner">تنظیمات Air Conditioner</a></li>
                 <li class="active"><a href="/setting/sms">تنظیمات پیامک</a></li>
-                <li class=""><a  href="/setting/email">تنظیمات ایمیل</a></li>
+                {% if airconditioner_setting >= 1 %}
+                    <li class=""><a href="/setting/airconditioner">تنظیمات Air Conditioner</a></li>
+                {% endif %}
+                {% comment %}<li class=""><a  href="/setting/email">تنظیمات ایمیل</a></li>{% endcomment %}
             </ul>
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane active">
@@ -31,6 +33,12 @@
                                         <div class="form-group">
                                             <label>{{ form.password.label }}</label>
                                             {{ form.password }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.originator.label }}</label>
+                                            {{ form.originator }}
                                         </div>
                                     </div>
                                 </div>
