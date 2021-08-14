@@ -21,7 +21,25 @@ AIRCONDITIONER_MANUAL_CHOICES=[(1,'تنظیمات دستی'),
 
 AIRCONDITIONER_STATUS_CHOICES=[(1,'روشن'),
                                (0,'خاموش')]
-
+SENSOR_TYPES = (
+    ("", 'انتخاب کنید ...'),
+    ("temperature", 'دما'),
+    ("humidity", 'رطوبت'),
+    ("current", 'جریان'),
+    ("power", 'برق'),
+    ("waterleakage", 'نشت آب'),
+    ("door", 'درب'),
+    ("smoke", 'دود'),
+    ("fuse", 'فیوز')
+)
+FAILIURE_CHOICES = (
+    ("", 'انتخاب کنید ...'),
+    (0, 'بدون خطا'),
+    (1, 'کم'),
+    (2, 'متوسط'),
+    (3, 'زیاد'),
+    (4, 'حیاتی')
+)
 
 class TemperatureForm(forms.Form):
     title = forms.CharField(label="شناسه سنسور دما",
@@ -162,6 +180,44 @@ class HumidityForm(forms.Form):
                                     }
                                 ))
 
+class CurrentForm(forms.Form):
+    title = forms.CharField(label="شناسه سنسور جریان",
+                            required=True,
+                            widget=forms.TextInput(
+                                attrs={
+                                    "placeholder": "شناسه سنسور جریان را وارد نمایید",
+                                    "class": "form-control"
+                                }
+                            ))
+    db_id = forms.IntegerField(label="شماره Data Block",
+                               required=False,
+                               widget=forms.TextInput(
+                                   attrs={
+                                       "placeholder": "شماره Data Block جریان را وارد نمایید",
+                                       "class": "form-control",
+                                       "type": "number"
+                                   }
+                               ))
+    high = forms.IntegerField(label="مقدار بالای جریان",
+                              required=False,
+                              widget=forms.TextInput(
+                                  attrs={
+                                      "placeholder": "مقدار بالای جریان را وارد نمایید",
+                                      "class": "form-control",
+                                      "value": 0,
+                                      "type": "number"
+                                  }
+                              ))
+    time = forms.IntegerField(label="زمان خطا (به ثانیه وارد نمایید)",
+                              required=False,
+                              widget=forms.TextInput(
+                                  attrs={
+                                      "placeholder": "زمان خطا را وارد نمایید",
+                                      "class": "form-control",
+                                      "value": 5,
+                                      "type": "number"
+                                  }
+                              ))
 
 class PowerForm(forms.Form):
     title = forms.CharField(label="شناسه سنسور برق",
@@ -517,7 +573,7 @@ class SmsForm(forms.Form):
                               attrs={
                                   "placeholder": "آدرس url را وارد نمایید",
                                   "class": "form-control text-left",
-                                   "dir": "ltr"
+                                  "dir": "ltr"
                               }
                           ))
     username = forms.CharField(label="نام کاربری",
@@ -539,14 +595,14 @@ class SmsForm(forms.Form):
                                    }
                                ))
     originator = forms.CharField(label="شماره ارسال",
-                               required=True,
-                               widget=forms.TextInput(
-                                   attrs={
-                                       "placeholder": "شماره ارسال را وارد نمایید",
-                                       "class": "form-control text-left",
-                                       "dir": "ltr"
-                                   }
-                               ))
+                                 required=True,
+                                 widget=forms.TextInput(
+                                     attrs={
+                                         "placeholder": "شماره ارسال را وارد نمایید",
+                                         "class": "form-control text-left",
+                                         "dir": "ltr"
+                                     }
+                                 ))
 
 
 class EmailForm(forms.Form):
@@ -600,46 +656,46 @@ class AirconditionerEditForm(forms.Form):
 
 class CreateUserForm(forms.Form):
     first_name = forms.CharField(label="نام",
-                            required=True,
-                            widget=forms.TextInput(
-                                attrs={
-                                    "placeholder": "نام را وارد نمایید",
-                                    "class": "form-control",
-                                    "minlength": "2",
-                                    "maxlength": "32"
-                                }
-                            ))
-    last_name = forms.CharField(label="نام خانوادگی",
                                  required=True,
                                  widget=forms.TextInput(
                                      attrs={
-                                         "placeholder": "نام خانوادگی را وارد نمایید",
+                                         "placeholder": "نام را وارد نمایید",
                                          "class": "form-control",
-                                         "minlength": "3",
+                                         "minlength": "2",
                                          "maxlength": "32"
                                      }
                                  ))
-    username = forms.CharField(label="نام کاربری",
+    last_name = forms.CharField(label="نام خانوادگی",
                                 required=True,
                                 widget=forms.TextInput(
                                     attrs={
-                                        "placeholder": "نام کاربری را وارد نمایید",
+                                        "placeholder": "نام خانوادگی را وارد نمایید",
                                         "class": "form-control",
-                                        "data-parsley-type": "alphanum",
                                         "minlength": "3",
-                                        "maxlength": "20"
-
+                                        "maxlength": "32"
                                     }
                                 ))
-    email = forms.CharField(label="آدرس ایمیل",
+    username = forms.CharField(label="نام کاربری",
                                required=True,
                                widget=forms.TextInput(
                                    attrs={
-                                       "placeholder": "آدرس ایمیل را وارد نمایید",
+                                       "placeholder": "نام کاربری را وارد نمایید",
                                        "class": "form-control",
-                                        "data-parsley-type": "email",
+                                       "data-parsley-type": "alphanum",
+                                       "minlength": "3",
+                                       "maxlength": "20"
+
                                    }
                                ))
+    email = forms.CharField(label="آدرس ایمیل",
+                            required=True,
+                            widget=forms.TextInput(
+                                attrs={
+                                    "placeholder": "آدرس ایمیل را وارد نمایید",
+                                    "class": "form-control",
+                                    "data-parsley-type": "email",
+                                }
+                            ))
     mobile = forms.CharField(label="شماره موبایل",
                              widget=forms.TextInput(
                                  attrs={
@@ -660,35 +716,35 @@ class CreateUserForm(forms.Form):
                                 ),
                                 required=False)
     password = forms.CharField(
-                            widget=forms.PasswordInput(
-                                attrs={
-                                    "placeholder": "رمز عبور را وارد نمایید",
-                                    "class": "form-control",
-                                    "autocomplete": "off",
-                                    "minlength": "8",
-                                    "maxlength": "32",
-                                    "id": "password"
-                                }
-                            ), label="رمز عبور", required=True)
+        widget=forms.PasswordInput(
+            attrs={
+                "placeholder": "رمز عبور را وارد نمایید",
+                "class": "form-control",
+                "autocomplete": "off",
+                "minlength": "8",
+                "maxlength": "32",
+                "id": "password"
+            }
+        ), label="رمز عبور", required=True)
     repeat_password = forms.CharField(
-                            widget=forms.PasswordInput(
-                                attrs={
-                                    "placeholder": "رمز عبور را مجددا وارد نمایید",
-                                    "class": "form-control",
-                                    "autocomplete": "off",
-                                    "minlength": "8",
-                                    "maxlength": "32",
-                                    "data-parsley-equalto": "#password"
-                                }
-                            ), label="تکرار رمز عبور", required=True)
+        widget=forms.PasswordInput(
+            attrs={
+                "placeholder": "رمز عبور را مجددا وارد نمایید",
+                "class": "form-control",
+                "autocomplete": "off",
+                "minlength": "8",
+                "maxlength": "32",
+                "data-parsley-equalto": "#password"
+            }
+        ), label="تکرار رمز عبور", required=True)
     permissions = forms.ChoiceField(label='نوع دسترسی',
-                                             choices=PERMISSIONS_CHOICES,
-                                             widget=forms.Select(
-                                                 attrs={
-                                                     'class': "form-control"
-                                                 }
-                                             ),
-                                             required=True)
+                                    choices=PERMISSIONS_CHOICES,
+                                    widget=forms.Select(
+                                        attrs={
+                                            'class': "form-control"
+                                        }
+                                    ),
+                                    required=True)
 
     def clean_password(self, *args, **kwargs):
         password = self.cleaned_data.get("password")
@@ -716,44 +772,44 @@ class CreateUserForm(forms.Form):
 
 class EditUserForm(forms.Form):
     first_name = forms.CharField(label="نام",
-                            required=True,
-                            widget=forms.TextInput(
-                                attrs={
-                                    "placeholder": "نام را وارد نمایید",
-                                    "class": "form-control",
-                                    "minlength": "2",
-                                    "maxlength": "32"
-                                }
-                            ))
-    last_name = forms.CharField(label="نام خانوادگی",
                                  required=True,
                                  widget=forms.TextInput(
                                      attrs={
-                                         "placeholder": "نام خانوادگی را وارد نمایید",
+                                         "placeholder": "نام را وارد نمایید",
                                          "class": "form-control",
-                                         "minlength": "3",
+                                         "minlength": "2",
                                          "maxlength": "32"
                                      }
                                  ))
-    username = forms.CharField(label="نام کاربری",
-                                required=False,
-                                disabled=True,
+    last_name = forms.CharField(label="نام خانوادگی",
+                                required=True,
                                 widget=forms.TextInput(
                                     attrs={
-                                        "placeholder": "نام کاربری را وارد نمایید",
+                                        "placeholder": "نام خانوادگی را وارد نمایید",
                                         "class": "form-control",
-                                        "disabled": "disabled"
+                                        "minlength": "3",
+                                        "maxlength": "32"
                                     }
                                 ))
-    email = forms.CharField(label="آدرس ایمیل",
-                               required=True,
+    username = forms.CharField(label="نام کاربری",
+                               required=False,
+                               disabled=True,
                                widget=forms.TextInput(
                                    attrs={
-                                       "placeholder": "آدرس ایمیل را وارد نمایید",
+                                       "placeholder": "نام کاربری را وارد نمایید",
                                        "class": "form-control",
-                                        "data-parsley-type": "email",
+                                       "disabled": "disabled"
                                    }
                                ))
+    email = forms.CharField(label="آدرس ایمیل",
+                            required=True,
+                            widget=forms.TextInput(
+                                attrs={
+                                    "placeholder": "آدرس ایمیل را وارد نمایید",
+                                    "class": "form-control",
+                                    "data-parsley-type": "email",
+                                }
+                            ))
     mobile = forms.CharField(label="شماره موبایل",
                              widget=forms.TextInput(
                                  attrs={
@@ -774,21 +830,21 @@ class EditUserForm(forms.Form):
                                 ),
                                 required=False)
     permissions = forms.ChoiceField(label='نوع دسترسی',
-                                             choices=PERMISSIONS_CHOICES,
-                                             widget=forms.Select(
-                                                 attrs={
-                                                     'class': "form-control"
-                                                 }
-                                             ),
-                                             required=True)
-    is_active = forms.ChoiceField(label='وضعیت',
-                                    choices=STATUS_CHOICES,
+                                    choices=PERMISSIONS_CHOICES,
                                     widget=forms.Select(
                                         attrs={
                                             'class': "form-control"
                                         }
                                     ),
                                     required=True)
+    is_active = forms.ChoiceField(label='وضعیت',
+                                  choices=STATUS_CHOICES,
+                                  widget=forms.Select(
+                                      attrs={
+                                          'class': "form-control"
+                                      }
+                                  ),
+                                  required=True)
 
     def clean_mobile(self, *args, **kwargs):
         mobile = self.cleaned_data.get("mobile")
@@ -848,3 +904,61 @@ class ChangeUserPasswordForm(forms.Form):
             raise forms.ValidationError("تکرار رمز عبور صحیح نیست")
         else:
             return repeat_password
+
+
+class SearchLogDataForm(forms.Form):
+    sensor_type = forms.ChoiceField(label='نوع سنسور',
+                                    choices=SENSOR_TYPES,
+                                    initial='',
+                                    widget=forms.Select(
+                                        attrs={
+                                            'class': "form-control"
+                                        }
+                                    ),
+                                    required=False)
+
+    sensor_id = forms.ChoiceField(label='عنوان سنسور',
+                                  widget=forms.Select(
+                                      attrs={
+                                          'class': "form-control"
+                                      }
+                                  ),
+                                  required=False)
+    sensor_alarm = forms.ChoiceField(label='خطای سنسور',
+                                     choices=FAILIURE_CHOICES,
+                                     initial='',
+                                     widget=forms.Select(
+                                         attrs={
+                                             'class': "form-control"
+                                         }
+                                     ),
+                                     required=False)
+    from_date = forms.CharField(label="از تاریخ",
+                                required=False,
+                                widget=forms.TextInput(
+                                    attrs={
+                                        "placeholder": "از تاریخ",
+                                        "class": "form-control form-datetime-picker",
+                                        "data-enabletimepicker": "true",
+                                        "dir":"ltr",
+                                        "data-mddatetimepicker": "true",
+                                        "data-placement": "right",
+                                        "data-value": ""
+                                    }
+                                ))
+    from_date_value = forms.CharField(widget=forms.HiddenInput(), initial="")
+
+    to_date = forms.CharField(label="تا تاریخ",
+                                required=False,
+                                widget=forms.TextInput(
+                                    attrs={
+                                        "placeholder": "تا تاریخ",
+                                        "class": "form-control form-datetime-picker",
+                                        "data-enabletimepicker": "true",
+                                        "dir": "ltr",
+                                        "data-mddatetimepicker": "true",
+                                        "data-placement": "right",
+                                        "data-value": ""
+                                    }
+                                ))
+    to_date_value = forms.CharField(widget=forms.HiddenInput(), initial="")

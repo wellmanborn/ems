@@ -3,10 +3,10 @@
 {% block body %}
     <div class="panel-box">
         <h4>
-            {% if edit != True %}
-                ایجاد سنسور درب
+            {% if edit %}
+            ویرایش سنسور جریان
             {% else %}
-                ویرایش سنسور درب
+                ایجاد سنسور جریان
             {% endif %}
         </h4>
         <form role="form" method="post">
@@ -16,62 +16,46 @@
                     <div class="form-group">
                         <label>{{ form.title.label }}</label>
                         {{ form.title }}
+                        {% if form.title.errors %}
+                            {{ form.title.errors }}
+                        {% endif %}
                     </div>
-                    {% if request.user.is_superuser %}
+                    {% if request.user.is_superuser and edit != True %}
                         <div class="form-group">
                             <label>{{ form.db_id.label }}</label>
                             {{ form.db_id }}
+                            {% if form.db_id.errors %}
+                                {{ form.db_id.errors }}
+                            {% endif %}
                         </div>
                     {% endif %}
                 </div>
-                {% if edit == True %}
-                    <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{ form.start_hour.label }}</label>
-                                {{ form.start_hour }}
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{ form.start_min.label }}</label>
-                                {{ form.start_min }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{ form.end_hour.label }}</label>
-                                {{ form.end_hour }}
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>{{ form.end_min.label }}</label>
-                                {{ form.end_min }}
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                {% endif %}
-                {% if request.user.is_superuser %}
+                {% if edit %}
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>{{ form.start_value.label }}</label>
-                            {{ form.start_value }}
+                            <label>{{ form.high.label }}</label>
+                            {{ form.high }}
+                            {% if form.high.errors %}
+                                {{ form.high.errors }}
+                            {% endif %}
                         </div>
                     </div>
+                    {% if edit %}
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>{{ form.time.label }}</label>
+                                {{ form.time }}
+                            </div>
+                        </div>
+                    {% endif %}
                 {% endif %}
             </div>
             <div style="display: flow-root">
                 <button class="btn btn-sm btn-theme pull-left m-t-n-xs" type="submit">
-                    {% if edit != True %}
-                        ثبت سنسور
+                    {% if edit %}
+                    ویرایش سنسور
                     {% else %}
-                        ویرایش سنسور
+                    ثبت سنسور
                     {% endif %}
                 </button>
             </div>

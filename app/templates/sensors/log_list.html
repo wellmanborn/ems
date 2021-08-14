@@ -1,0 +1,162 @@
+{% extends "pinkdesh/index.html" %}
+
+{% block body %}
+    {% load jformat %}
+    <div class="panel-box">
+        <form role="form" id="search-form" method="get">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.sensor_type.label }}</label>
+                        {{ form.sensor_type }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.sensor_id.label }}</label>
+                        {{ form.sensor_id }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.sensor_alarm.label }}</label>
+                        {{ form.sensor_alarm }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="from_date">{{ form.from_date.label }}</label>
+                        {{ form.from_date }}
+                        {{ form.from_date_value }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="from_date">{{ form.to_date.label }}</label>
+                        {{ form.to_date }}
+                        {{ form.to_date_value }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="to_date">&nbsp;</label>
+                        <div style="width: 100%">
+                            <button class="btn btn-sm btn-theme m-t-n-xs" type="submit">جستجو</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-box">
+        <h4>
+            لاگ سنسورها
+        </h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ردیف</th>
+                    <th>عنوان سنسور</th>
+                    <th>نوع سنسور</th>
+                    <th>مقدار</th>
+                    <th>خطا</th>
+                    <th style="width:15%">تاریخ ایجاد</th>
+                </tr>
+                </thead>
+                {% for sensor in page_obj %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ sensor.sensor_title }}</td>
+                        <td>{{ sensor.sensor_type }}</td>
+                        <td>{{ sensor.value }}</td>
+                        <td>{{ sensor.alarm }}</td>
+                        <td dir="ltr">{{ sensor.created_at|jformat:"%Y-%m-%d %H:%M:%S" }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <div class="pagination" style="direction: ltr; width: 98%; text-align: left">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a onclick="goToSearch(event, 1)" href="?page=1">&laquo; first</a>
+                        <a onclick="goToSearch(event, {{ page_obj.previous_page_number }})" href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    </span>
+                    {% if page_obj.has_next %}
+                        <a onclick="goToSearch(event, {{ page_obj.next_page_number }})" href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a onclick="goToSearch(event, {{ page_obj.paginator.num_pages }})" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $("#id_sensor_type").on("change", function(e){
+            let sensor_type = $(this).val()
+            if(sensor_type != "") {
+                $.ajax({
+                    url: "/sensors/get_names/" + sensor_type,
+                    success: function(data){
+                        let htmlData = ""
+                        if(data.length > 0) {
+                            htmlData += "<option value=''>انتخاب نمایید ...</option>"
+                            $.each(data, function (key, data) {
+                                htmlData += "<option value='" + data["id"] + "'>" + data["title"] + "</option>";
+                            });
+                        }
+                        $("#id_sensor_id").html(htmlData);
+                    }
+                })
+            }else{
+                $("#id_sensor_id").html("");
+            }
+        });
+        $("#search-form").on("submit", function(e){
+            goToSearch(e)
+        });
+
+        function goToSearch(event, page = 1){
+            event.preventDefault();
+
+            let url = "/sensors/log";
+            let search_params = "?page=" + page + "&";
+
+            let sensor_type = $("#id_sensor_type").val();
+            if(sensor_type != "" && sensor_type != undefined){
+                search_params += "sensor_type=" + sensor_type + "&";
+            }
+
+            let sensor_id = $("#id_sensor_id").val();
+            if(sensor_id != "" && sensor_id != undefined){
+                search_params += "sensor_id=" + sensor_id + "&";
+            }
+
+            let sensor_alarm = $("#id_sensor_alarm").val();
+            if(sensor_alarm != "" && sensor_alarm != undefined){
+                search_params += "sensor_alarm=" + sensor_alarm + "&";
+            }
+
+            let from_date = $("#id_from_date_value").val();
+            if(from_date != "" && from_date != undefined){
+                search_params += "from_date=" + from_date + "&";
+            }
+
+            let to_date = $("#id_to_date_value").val();
+            if(to_date != "" && to_date != undefined){
+                search_params += "to_date=" + to_date + "&";
+            }
+
+            if(search_params != ""){
+                url = url + search_params.slice(0,-1);
+            }
+            location.href = url;
+        }
+
+    </script>
+{% endblock %}

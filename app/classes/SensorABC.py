@@ -3,8 +3,8 @@ import logging
 logger = logging.getLogger('django')
 from app.classes.Device import Device
 from app.classes.ConvertData import ConvertData
-from app.tasks import log_alarm
 from abc import ABC, abstractmethod
+from app.classes.AlarmLog import alarm_log
 
 
 class SensorABC(ABC, ConvertData):
@@ -29,6 +29,7 @@ class SensorABC(ABC, ConvertData):
                     self.client.get_cpu_state() != "S7CpuStatusRun":
                 self.client = self.device.refresh_client()
         except Exception as e:
+            logger.error(e.__str__())
             raise Exception(e)
 
     def get_data(self, SensorDetail):
@@ -40,13 +41,12 @@ class SensorABC(ABC, ConvertData):
             self.sensor_title = SensorDetail.title
             self.sensor_id = SensorDetail.id
             response = self.get_sensor_data()
-            log_alarm.delay(self.sensor_title, self.sensor_type, SensorDetail.id, self.db_id, self.byte_id,
-                            self.bit_id, self.alarm)
+            alarm_log(self.sensor_title, self.sensor_type, SensorDetail.id, self.db_id, self.byte_id, self.bit_id, self.alarm)
             self.device.set_status("")
             return response
         except Exception as e:
-            logger.error(e)
-            raise Exception(str(e))
+            logger.error(e.__str__())
+            raise Exception(e)
 
     @abstractmethod
     def get_sensor_data(self):
@@ -76,7 +76,7 @@ class SensorABC(ABC, ConvertData):
             self.device.set_status("")
             return True
         except Exception as e:
-            logger.error(e)
+            logger.error(e.__str__())
             raise Exception(e)
 
     @abstractmethod
@@ -91,7 +91,7 @@ class SensorABC(ABC, ConvertData):
             self.device.set_status("")
             return config
         except Exception as e:
-            logger.error(e)
+            logger.error(e.__str__())
             raise Exception(e)
 
     @abstractmethod

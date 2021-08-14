@@ -1,5 +1,10 @@
+import jdatetime
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.core.serializers import serialize
+from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
@@ -8,9 +13,9 @@ from app.classes.SensorFormFactory import SensorFormFactory
 from app.classes.SensorHelperFactory import SensorHelperFactory
 from app.classes.Sensors.Airconditioner import Airconditioner
 
-
-from app.forms import AirconditionerForm, AirconditionerSettingForm, SmsForm, EmailForm, AirconditionerEditForm
-from app.models import Sensor, Setting
+from app.forms import AirconditionerForm, AirconditionerSettingForm, SmsForm, EmailForm, AirconditionerEditForm, \
+    SearchLogDataForm
+from app.models import Sensor, Setting, SensorDataLog
 
 
 def add_sensor(request, sensor_type):
@@ -59,7 +64,7 @@ def edit_sensor(request, id):
                 sensor.save()
                 messages.success(request, 'با موفقیت ویرایش شد')
             except Exception as e:
-                messages.error(request, str(request.POST['db_id']) + e.__str__())
+                messages.error(request, e.__str__())
         else:
             messages.error(request, 'حطایی رخ داد، لطفا مجددا تلاش نمایید')
     else:
@@ -187,7 +192,71 @@ def setting_sms(request):
         form.initial["originator"] = sms_setting.config["originator"] if "originator" in sms_setting.config else None
     return render(request, 'settings/sms.html', {'form': form, 'airconditioner_setting': airconditioner_setting})
 
+
 @login_required
-def setting_email(request):
-    form = EmailForm()
-    return render(request, 'settings/email.html', {'form': form})
+def sensor_log(request):
+
+    form = SearchLogDataForm()
+    filter = Q()
+
+    sensor_type = request.GET.get('sensor_type') if 'sensor_type' in request.GET else None
+    if sensor_type is not None:
+        filter &= Q(sensor_type=sensor_type)
+        form.initial["sensor_type"] = sensor_type
+        CHOICE_LIST = list(Sensor.objects.values_list("id","title").filter(type=sensor_type))
+        form.fields["sensor_id"].choices = tuple([(u'', 'انتخاب نمایید ...')] + CHOICE_LIST)
+
+        sensor_id = request.GET.get('sensor_id') if 'sensor_id' in request.GET else None
+        if sensor_id is not None:
+            filter &= Q(sensor_id=sensor_id)
+            form.initial["sensor_id"] = sensor_id
+
+    sensor_alarm = request.GET.get('sensor_alarm') if 'sensor_alarm' in request.GET else None
+    if sensor_alarm is not None:
+        filter &= Q(alarm=int(sensor_alarm))
+        form.initial["sensor_alarm"] = sensor_alarm
+
+    from_date = request.GET.get('from_date') if 'from_date' in request.GET else None
+    if from_date is not None:
+        form.initial["from_date"] = to_persian_numbers(from_date.replace("-", "/"))
+        form.initial["from_date_value"] = from_date
+        from_date = from_date.split(' ')
+        date = str(from_date[0]).split("-")
+        time = str(from_date[1]).split(":")
+        filter &= Q(created_at__gte=jdatetime.datetime(int(date[0]),int(date[1]),int(date[2]),
+                                                      int(time[0]),int(time[1]),int(time[2])).togregorian())
+
+    to_date = request.GET.get('to_date') if 'to_date' in request.GET else None
+    if to_date is not None:
+        form.initial["to_date"] = to_persian_numbers(to_date.replace("-", "/"))
+        form.initial["to_date_value"] = to_date
+        to_date = to_date.split(' ')
+        date = str(to_date[0]).split("-")
+        time = str(to_date[1]).split(":")
+        filter &= Q(created_at__lte=jdatetime.datetime(int(date[0]), int(date[1]), int(date[2]),
+                                                      int(time[0]), int(time[1]), int(time[2])).togregorian())
+
+
+    logs = SensorDataLog.objects.filter(filter)
+    paginator = Paginator(logs, 100)
+
+    page_number = request.GET.get('page') if 'page' in request.GET else 1
+    page_obj = paginator.get_page(int(page_number))
+
+    return render(request, 'sensors/log_list.html', {'form': form, 'page_obj': page_obj})
+
+
+def to_persian_numbers(input_text):
+    fa = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"]
+    en = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+    for i in range(len(en)):
+        input_text = input_text.replace(en[i], fa[i])
+
+    return input_text
+
+@login_required
+def get_sensor_by_type(request, sensor_type):
+    sensors = Sensor.objects.values("id","title").filter(type=sensor_type)
+    data = list(sensors)
+    return JsonResponse(data, safe=False)

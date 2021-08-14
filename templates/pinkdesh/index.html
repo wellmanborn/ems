@@ -22,6 +22,7 @@ and open the template in the editor.
     <link href="{% static 'pinkdesh/css/gridstack.min.css' %}" rel="stylesheet">
     <link href="{% static 'pinkdesh/css/gridstack-extra.min.css' %}" rel="stylesheet">
     <link href="{% static 'pinkdesh/css/toastr.min.css' %}" rel="stylesheet">
+    <link href="{% static 'pinkdesh/css/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.css' %}" rel="stylesheet">
     <link href="{% static 'pinkdesh/css/custom.css' %}" rel="stylesheet">
     <link href="{% static 'pinkdesh/css/rtl.css' %}" rel="stylesheet">
     <script src="{% static 'pinkdesh/js/modernizr.js' %}"></script>
@@ -88,6 +89,7 @@ and open the template in the editor.
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/sensors/create/temperature">ایجاد سنسور دما</a></li>
                         <li><a href="/sensors/create/humidity">ایجاد سنسور رطوبت</a></li>
+                        <li><a href="/sensors/create/current">ایجاد سنسور جریان</a></li>
                         <li><a href="/sensors/create/power">ایجاد سنسور برق</a></li>
                         <li><a href="/sensors/create/smoke">ایجاد سنسور دود</a></li>
                         <li><a href="/sensors/create/door">ایجاد سنسور درب</a></li>
@@ -97,6 +99,7 @@ and open the template in the editor.
                     </ul>
                 </li>
             {% endif %}
+            <li {% if request.path == "/sensors/log"   %} class="active" {% endif %}><a href="/sensors/log"><i class="fa fa-database"></i><span>لاگ سنسورها</span></a></li>
             {% if request.user.is_staff %}
                 <li {% if request.path == "/setting/airconditioner" or request.path == "/setting/sms" or request.path == "/setting/email"   %} class="active" {% endif %}><a href="/setting/sms"><i class="fa fa-cog"></i><span>تنظیمات</span></a></li>
             {% endif %}
@@ -136,8 +139,49 @@ and open the template in the editor.
 <script src="{% static 'pinkdesh/js/parsley.min.js' %}"></script>
 <script src="{% static 'pinkdesh/js/i18n/fa.js' %}"></script>
 <script src="{% static 'pinkdesh/js/app.js' %}"></script>
+<script src="{% static 'pinkdesh/js/Bootstrap-PersianDateTimePicker/calendar.js' %}"></script>
+<script src="{% static 'pinkdesh/js/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.js' %}"></script>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
 
 <script>
+    function toEnglishNumber(strNum) {
+        var pn = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+        var en = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        var an = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
+        var cache = strNum;
+        for (var i = 0; i < 10; i++) {
+            var regex_fa = new RegExp(pn[i], 'g');
+            var regex_ar = new RegExp(an[i], 'g');
+            cache = cache.replace(regex_fa, en[i]);
+            cache = cache.replace(regex_ar, en[i]);
+        }
+        return cache;
+    }
+    function toPersianNumber(strNum) {
+        var pn = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+        var en = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        var an = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
+        var cache = strNum;
+        for (var i = 0; i < 10; i++) {
+            var regex_en = new RegExp(en[i], 'g');
+            var regex_ar = new RegExp(an[i], 'g');
+            cache = cache.replace(regex_en, pn[i]);
+            cache = cache.replace(regex_ar, pn[i]);
+        }
+        return cache;
+    }
+    $('.form-datetime-picker').change(function() {
+        var $this = $(this),
+            value = $this.val();
+        if(value != ""){
+            $("#" + $this.attr("id") + "_value").val(toEnglishNumber(value).replace("  ", " ").replaceAll("/", "-"))
+        }else{
+            $("#" + $this.attr("id") + "_value").val("")
+        }
+    });
     toastr.options = {
         "closeButton": true,
         "debug": false,

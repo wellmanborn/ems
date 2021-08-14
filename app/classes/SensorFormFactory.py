@@ -1,4 +1,5 @@
-from app.forms import TemperatureForm, HumidityForm, PowerForm, WaterleakageForm, DoorForm, SmokeForm, FuseForm
+from app.forms import TemperatureForm, HumidityForm, PowerForm, WaterleakageForm, DoorForm, \
+    SmokeForm, FuseForm, CurrentForm
 
 
 class SensorFormFactory():
@@ -20,6 +21,8 @@ class SensorFormFactory():
                 return SmokeForm(post_data)
             if sensor_type == "fuse":
                 return FuseForm(post_data)
+            if sensor_type == "current":
+                return CurrentForm(post_data)
             raise AssertionError("Sensor Form Not Fount")
         except AssertionError as e:
             raise AssertionError(e)

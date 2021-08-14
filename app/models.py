@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django_jalali.db import models as jmodels
 
 SENSOR_TYPE = (
     ('temperature', 'دما'),
@@ -59,8 +60,7 @@ class AlarmLog(models.Model):
     byte_id = models.IntegerField(blank=False)
     bit_id = models.IntegerField(blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    alarm = models.CharField(max_length=255, blank=False)
-    alarm_count = models.BigIntegerField(blank=False, default=1)
+    alarm = models.PositiveSmallIntegerField(blank=False, default=0)
 
     class Meta:
         db_table = 'app_alarm_log'
@@ -85,13 +85,13 @@ class SensorDataLog(models.Model):
     db_id = models.IntegerField(blank=False)
     byte_id = models.IntegerField(blank=True, default=0)
     bit_id = models.IntegerField(blank=True, default=0)
-    value = models.IntegerField(blank=False, default=0)
+    value = models.FloatField(blank=False, default=0)
     alarm = models.IntegerField(blank=True, default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['created_at']
+        ordering = ['-created_at']
         db_table = 'app_sensor_data_log'
 
 

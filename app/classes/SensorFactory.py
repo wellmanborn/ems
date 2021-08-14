@@ -24,6 +24,9 @@ class SensorFactory():
             if SensorType == "fuse":
                 from app.classes.Sensors.Fuse import Fuse
                 return Fuse()
+            if SensorType == "current":
+                from app.classes.Sensors.Current import Current
+                return Current()
             if SensorType == "airconditioner":
                 from app.classes.Sensors.Airconditioner import Airconditioner
                 return Airconditioner()

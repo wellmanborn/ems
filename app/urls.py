@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 
-from app.views import index, sensors, accounts
+from app.views import index, sensors, accounts, charts
 
 urlpatterns = [
     path('', index.index),
@@ -23,10 +23,15 @@ urlpatterns = [
     path('sensors/edit/<id>', sensors.edit_sensor),
 
     path('sensors/add/airconditioner', sensors.add_airconditioner),
-    path('setting/airconditioner', sensors.setting_airconditioner),
     path('sensors/edit/airconditioner/<id>', sensors.edit_airconditioner),
+    path('sensors/log', sensors.sensor_log),
+    path('sensors/get_names/<sensor_type>', sensors.get_sensor_by_type),
+
+    path('charts/<sensor_type>', charts.show),
+
+    path('setting/airconditioner', sensors.setting_airconditioner),
     path('setting/sms', sensors.setting_sms),
-    path('setting/email', sensors.setting_email),
+    # path('setting/email', sensors.setting_email),
 
     path('accounts/', accounts.list),
     path('accounts/create', accounts.create),

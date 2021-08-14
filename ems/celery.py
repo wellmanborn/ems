@@ -16,13 +16,13 @@ app = Celery('ems')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
 app.conf.beat_schedule = {
-    'every-1-second': {
+    'every-5-second': {
         'task': 'app.tasks.read_from_plc',
-        'schedule': 1.0
+        'schedule': 5.0
     },
-    'every-1-minute': {
+    'every-62-seconds': {
         'task': 'app.tasks.read_from_plc_and_insert_to_database',
-        'schedule': 60.5
+        'schedule': 62.5
     },
 }
 

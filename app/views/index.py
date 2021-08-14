@@ -3,6 +3,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from app.models import Sensor
+from app.tasks import read_from_plc
+
 
 @login_required
 def index(request):
@@ -14,6 +16,7 @@ def index(request):
     smokes = Sensor.objects.filter(type="smoke")
     fuses = Sensor.objects.filter(type="fuse")
     airconditioners = Sensor.objects.filter(type="airconditioner")
+    currents = Sensor.objects.filter(type="current")
     return render(request, "main.html", {
         "temperatures": temperatures,
         "humidities": humidities,
@@ -22,5 +25,6 @@ def index(request):
         "doors": doors,
         "smokes": smokes,
         "fuses": fuses,
-        "airconditioners": airconditioners
+        "airconditioners": airconditioners,
+        "currents": currents
     })

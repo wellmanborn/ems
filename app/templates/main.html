@@ -38,6 +38,24 @@
                 </div>
             </div>
         {% endfor %}
+        {% for current in currents %}
+            <div class="grid-stack-item">
+                <div class="grid-stack-item-content">
+                    {% if request.user.is_staff %}
+                    <a class="sensor-edit" href="/sensors/edit/{{ current.id }}">
+                        <i class="fa fa-pencil-alt"></i>
+                    </a>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <a class="sensor-delete" href="/sensors/delete/{{ current.id }}">
+                            <i class="fa fa-times-circle"></i>
+                        </a>
+                    {% endif %}
+                    <h4 class="sensor-title">{{ current.title }}</h4>
+                    <div class="sensor-gauge" id="current-{{ current.db_id }}"></div>
+                </div>
+            </div>
+        {% endfor %}
         {% for power in powers %}
             <div class="grid-stack-item">
                 <div class="grid-stack-item-content" id="power-{{ power.db_id }}">
@@ -308,6 +326,39 @@
             {% endfor %}
 
 
+        const currents = [];
+        {% for current in currents %}
+                currents[{{ current.db_id }}] =  new JustGage({
+                id: "{{ current.type }}-{{ current.db_id }}",
+                value: 0,
+                min: 0,
+                max: 80,
+                gaugeWidthScale: 1,
+                showInnerShadow: true,
+                shadowOpacity: 1,
+                shadowSize: 12,
+                shadowVerticalOffset: 12,
+                decimals: 2,
+                {% comment %}textRenderer: function (val) {
+                    return parseFloat(val);
+                },{% endcomment %}
+                customSectors: {
+                    ranges: [{
+                        color: "#38c300",
+                        lo: 0,
+                        hi: {{ current.config.high }}-0.01
+                    },{
+                        color: "#ff0000",
+                        lo: {{ current.config.high }}-0.01,
+                        hi: 80
+                    }]
+                },
+                counter: true,
+                valueFontColor: "#FFF",
+            });
+            {% endfor %}
+
+
        /* $(window).on('load resize', function(){
             // resizeGrid();
         });*/
@@ -343,6 +394,14 @@
                         $("#humidity-" + dt.db_id).parent().addClass("danger")
                     }else{
                         $("#humidity-" + dt.db_id).parent().removeClass("danger")
+                    }
+                }
+                if(dt.sensor === "current") {
+                    currents[dt.db_id].refresh(dt.value);
+                    if(dt.alarm == 3 || dt.alarm == 4){
+                        $("#current-" + dt.db_id).parent().addClass("danger")
+                    }else{
+                        $("#current-" + dt.db_id).parent().removeClass("danger")
                     }
                 }
                 if(dt.sensor === "power") {

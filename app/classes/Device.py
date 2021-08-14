@@ -41,7 +41,7 @@ class Device(metaclass=SingletonMeta):
             except Exception as e:
                 self.client = False
                 logger.error("Device is not connected, please be sure the device is ready and accessible")
-                logger.error(e)
+                logger.error(e.__str__())
                 print("Device is not connected, please be sure the device is ready and accessible")
                 attempts += 1
         return self.client

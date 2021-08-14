@@ -1,0 +1,55 @@
+{% extends "pinkdesh/index.html" %}
+
+{% block body %}
+    <div class="panel-box">
+        <div id="container" style="height: 400px; min-width: 310px"></div>
+    </div>
+{% endblock %}
+
+{% block script %}
+
+<script>
+    console.log({{ data }})
+    Highcharts.stockChart('container', {
+
+        rangeSelector: {
+            selected: 1
+        },
+
+        title: {
+            text: 'USD to EUR exchange rate'
+        },
+
+        yAxis: {
+            title: {
+                text: 'Exchange rate'
+            },
+            plotLines: [{
+                value: 0,
+                color: 'green',
+                dashStyle: 'shortdash',
+                width: 2,
+                label: {
+                    text: 'Last quarter minimum'
+                }
+            }, {
+                value: 100,
+                color: 'red',
+                dashStyle: 'shortdash',
+                width: 2,
+                label: {
+                    text: 'Last quarter maximum'
+                }
+            }]
+        },
+
+        series: [{{ data }}{% comment %}{
+            name: 'USD to EUR',
+            data: {{ data }},
+            tooltip: {
+                valueDecimals: 4
+            }
+        }{% endcomment %}]
+    });
+</script>
+{% endblock %}
