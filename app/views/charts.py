@@ -35,5 +35,10 @@ def sensor_data(request):
             for dt in data:
                 result.append([int(dt[0].timestamp()) * 1000, dt[1]])
             response.append({"name": sensor.title, "data": result})
+            
+        data = SensorDataLogModel.objects.filter(filter).order_by('created_at')..annotate(avg_value=Avg('value'))
+        for dt in data:
+            result.append([int(dt[0].timestamp()) * 1000, dt[1]])
+        response.append({"name": "Average", "data": result})
 
     return JsonResponse({'success': True, 'name': 'humidity', 'data': response})
