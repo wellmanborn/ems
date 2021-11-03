@@ -27,6 +27,15 @@ class SensorFactory():
             if SensorType == "current":
                 from app.classes.Sensors.Current import Current
                 return Current()
+            if SensorType == "powerone":
+                from app.classes.Sensors.Powerone import Powerone
+                return Powerone()
+            if SensorType == "powerthree":
+                from app.classes.Sensors.Powerthree import Powerthree
+                return Powerthree()
+            if SensorType == "alarm":
+                from app.classes.Sensors.Alarm import Alarm
+                return Alarm()
             if SensorType == "airconditioner":
                 from app.classes.Sensors.Airconditioner import Airconditioner
                 return Airconditioner()

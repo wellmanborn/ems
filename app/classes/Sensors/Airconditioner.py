@@ -59,3 +59,9 @@ class Airconditioner(SensorABC):
         except Exception as e:
             self.device.set_status("")
             raise e
+
+    def reset_airconditioner(self, status = True):
+        try:
+            self.bool_write_to(self.client, 64, 0, 2, status)
+        except Exception as e:
+            raise e

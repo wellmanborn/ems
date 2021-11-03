@@ -68,3 +68,6 @@ class ConvertData():
         _bytes = bytes([_int])
         byarray[0:1] = _bytes
         return byarray
+
+    def set_word(self, i: int, *, signed: bool = True) -> bytes:
+        return i.to_bytes(2, byteorder='big')

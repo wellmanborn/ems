@@ -15,7 +15,13 @@ class SnapConsumer(AsyncWebsocketConsumer):
         resp = event['response']
         data = resp['data']
         message = resp['message']
+        time_data = resp['time']
+        reset_airconditioner = resp['reset_airconditioner']
+        allow_to_snooze = resp['allow_to_snooze']
         await self.send(text_data=json.dumps({
             'message': message,
-            "data": data
+            "data": data,
+            "time": time_data,
+            "reset_airconditioner": reset_airconditioner,
+            "allow_to_snooze": allow_to_snooze
         }))

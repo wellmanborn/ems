@@ -2,6 +2,8 @@ from app.helpers.DoorHelper import DoorHelper
 from app.helpers.FuseHelper import FuseHelper
 from app.helpers.HumidityHelper import HumidityHelper
 from app.helpers.PowerHelper import PowerHelper
+from app.helpers.PoweroneHelper import PoweroneHelper
+from app.helpers.PowerthreeHelper import PowerthreeHelper
 from app.helpers.SmokeHelper import SmokeHelper
 from app.helpers.TemperatureHelper import TemperatureHelper
 from app.helpers.WaterleakageHelper import WaterleakageHelper
@@ -29,6 +31,10 @@ class SensorHelperFactory():
                 return FuseHelper()
             if sensor_type == "current":
                 return CurrentHelper()
+            if sensor_type == "powerone":
+                return PoweroneHelper()
+            if sensor_type == "powerthree":
+                return PowerthreeHelper()
             raise AssertionError("Sensor Form Not Fount")
         except AssertionError as e:
             raise AssertionError(e)

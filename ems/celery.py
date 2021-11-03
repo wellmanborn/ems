@@ -1,7 +1,7 @@
 import os
 
 from celery import Celery
-# from celery.schedules import crontab
+from celery.schedules import crontab
 # from app.tasks import read_from_plc
 
 # Set the default Django settings module for the 'celery' program.
@@ -24,6 +24,10 @@ app.conf.beat_schedule = {
         'task': 'app.tasks.read_from_plc_and_insert_to_database',
         'schedule': 62.5
     },
+    'every-mid-night': {
+        'task': 'app.tasks.remove_old_data_log_from_database',
+        'schedule': crontab(minute=0, hour=0)
+    }
 }
 
 # CELERY_BEAT_SCHEDULE = {
@@ -43,4 +47,4 @@ app.autodiscover_tasks()
 
 @app.task(bind=True)
 def debug_task(self):
-    print(f'Request: {self.request!r}')
+    print('Request: {self.request!r}')

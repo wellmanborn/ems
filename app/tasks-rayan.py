@@ -28,8 +28,8 @@ def read_from_plc():
     allow_to_snooze = False
     try:
         response["data"] = Sensor().get_all_sensors_data(sensors)["data"]
-        reset_airconditioner = Sensor().get_reset_airconditioner()
-        allow_to_snooze = 1 if Sensor().get_allow_to_snooze() else 0
+        # reset_airconditioner = Sensor().get_reset_airconditioner()
+        # allow_to_snooze = 1 if Sensor().get_allow_to_snooze() else 0
         response["data"].append({"time": str(jdatetime.now().replace(microsecond=0))})
         response["reset_airconditioner"] = reset_airconditioner
         response["allow_to_snooze"] = allow_to_snooze

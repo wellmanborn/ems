@@ -1,55 +1,168 @@
 {% extends "pinkdesh/index.html" %}
 
 {% block body %}
+    {% load jformat %}
     <div class="panel-box">
-        <div id="container" style="height: 400px; min-width: 310px"></div>
+        <form role="form" id="search-form" method="get">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>{{ form.sensor_digital_type.label }}</label>
+                        {{ form.sensor_digital_type }}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="to_date">&nbsp;</label>
+                        <div style="width: 100%">
+                            <button class="btn btn-sm btn-theme m-t-n-xs" type="submit">جستجو</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-box" style="height: 400px;">
+        <div class="loading"></div>
+        <div id="container" style="display:none; height: 400px; min-width: 310px"></div>
     </div>
 {% endblock %}
 
+{{ data }}
 {% block script %}
-
-<script>
-    console.log({{ data }})
-    Highcharts.stockChart('container', {
-
-        rangeSelector: {
-            selected: 1
-        },
-
-        title: {
-            text: 'USD to EUR exchange rate'
-        },
-
-        yAxis: {
-            title: {
-                text: 'Exchange rate'
-            },
-            plotLines: [{
-                value: 0,
-                color: 'green',
-                dashStyle: 'shortdash',
-                width: 2,
-                label: {
-                    text: 'Last quarter minimum'
-                }
-            }, {
-                value: 100,
-                color: 'red',
-                dashStyle: 'shortdash',
-                width: 2,
-                label: {
-                    text: 'Last quarter maximum'
-                }
-            }]
-        },
-
-        series: [{{ data }}{% comment %}{
-            name: 'USD to EUR',
-            data: {{ data }},
-            tooltip: {
-                valueDecimals: 4
+    <script>
+        $("#id_sensor_digital_type").on("change", function(e){
+            let sensor_type = $(this).val()
+            if(sensor_type != "") {
+                $.ajax({
+                    url: "/sensors/get_names/" + sensor_type,
+                    success: function(data){
+                        let htmlData = ""
+                        if(data.length > 0) {
+                            htmlData += "<option value=''>انتخاب نمایید ...</option>"
+                            $.each(data, function (key, data) {
+                                htmlData += "<option value='" + data["id"] + "'>" + data["title"] + "</option>";
+                            });
+                        }
+                        $("#id_sensor_id").html(htmlData);
+                    }
+                })
+            }else{
+                $("#id_sensor_id").html("");
             }
-        }{% endcomment %}]
-    });
-</script>
+        });
+        $("#search-form").on("submit", function(e){
+            e.preventDefault();
+            let data = $(this).serialize();
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            $(".loading").show();
+            $(".loading:before").attr("visibility", "visible");
+            $.ajax({
+                url: "/charts/data",
+                method: 'POST',
+                headers: {'X-CSRFToken': csrftoken},
+                data: data,
+                success: function(data){
+                    $(".loading").hide();
+                    $(".loading:before").attr("visibility", "hidden");
+                    $("#container").show();
+                    while (chart.series.length) {
+                      chart.series[0].remove();
+                    }
+                    let series = [];
+                    $.each(data.data, function(i, value){
+                        chart.addSeries({
+                            "name": value.name,
+                            "data": value.data
+                        });
+                    });
+                    chart.redraw();
+                }
+            })
+        });
+        Highcharts.dateFormats = {
+            'a': function(ts){return new persianDate(ts).format('dddd')},
+            'A': function(ts){return new persianDate(ts).format('dddd')},
+            'd': function(ts){return new persianDate(ts).format('DD')},
+            'e': function(ts){return new persianDate(ts).format('D')},
+            'b': function(ts){return new persianDate(ts).format('MMMM')},
+            'B': function(ts){return new persianDate(ts).format('MMMM')},
+            'm': function(ts){return new persianDate(ts).format('MM')},
+            'y': function(ts){return new persianDate(ts).format('YY')},
+            'Y': function(ts){return new persianDate(ts).format('YYYY')},
+            'W': function(ts){return new persianDate(ts).format('ww')}
+        };
+        const chart = Highcharts.stockChart('container', {
+            time: {
+                useUTC: false
+            },
+            plotOptions: {
+                series: {
+                    showInNavigator: true
+                }
+            },
+            colors: ['#2f7ed8', '#e7d403', '#8bbc21', '#910000', '#1aadce',
+                    '#6554fa', '#f28f43', '#77a1e5', '#c42525', '#a6c96a',
+                    '#166d00', '#fa00c8', '#b4af0f', '#26b38f', '#a6c96a'],
+            chart: {
+                style: {
+                    fontFamily: 'IRANSans,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial, serif'
+                },
+                backgroundColor: {
+                    linearGradient: [0, 0, 500, 500],
+                    stops: [
+                        [0, 'rgb(39,42,49)'],
+                        [1, 'rgb(39,42,49)']
+                    ]
+                },
+            },
+            legend: {
+                enabled: true,
+                itemStyle: {
+                    color: "#FFF",
+                    fontFamily: 'IRANSans',
+                    fontWeight: 'normal'
+                },
+                itemHoverStyle: {
+                    color: "#bbbbbb"
+                },
+                itemHiddenStyle: {
+                    color: "#bbbbbb"
+                }
+            },
+            rangeSelector: {
+                buttons: [{
+                    count: 30,
+                    type: 'minute',
+                    text: '30M'
+                }, {
+                    count: 60,
+                    type: 'minute',
+                    text: '1H'
+                }, {
+                    count: 3,
+                    type: 'hour',
+                    text: '3H'
+                },{
+                    count: 24,
+                    type: 'hour',
+                    text: '24H'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+                inputEnabled: false,
+                selected: 4
+            },
+            title: {
+                {#text: this.chartTitle,#}
+                style: { "color": "#3c4b64", "fontSize": ".9rem" }
+            },
+            credits: {
+                enabled: false
+            },
+            series: []
+        });
+    </script>
 {% endblock %}

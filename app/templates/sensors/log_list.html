@@ -19,12 +19,6 @@
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label>{{ form.sensor_alarm.label }}</label>
-                        {{ form.sensor_alarm }}
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
                         <label for="from_date">{{ form.from_date.label }}</label>
                         {{ form.from_date }}
                         {{ form.from_date_value }}
@@ -50,7 +44,7 @@
     </div>
     <div class="panel-box">
         <h4>
-            لاگ سنسورها
+            لاگ سنسورهای آنالوگ
         </h4>
         <div class="table-responsive">
             <table class="table">
@@ -59,19 +53,17 @@
                     <th>ردیف</th>
                     <th>عنوان سنسور</th>
                     <th>نوع سنسور</th>
-                    <th>مقدار</th>
-                    <th>خطا</th>
-                    <th style="width:15%">تاریخ ایجاد</th>
+                    <th>تاریخ شروع خطا</th>
+                    <th>تاریخ پایان خطا</th>
                 </tr>
                 </thead>
                 {% for sensor in page_obj %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ sensor.sensor_title }}</td>
+                        <td>{{ sensor.sensor.title }}</td>
                         <td>{{ sensor.sensor_type }}</td>
-                        <td>{{ sensor.value }}</td>
-                        <td>{{ sensor.alarm }}</td>
                         <td dir="ltr">{{ sensor.created_at|jformat:"%Y-%m-%d %H:%M:%S" }}</td>
+                        <td dir="ltr">{{ sensor.finished_at|jformat:"%Y-%m-%d %H:%M:%S" }}</td>
                     </tr>
                 {% endfor %}
             </table>

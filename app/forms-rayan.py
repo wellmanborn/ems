@@ -643,7 +643,7 @@ class AirconditionerForm(forms.Form):
                                          "type": "number"
                                      }
                                  ))
-    airconditioner_count = forms.ChoiceField(label='تعداد ari conditioner',
+    airconditioner_count = forms.ChoiceField(label='تعداد air conditioner',
                                              choices=AIR_CONDITIONER_CHOICES,
                                              widget=forms.Select(
                                                  attrs={
@@ -654,69 +654,40 @@ class AirconditionerForm(forms.Form):
 
 
 class AirconditionerSettingForm(forms.Form):
-    set_point_on = forms.IntegerField(label="ست پوینت روشن",
+    set_point_on = forms.FloatField(label="ست پوینت روشن",
                                       required=True,
                                       widget=forms.TextInput(
                                           attrs={
                                               "placeholder": "ست پوینت روشن",
-                                              "class": "form-control",
-                                              "type": "number"
+                                              "class": "form-control"
                                           }
                                       ))
-    set_point_off = forms.IntegerField(label="ست پوینت خاموش",
+    set_point_off = forms.FloatField(label="ست پوینت خاموش",
                                        required=True,
                                        widget=forms.TextInput(
                                            attrs={
                                                "placeholder": "ست پوینت خاموش",
-                                               "class": "form-control",
-                                               "type": "number"
+                                               "class": "form-control"
                                            }
                                        ))
-    set_point_humidity = forms.IntegerField(label="ست پوینت رطوبت",
-                                            required=True,
-                                            widget=forms.TextInput(
-                                                attrs={
-                                                    "placeholder": "ست پوینت رطوبت",
-                                                    "class": "form-control",
-                                                    "type": "number"
-                                                }
-                                            ))
-    time_for_over_range = forms.IntegerField(label="زمان over range",
+    alarm_time = forms.IntegerField(label="زمان alarm",
                                              required=True,
                                              widget=forms.TextInput(
                                                  attrs={
-                                                     "placeholder": "زمان over range",
+                                                     "placeholder": "زمان alarm به دقیقه وارد نمایید",
                                                      "class": "form-control",
                                                      "type": "number"
                                                  }
                                              ))
-    start_first_hour  = forms.IntegerField(label="اولین ساعت شروع",
-                                           required=True,
-                                           widget=forms.TextInput(
-                                               attrs={
-                                                   "placeholder": "اولین ساعت شروع",
-                                                   "class": "form-control",
-                                                   "type": "number"
-                                               }
-                                           ))
-    start_second_hour = forms.IntegerField(label="دومین ساعت شروع",
-                                           required=True,
-                                           widget=forms.TextInput(
-                                               attrs={
-                                                   "placeholder": "دومین ساعت شروع",
-                                                   "class": "form-control",
-                                                   "type": "number"
-                                               }
-                                           ))
-    start_third_hour = forms.IntegerField(label="سومین ساعت شروع",
-                                          required=True,
-                                          widget=forms.TextInput(
-                                              attrs={
-                                                  "placeholder": "سومین ساعت شروع",
-                                                  "class": "form-control",
-                                                  "type": "number"
-                                              }
-                                          ))
+    warning_time = forms.IntegerField(label="زمان warning",
+                                    required=True,
+                                    widget=forms.TextInput(
+                                        attrs={
+                                            "placeholder": "زمان warning به دقیقه وارد نمایید",
+                                            "class": "form-control",
+                                            "type": "number"
+                                        }
+                                    ))
     control_method = forms.ChoiceField(label=" تنظیمات ",
                                        choices=AIRCONDITIONER_MANUAL_CHOICES,
                                        required=True,

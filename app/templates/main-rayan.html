@@ -223,8 +223,8 @@
                     <h4 class="sensor-title">{{ airconditioner.title }}</h4>
                     <div class="airconditioner-averages">
                         <div style="margin: 0 auto;">
-                            <span>Tmp: <span id="average-temperature-{{ airconditioner.bit_id }}"></span></span> -
-                            <span>Hum: <span id="average-humidity-{{ airconditioner.bit_id }}"></span></span>
+                            <span>Tmp: <span id="average-temperature-{{ airconditioner.bit_id }}"></span></span>{% comment %} -
+                            <span>Hum: <span id="average-humidity-{{ airconditioner.bit_id }}"></span></span>{% endcomment %}
                         </div>
                     </div>
                     <img class="air-conditioner-icon on" style="display:block;" src="{% static 'pinkdesh/images/air-conditioner-green.png' %}" />
@@ -663,7 +663,7 @@
                         img_off = $("#airconditioner-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).find("img.off")
                         $("#average-temperature-" + dt.bit_id).text(dt.avg_tmp)
                         $("#average-humidity-" + dt.bit_id).text(dt.avg_hum)
-                        if(!dt.value){
+                        if(dt.value){
                             $(img_on).css("display", "block")
                             $(img_off).css("display", "none")
                         }else{

@@ -1,5 +1,7 @@
 import logging
 
+from app.classes.DataLog import analog_sensor_log
+
 logger = logging.getLogger('django')
 from app.classes.Device import Device
 from app.classes.ConvertData import ConvertData
@@ -30,6 +32,7 @@ class SensorABC(ABC, ConvertData):
                 self.client = self.device.refresh_client()
         except Exception as e:
             logger.error(e.__str__())
+            logger.error("device connection error")
             raise Exception(e)
 
     def get_data(self, SensorDetail):
@@ -41,11 +44,15 @@ class SensorABC(ABC, ConvertData):
             self.sensor_title = SensorDetail.title
             self.sensor_id = SensorDetail.id
             response = self.get_sensor_data()
-            alarm_log(self.sensor_title, self.sensor_type, SensorDetail.id, self.db_id, self.byte_id, self.bit_id, self.alarm)
+            alarm_log(self.sensor_title, self.sensor_type, SensorDetail.id, self.db_id, self.byte_id,
+                      self.bit_id, self.alarm)
+            analog_sensor_log(self.sensor_type, SensorDetail.id, self.db_id, self.byte_id,
+                              self.bit_id, self.alarm)
             self.device.set_status("")
             return response
         except Exception as e:
             logger.error(e.__str__())
+            logger.error("error ---> " + str(SensorDetail.db_id))
             raise Exception(e)
 
     @abstractmethod
@@ -92,6 +99,7 @@ class SensorABC(ABC, ConvertData):
             return config
         except Exception as e:
             logger.error(e.__str__())
+            logger.error("sensor db id: " + str(db_id))
             raise Exception(e)
 
     @abstractmethod

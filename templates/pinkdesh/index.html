@@ -37,13 +37,15 @@ and open the template in the editor.
         <div class="topbar-first">
             <div class="text-center">
                 <a href="/" class="logo">
-                    <img src="{% static 'pinkdesh/images/azmagroup-logo.png' %}" alt="">
+                    <img src="{% static 'pinkdesh/images/logo.png' %}" alt="">
                 </a>
             </div>
         </div>
         <div class="menu-toggle">
             <i class="fa fa-bars"></i>
         </div>
+        <button id="stop-snooze" class="btn btn-theme" style="display: none; margin:15px 20px 0 0;">Stop Snooze</button>
+        <button id="reset-ariconditioner" class="btn btn-theme" style="display: none; margin:15px 20px 0 0;">Reset Airconditioner</button>
         <ul class="nav navbar-nav  top-right-nav hidden-xs">
             <li style="padding-top: 20px;color: #f7b03e;">
                 <span id="top-menu-text"></span>
@@ -82,6 +84,9 @@ and open the template in the editor.
                 </ul>
             </li>
             <li {% if request.path == "/"   %} class="active" {% endif %}><a href="/"><i class="fa fa-home"></i><span>داشبورد</span></a></li>
+            <li {% if request.path == "/charts"   %} class="active" {% endif %}>
+                <a href="/charts"><i class="fa fa-chart-line"></i><span>نمودارها</span></a>
+            </li>
 
             {% if request.user.is_superuser %}
                 <li>
@@ -90,18 +95,20 @@ and open the template in the editor.
                         <li><a href="/sensors/create/temperature">ایجاد سنسور دما</a></li>
                         <li><a href="/sensors/create/humidity">ایجاد سنسور رطوبت</a></li>
                         <li><a href="/sensors/create/current">ایجاد سنسور جریان</a></li>
+                        <li><a href="/sensors/create/powerone">ایجاد سنسور برق تک فاز</a></li>
+                        <li><a href="/sensors/create/powerthree">ایجاد سنسور برق سه فاز</a></li>
                         <li><a href="/sensors/create/power">ایجاد سنسور برق</a></li>
                         <li><a href="/sensors/create/smoke">ایجاد سنسور دود</a></li>
                         <li><a href="/sensors/create/door">ایجاد سنسور درب</a></li>
                         <li><a href="/sensors/create/waterleakage">ایجاد سنسور نشت آب</a></li>
                         <li><a href="/sensors/create/fuse">ایجاد سنسور فیوز</a></li>
-                        <li><a href="/sensors/add/airconditioner">ایجاد سنسور تهویه هوا</a></li>
+                        <li><a href="/airconditioner/add">ایجاد سنسور تهویه هوا</a></li>
                     </ul>
                 </li>
             {% endif %}
             <li {% if request.path == "/sensors/log"   %} class="active" {% endif %}><a href="/sensors/log"><i class="fa fa-database"></i><span>لاگ سنسورها</span></a></li>
             {% if request.user.is_staff %}
-                <li {% if request.path == "/setting/airconditioner" or request.path == "/setting/sms" or request.path == "/setting/email"   %} class="active" {% endif %}><a href="/setting/sms"><i class="fa fa-cog"></i><span>تنظیمات</span></a></li>
+                <li {% if request.path == "/setting/airconditioner" or request.path == "/setting/sms" or request.path == "/setting/alarm"   %} class="active" {% endif %}><a href="/setting/sms"><i class="fa fa-cog"></i><span>تنظیمات</span></a></li>
             {% endif %}
             {% if request.user.is_staff %}
                 <li {% if request.path == "/accounts/" or request.path == "/accounts/create" %} class="active" {% endif %}>
@@ -141,10 +148,11 @@ and open the template in the editor.
 <script src="{% static 'pinkdesh/js/app.js' %}"></script>
 <script src="{% static 'pinkdesh/js/Bootstrap-PersianDateTimePicker/calendar.js' %}"></script>
 <script src="{% static 'pinkdesh/js/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.js' %}"></script>
-<script src="https://code.highcharts.com/stock/highstock.js"></script>
-<script src="https://code.highcharts.com/stock/modules/data.js"></script>
-<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+<script src="{% static 'pinkdesh/js/highstock.js' %}"></script>
+{#<script src="https://code.highcharts.com/stock/modules/data.js"></script>#}
+<script src="{% static 'pinkdesh/js/exporting.js' %}"></script>
+<script src="{% static 'pinkdesh/js/export-data.js' %}"></script>
+<script src="{% static 'pinkdesh/js/persiandate.min.js' %}"></script>
 
 <script>
     function toEnglishNumber(strNum) {

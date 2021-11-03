@@ -1,0 +1,84 @@
+{% extends "pinkdesh/index.html" %}
+
+{% block body %}
+    <div class="panel-box">
+
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li class=""><a href="/setting/sms">تنظیمات پیامک</a></li>
+                {% if airconditioner_setting >= 1 %}
+                    <li class=""><a href="/setting/airconditioner">تنظیمات Air Conditioner</a></li>
+                {% endif %}
+                <li class="active"><a href="/setting/alarm">تنظیمات هشدار</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                    <div class="panel-body">
+                        <form role="form" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.snooze_time.label }}</label>
+                                            {{ form.snooze_time }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.time_for_siren_on_day.label }}</label>
+                                            {{ form.time_for_siren_on_day }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.time_for_siren_off_day.label }}</label>
+                                            {{ form.time_for_siren_off_day }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.time_for_siren_on_night.label }}</label>
+                                            {{ form.time_for_siren_on_night }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.time_for_siren_off_night.label }}</label>
+                                            {{ form.time_for_siren_off_night }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.start_work_time.label }}</label>
+                                            {{ form.start_work_time }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.end_work_time.label }}</label>
+                                            {{ form.end_work_time }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.total_sms.label }}</label>
+                                            {{ form.total_sms }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>{{ form.time_for_repeat_send_sms.label }}</label>
+                                            {{ form.time_for_repeat_send_sms }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flow-root">
+                                    <button class="btn btn-sm btn-theme pull-left m-t-n-xs" type="submit">ارسال </button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

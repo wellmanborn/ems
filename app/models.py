@@ -7,15 +7,15 @@ SENSOR_TYPE = (
     ('temperature', 'دما'),
     ('humidity', 'رطوبت'),
     ('current', 'جریان'),
-    ('power', 'ولتاژ تک فاز'),
-    ('power3', 'ولتاژ سه فاز'),
+    ('powerone', 'ولتاژ تک فاز'),
+    ('powerthree', 'ولتاژ سه فاز'),
     ('door', 'سنسور درب'),
     ('waterleakage', 'نشتی آب'),
     ('smoke', 'سنسور دود'),
     ('digitalpower', 'سنسور کنترل برق'),
     ('fuse', 'سنسور فیوز'),
     ('light', 'سنسور نور'),
-    ('aircondition', 'سنسور نور')
+    ('aircondition', 'تهویه هوا')
 )
 
 NOTIFICATION_TYPE = (
@@ -94,6 +94,21 @@ class SensorDataLog(models.Model):
         ordering = ['-created_at']
         db_table = 'app_sensor_data_log'
 
+
+class AnalogSensorDataLog(models.Model):
+    sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
+    sensor_type = models.CharField(blank=False, max_length=255, choices=SENSOR_TYPE)
+    db_id = models.IntegerField(blank=False)
+    byte_id = models.IntegerField(blank=True, default=0)
+    bit_id = models.IntegerField(blank=True, default=0)
+    alarm = models.IntegerField(blank=True, default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    started_at = models.DateTimeField(auto_now_add=True)
+    finished_at = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        db_table = 'app_analog_sensor_data_log'
 
 class Notification(models.Model):
     message = models.TextField(blank=False)

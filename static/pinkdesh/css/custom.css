@@ -28,6 +28,14 @@ div.grid-stack div .grid-stack-item-content img.danger{
 div.grid-stack div .grid-stack-item-content img.ok{
     display: block;
 }
+.grid-stack-temperature.danger,
+.grid-stack-humidity.danger,
+.grid-stack-current.danger{
+    -webkit-animation: danger-alert 1s infinite; /* Safari 4+ */
+    -moz-animation:    danger-alert 1s infinite; /* Fx 5+ */
+    -o-animation:      danger-alert 1s infinite; /* Opera 12+ */
+    animation:         danger-alert 1s infinite; /* IE 10+, Fx 29+ */
+}
 div.grid-stack div .grid-stack-item-content.danger{
     /*background: #272a31 !important;*/
     -webkit-animation: danger-alert 1s infinite; /* Safari 4+ */
@@ -75,6 +83,8 @@ div.grid-stack div .grid-stack-item-content.danger img.ok{
 h4.sensor-title{
     padding: 10px 10px 0 10px;
     text-align: center;
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 .smoke-detector-icon{
     width: 100%;
@@ -124,17 +134,17 @@ h4.sensor-title{
 .grid-stack-item-content.off .air-conditioner-icon.on{
     display: none;
 }
-.grid-stack-item-content > .sensor-edit {
+.grid-stack-item-content  .sensor-edit {
     font-size: 13px;
     position: absolute;
     left: 1.3rem;
     top: 1.3rem;
     display: none;
 }
-.grid-stack-item-content:hover > .sensor-edit{
+.grid-stack-item-content:hover  .sensor-edit{
     display: block;
 }
-.grid-stack-item-content > .sensor-delete {
+.grid-stack-item-content .sensor-delete {
     font-size: 13px;
     position: absolute;
     right: 1.3rem;
@@ -142,7 +152,7 @@ h4.sensor-title{
     display: none;
     color: red;
 }
-.grid-stack-item-content:hover > .sensor-delete{
+.grid-stack-item-content:hover .sensor-delete{
     display: block;
 }
 .loader{
@@ -170,9 +180,6 @@ h4.sensor-title{
 .content-page > .content {
     padding-top: 78px;
 }
-
-element.style {
-}
 .topbar .menu-toggle, .topbar .app-search, .topbar .profile-link img, .side-menu .profile-menu img, .widget-row .widget-box .first-widget {
     float: right!important;
 }
@@ -195,4 +202,88 @@ element.style {
     color: #B0B0B0;
     width: 100%;
     display: flex;
+}
+.grid-stack-temperature:not(.danger){
+    background-color: #322e40 !important;
+}
+.grid-stack-temperature {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+.grid-stack-temperature:before {
+    content: " ";
+    position: absolute;
+    top: 4%;
+    width: 95%;
+    height: 91%;
+    left: 4%;
+    opacity: 0.1;
+    background-image: url("../images/temperature-icon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.grid-stack-humidity:not(.danger){
+    background-color: #2b3145 !important;
+}
+.grid-stack-humidity {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+.grid-stack-humidity:before {
+    content: " ";
+    position: absolute;
+    top: 4%;
+    width: 95%;
+    height: 91%;
+    left: 4%;
+    opacity: 0.1;
+    background-image: url("../images/humidity-icon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.grid-stack-current:not(.danger){
+    background-color: #312723 !important;
+}
+.grid-stack-current {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+.grid-stack-current:before {
+    content: " ";
+    position: absolute;
+    top: 4%;
+    width: 95%;
+    height: 91%;
+    left: 4%;
+    opacity: 0.1;
+    background-image: url("../images/current-icon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.loading{
+    position: relative;
+    z-index: 9999;
+    height: 400px;
+    width: 100%;
+    display: none;
+}
+.loading:before{
+    content: " ";
+    position: absolute;
+    top: calc(50% - 25px);
+    width: 50px;
+    height: 50px;
+    left: calc(50% - 25px);
+    background-image: url("../images/gearloading.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
 }
