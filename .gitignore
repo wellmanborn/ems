@@ -1,3 +1,5 @@
+#idea folder
+.idea/
 venv
 app/migrations
 ems/settings.py
