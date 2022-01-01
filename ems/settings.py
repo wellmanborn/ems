@@ -80,27 +80,27 @@ ASGI_APPLICATION = 'ems.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ems',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'ems',
 #         'USER': 'root',
 #         'PASSWORD': 'AZMAems81571@',
-#         'HOST': '212.16.66.13',   # Or an IP Address that your DB is hosted on
+#         'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
 #         'PORT': '3306',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ems',
+        'USER': 'root',
+        'PASSWORD': 'AZMAems81571@',
+        'HOST': '212.16.66.13',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+    }
+}
 
 CHANNEL_LAYERS = {
     'default': {
@@ -135,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -166,39 +166,21 @@ LOGGING ={
     'version':1,
     'loggers':{
         'django':{
-            'handlers':['file2','file3','file4','file5'],
+            'handlers':['file4','file5'],
             'level':'DEBUG'
         }
     },
     'handlers':{
-        # 'file1':{
-        #     'level':'DEBUG',
-        #     'class': 'logging.FileHandler',
-        #     'filename':'./logs/debug1.log',
-        #     'formatter':'simpleRe',
-        # },
-        'file2':{
-            'level':'INFO',
-            'class': 'logging.FileHandler',
-            'filename':'./logs/debug2.log',
-            'formatter':'simpleRe',
-        },
-        'file3':{
-            'level':'WARNING',
-            'class': 'logging.FileHandler',
-            'filename':'./logs/debug3.log',
-            'formatter':'simpleRe',
-        },
         'file4':{
             'level':'ERROR',
             'class': 'logging.FileHandler',
-            'filename':'./logs/debug4.log',
+            'filename':'/var/log/python/ems/error.log',
             'formatter':'simpleRe',
         },
         'file5':{
             'level':'CRITICAL',
             'class': 'logging.FileHandler',
-            'filename':'./logs/debug5.log',
+            'filename':'/var/log/python/ems/critical.log',
             'formatter':'simpleRe',
         }
     },
@@ -210,6 +192,8 @@ LOGGING ={
 
     }
 }
+
+
 
 # Celery Configuration Options
 CELERY_BROKER_URL = 'redis://localhost:6379'

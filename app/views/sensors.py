@@ -81,21 +81,33 @@ def add_airconditioner(request):
     if request.method == 'POST':
         form = AirconditionerForm(request.POST)
         if form.is_valid():
-            db_id = int(request.POST['db_id']) if 'db_id' in request.POST else 64
-            byte_id = int(request.POST['byte_id']) if 'byte_id' in request.POST else 42
-            config = Airconditioner().get_config(db_id)
-            airconditioner = Setting.objects.get_or_create(key="air_conditioner")
-            airconditioner[0].config = config
-            airconditioner[0].save()
+            try:
+                db_id = int(request.POST['db_id']) if 'db_id' in request.POST else 64
+                byte_id = int(request.POST['byte_id']) if 'byte_id' in request.POST else 42
+                config = Airconditioner().get_config(db_id)
+                airconditioner = Setting.objects.get_or_create(key="air_conditioner")[0]
+                if type(airconditioner.config) == dict:
+                    config_data = {}
+                    for key in airconditioner.config:
+                        if key != db_id:
+                            config_data[key] = airconditioner.config[key]
+                    config_data[db_id] = config
+                    print(config_data)
+                else:
+                    config_data = {db_id: config}
+                airconditioner.config = config_data
+                airconditioner.save()
 
-            SensorModel.objects.filter(type="airconditioner").delete()
+                SensorModel.objects.filter(type="airconditioner", db_id=db_id).delete()
 
-            title = request.POST['title']
-            for bit in range(0, int(request.POST['airconditioner_count'])):
-                sensor = SensorModel(title=title + " " + str(bit+1),db_id=db_id, byte_id=byte_id, bit_id=bit,
-                                config={}, type="airconditioner")
-                sensor.save()
-            messages.success(request, 'با موفقیت افزوده شد')
+                title = request.POST['title']
+                for bit in range(0, int(request.POST['airconditioner_count'])):
+                    sensor = SensorModel(title=title + " " + str(bit+1),db_id=db_id, byte_id=byte_id, bit_id=bit,
+                                    config={}, type="airconditioner")
+                    sensor.save()
+                messages.success(request, 'با موفقیت افزوده شد')
+            except Exception as e:
+                messages.error(request, e.__str__())
         else:
             messages.error(request, 'حطایی رخ داد، لطفا مجددا تلاش نمایید')
     else:
