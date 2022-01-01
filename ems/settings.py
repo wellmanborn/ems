@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-z(^oxs90=(&@0qv=-r@6&x6xsrl0$knx1of@imit@+ulieb^dh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -85,11 +85,22 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ems',
         'USER': 'root',
-        'PASSWORD': 'AZMAems81571@',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'ems',
+#         'USER': 'root',
+#         'PASSWORD': 'AZMAems81571@',
+#         'HOST': '212.16.66.13',   # Or an IP Address that your DB is hosted on
+#         'PORT': '3306',
+#     }
+# }
 
 CHANNEL_LAYERS = {
     'default': {
@@ -124,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Tehran'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -149,22 +160,46 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEVICE_ADDRESS = "192.168.0.0"
+DEVICE_ADDRESS="212.16.66.11"
 
-LOGGING = {
-    'version': 1,
-    'loggers': {
+LOGGING ={
+    'version':1,
+    'loggers':{
         'django':{
-            'handlers': ['error'],
-            'level': 'ERROR'
+            'handlers':['file2','file3','file4','file5'],
+            'level':'DEBUG'
         }
     },
-    'handlers': {
-        'error': {
-            'level': 'ERROR',
+    'handlers':{
+        # 'file1':{
+        #     'level':'DEBUG',
+        #     'class': 'logging.FileHandler',
+        #     'filename':'./logs/debug1.log',
+        #     'formatter':'simpleRe',
+        # },
+        'file2':{
+            'level':'INFO',
             'class': 'logging.FileHandler',
-            'filename': '/var/log/python/ems/error.log',
-            'formatter': 'simpleRe',
+            'filename':'./logs/debug2.log',
+            'formatter':'simpleRe',
+        },
+        'file3':{
+            'level':'WARNING',
+            'class': 'logging.FileHandler',
+            'filename':'./logs/debug3.log',
+            'formatter':'simpleRe',
+        },
+        'file4':{
+            'level':'ERROR',
+            'class': 'logging.FileHandler',
+            'filename':'./logs/debug4.log',
+            'formatter':'simpleRe',
+        },
+        'file5':{
+            'level':'CRITICAL',
+            'class': 'logging.FileHandler',
+            'filename':'./logs/debug5.log',
+            'formatter':'simpleRe',
         }
     },
     'formatters':{
@@ -177,7 +212,17 @@ LOGGING = {
 }
 
 # Celery Configuration Options
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_ACCEPT_CONTENT=['application/json']
+# CELERY_TASK_SERIALIZER='json'
+# CELERY_RESULT_SERIALIZER='json'
+# CELERY_RESULT_BACKEND='django-db'
+#CELERY_CAHCE_BACKEND='django-cache'
+#CELERY_TIMZEZONE='Asia/Tehran'
+# CELERY_BEAT_SCHEDULER='django_celery_beat.schedulers:DatabaseScheduler'
+#CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
-SENSOR_NUMERIC = {'temperature', 'humidity', 'current', 'powerone', 'powerthree'}
+
+SENSOR_NUMERIC = {'temperature','humidity','current', 'powerone', 'powerthree'}
+AIRCONDITIONER_STATUS_CHOICES=[(0,'روشن'),(1,'خاموش')]
