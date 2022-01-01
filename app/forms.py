@@ -1,6 +1,7 @@
 import re
 
 from django import forms
+from ems.settings import AIRCONDITIONER_STATUS_CHOICES
 
 AIR_CONDITIONER_CHOICES = (
     (1, 'یک'),
@@ -19,8 +20,7 @@ STATUS_CHOICES = (
 AIRCONDITIONER_MANUAL_CHOICES=[(1,'تنظیمات دستی'),
                                (0,'اتوماتیک')]
 
-AIRCONDITIONER_STATUS_CHOICES=[(1,'روشن'),
-                               (0,'خاموش')]
+# AIRCONDITIONER_STATUS_CHOICES=AIRCONDITIONER_STATUS_CHOICES
 SENSOR_TYPES = (
     ("", 'انتخاب کنید ...'),
     ("temperature", 'دما'),

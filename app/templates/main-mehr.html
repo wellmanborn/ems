@@ -663,7 +663,7 @@
                         img_off = $("#airconditioner-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).find("img.off")
                         $("#average-temperature-" + dt.bit_id).text(dt.avg_tmp)
                         $("#average-humidity-" + dt.bit_id).text(dt.avg_hum)
-                        if(!dt.value){
+                        if(dt.value){
                             $(img_on).css("display", "block")
                             $(img_off).css("display", "none")
                         }else{
