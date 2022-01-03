@@ -37,7 +37,6 @@ class Device(metaclass=SingletonMeta):
                 self.client = snap7.client.Client()
                 self.client.connect(settings.DEVICE_ADDRESS, 0, 1)
                 logger.info("DEVICE connected")
-                print(self.client)
                 return self.client
             except Exception as e:
                 self.client = False

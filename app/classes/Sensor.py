@@ -21,6 +21,10 @@ class Sensor():
         sensor = SensorFactory.get_sensor(SensorData.type)
         return sensor.get_data(SensorData)
 
+    def get_sensor_config(self, SensorData):
+        sensor = SensorFactory.get_sensor(SensorData.type)
+        return sensor.get_config(SensorData.db_id, SensorData)
+
     def stop_snooze(self):
         try:
             alarm = SensorFactory.get_sensor("alarm")

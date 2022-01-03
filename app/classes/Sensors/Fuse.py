@@ -6,8 +6,8 @@ class Fuse(SensorABC):
     sensor_type = "fuse"
 
     def get_sensor_data(self):
-        data = self.client.db_read(int(self.db_id), 0, 1)
-        self.value = self.get_bool(data, int(self.byte_id), int(self.bit_id))
+        data = self.client.db_read(int(self.db_id), int(self.byte_id), 1)
+        self.value = self.get_bool(data, 0, int(self.bit_id))
         self.alarm = 4 if self.value == False else 0
         return self.send_response_data()
 

@@ -12,10 +12,16 @@ class Fan(SensorABC):
         return self.send_response_data()
 
     def get_sensor_config(self):
-        data = self.client.db_read(int(self.db_id), 0, 1)
-        self.config["power_on"] = self.get_bool(data, 0, 0)
+        data = self.client.db_read(int(self.db_id), int(self.setting["fan_control_byte_id"]), 1)
+        self.config["status"] = self.get_bool(data,
+                                              0,
+                                              int(self.setting["fan_control_bit_id"]))
         return self.config
 
     def set_sensor_data(self):
-        self.bool_write_to(self.client, int(self.db_id), 0, 0, False)
+        self.bool_write_to(self.client,
+                           int(self.db_id),
+                           int(self.setting["fan_control_byte_id"]),
+                           int(self.setting["fan_control_bit_id"]),
+                           self.config["status"])
         return self.config

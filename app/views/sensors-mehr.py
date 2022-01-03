@@ -296,7 +296,6 @@ def sensor_log(request):
         filter &= Q(created_at__lte=jdatetime.datetime(int(date[0]), int(date[1]), int(date[2]),
                                                       int(time[0]), int(time[1]), int(time[2])).togregorian())
 
-    print(filter)
 
 
     logs = AnalogSensorDataLog.objects.filter(filter)

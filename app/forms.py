@@ -2,6 +2,7 @@ import re
 
 from django import forms
 from ems.settings import AIRCONDITIONER_STATUS_CHOICES
+FAN_STATUS_CHOICES=[(1,'روشن'),(0,'خاموش')]
 
 AIR_CONDITIONER_CHOICES = (
     (1, 'یک'),
@@ -676,6 +677,10 @@ class FanForm(forms.Form):
                                         "type": "number"
                                     }
                                 ))
+    status = forms.ChoiceField(label=" وضعیت ",
+                               choices=FAN_STATUS_CHOICES,
+                               required=False,
+                               widget=forms.RadioSelect())
 
 class AirconditionerForm(forms.Form):
     title = forms.CharField(label="شناسه سنسور تهویه هوا",

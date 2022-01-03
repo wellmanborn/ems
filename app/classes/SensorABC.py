@@ -78,6 +78,7 @@ class SensorABC(ABC, ConvertData):
                 self.db_id = SensorDetail.db_id
                 self.byte_id = SensorDetail.byte_id
                 self.bit_id = SensorDetail.bit_id
+                self.setting = SensorDetail.setting
             else:
                 self.db_id = db_id
             self.config = config
@@ -92,10 +93,15 @@ class SensorABC(ABC, ConvertData):
     def set_sensor_data(self):
         """ must be implemented in child classes"""
 
-    def get_config(self, db_id):
+    def get_config(self, db_id, SensorDetail = None):
         try:
             self.device.set_status("reading")
             self.db_id = db_id
+            if SensorDetail != None:
+                self.byte_id = SensorDetail.byte_id
+                self.bit_id = SensorDetail.bit_id
+                self.config = SensorDetail.config
+                self.setting = SensorDetail.setting
             config = self.get_sensor_config()
             self.device.set_status("")
             return config

@@ -50,6 +50,13 @@
                             {{ form.setting__fan_control_bit_id }}
                         </div>
                     </div>
+                {% else %}
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>{{ form.status.label }}</label>
+                            {{ form.status }}
+                        </div>
+                    </div>
                 {% endif %}
             </div>
             <div style="display: flow-root">

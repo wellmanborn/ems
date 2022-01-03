@@ -68,9 +68,12 @@ def edit_sensor(request, id):
                 config = sensor_helper_class.get_config_from_request(request)
                 sensor_class.set_data(sensor, config)
                 sensor.title = request.POST['title']
-                sensor.byte_id = int(request.POST['byte_id'] if "byte_id" in request.POST else 0)
-                sensor.bit_id = int(request.POST['bit_id'] if "bit_id" in request.POST else 0)
-                sensor.start_value = int(request.POST['start_value'] if "start_value" in request.POST else 0)
+                if "byte_id" in request.POST:
+                    sensor.byte_id = int(request.POST['byte_id'])
+                if "bit_id" in request.POST:
+                    sensor.bit_id = int(request.POST['bit_id'])
+                if "start_value" in request.POST:
+                    sensor.start_value = int(request.POST['start_value'])
                 sensor.config = config
                 sensor.save()
                 messages.success(request, 'با موفقیت ویرایش شد')
@@ -110,7 +113,7 @@ def add_airconditioner(request):
                 title = request.POST['title']
                 for bit in range(0, int(request.POST['airconditioner_count'])):
                     sensor = SensorModel(title=title + " " + str(bit+1),db_id=db_id, byte_id=byte_id, bit_id=bit,
-                                    config={}, type="airconditioner")
+                                         config={}, type="airconditioner")
                     sensor.save()
                 messages.success(request, 'با موفقیت افزوده شد')
             except Exception as e:
@@ -303,7 +306,7 @@ def sensor_log(request):
         date = str(from_date[0]).split("-")
         time = str(from_date[1]).split(":")
         filter &= Q(created_at__gte=jdatetime.datetime(int(date[0]),int(date[1]),int(date[2]),
-                                                      int(time[0]),int(time[1]),int(time[2])).togregorian())
+                                                       int(time[0]),int(time[1]),int(time[2])).togregorian())
 
     to_date = request.GET.get('to_date') if 'to_date' in request.GET else None
     if to_date is not None:
@@ -313,9 +316,8 @@ def sensor_log(request):
         date = str(to_date[0]).split("-")
         time = str(to_date[1]).split(":")
         filter &= Q(created_at__lte=jdatetime.datetime(int(date[0]), int(date[1]), int(date[2]),
-                                                      int(time[0]), int(time[1]), int(time[2])).togregorian())
+                                                       int(time[0]), int(time[1]), int(time[2])).togregorian())
 
-    print(filter)
 
 
     logs = AnalogSensorDataLog.objects.filter(filter)
