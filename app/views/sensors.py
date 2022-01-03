@@ -38,6 +38,14 @@ def add_sensor(request, sensor_type):
                 sensor[0].byte_id = byte_id
                 sensor[0].bit_id = bit_id
                 sensor[0].config = config
+
+                settings = {}
+                for key, value in request.POST.items():
+                    if key.startswith('setting__'):
+                        key = key.replace('setting__', '')
+                        settings[key] = value
+
+                sensor[0].setting = settings
                 sensor[0].save()
                 messages.success(request, 'با موفقیت افزوده شد')
             except Exception as e:
@@ -92,7 +100,6 @@ def add_airconditioner(request):
                         if key != db_id:
                             config_data[key] = airconditioner.config[key]
                     config_data[db_id] = config
-                    print(config_data)
                 else:
                     config_data = {db_id: config}
                 airconditioner.config = config_data

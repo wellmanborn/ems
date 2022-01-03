@@ -19,6 +19,7 @@ def index(request):
     currents = Sensor.objects.filter(type="current")
     powerones = Sensor.objects.filter(type="powerone")
     powerthrees = Sensor.objects.filter(type="powerthree")
+    fans = Sensor.objects.filter(type="fan")
     return render(request, "main.html", {
         "temperatures": temperatures,
         "humidities": humidities,
@@ -30,5 +31,6 @@ def index(request):
         "airconditioners": airconditioners,
         "currents": currents,
         "powerones": powerones,
-        "powerthrees": powerthrees
+        "powerthrees": powerthrees,
+        "fans": fans
     })

@@ -8,6 +8,7 @@ from app.helpers.SmokeHelper import SmokeHelper
 from app.helpers.TemperatureHelper import TemperatureHelper
 from app.helpers.WaterleakageHelper import WaterleakageHelper
 from app.helpers.CurrentHelper import CurrentHelper
+from app.helpers.FanHelper import FanHelper
 
 
 class SensorHelperFactory():
@@ -35,6 +36,8 @@ class SensorHelperFactory():
                 return PoweroneHelper()
             if sensor_type == "powerthree":
                 return PowerthreeHelper()
+            if sensor_type == "fan":
+                return FanHelper()
             raise AssertionError("Sensor Form Not Fount")
         except AssertionError as e:
             raise AssertionError(e)

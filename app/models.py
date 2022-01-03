@@ -34,6 +34,7 @@ class Sensor(models.Model):
     bit_id = models.IntegerField(blank=True, default=0)
     start_value = models.IntegerField(blank=True, default=0)
     config = models.JSONField(blank=True, default=dict)
+    setting = models.JSONField(blank=True, default=dict)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

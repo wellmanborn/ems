@@ -22,6 +22,7 @@ class SensorABC(ABC, ConvertData):
     client = None
     device = None
     config = {}
+    setting = {}
 
     def __init__(self):
         try:
@@ -43,6 +44,7 @@ class SensorABC(ABC, ConvertData):
             self.bit_id = SensorDetail.bit_id
             self.sensor_title = SensorDetail.title
             self.sensor_id = SensorDetail.id
+            self.setting = SensorDetail.setting
             response = self.get_sensor_data()
             alarm_log(self.sensor_title, self.sensor_type, SensorDetail.id, self.db_id, self.byte_id,
                       self.bit_id, self.alarm)

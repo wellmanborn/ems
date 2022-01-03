@@ -33,6 +33,9 @@ class SensorFactory():
             if SensorType == "powerthree":
                 from app.classes.Sensors.Powerthree import Powerthree
                 return Powerthree()
+            if SensorType == "fan":
+                from app.classes.Sensors.Fan import Fan
+                return Fan()
             if SensorType == "alarm":
                 from app.classes.Sensors.Alarm import Alarm
                 return Alarm()

@@ -99,7 +99,6 @@
                 </div>
             </div>
         {% endfor %}
-
         {% for powerthree in powerthrees %}
             <div class="grid-stack-item">
                 <div class="grid-stack-item-content">
@@ -118,24 +117,6 @@
                 </div>
             </div>
         {% endfor %}
-{#        {% for powerthree in powerthrees %}#}
-{#            <div class="grid-stack-item">#}
-{#                <div class="grid-stack-item-content">#}
-{#                    {% if request.user.is_staff %}#}
-{#                        <a class="sensor-edit" href="/sensors/edit/{{ powerthree.id }}">#}
-{#                            <i class="fa fa-pencil-alt"></i>#}
-{#                        </a>#}
-{#                    {% endif %}#}
-{#                    {% if request.user.is_superuser %}#}
-{#                        <a class="sensor-delete" href="/sensors/delete/{{ powerthree.id }}">#}
-{#                            <i class="fa fa-times-circle"></i>#}
-{#                        </a>#}
-{#                    {% endif %}#}
-{#                    <h4 class="sensor-title">{{ powerthree.title }}</h4>#}
-{#                    <div class="sensor-gauge" id="powerthree-{{ powerthree.db_id }}"></div>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
         {% for waterleakage in waterleakages %}
             <div class="grid-stack-item">
                 <div class="grid-stack-item-content" id="waterleakage-{{ waterleakage.db_id }}">
@@ -229,6 +210,25 @@
                     </div>
                     <img class="air-conditioner-icon on" style="display:block;" src="{% static 'pinkdesh/images/air-conditioner-green.png' %}" />
                     <img class="air-conditioner-icon off" style="display:none;" src="{% static 'pinkdesh/images/air-conditioner-red.png' %}" />
+                </div>
+            </div>
+        {% endfor %}
+        {% for fan in fans %}
+            <div class="grid-stack-item">
+                <div class="grid-stack-item-content" id="fan-{{ fan.db_id }}-{{ fan.byte_id }}-{{ fan.bit_id }}">
+                    {% if request.user.is_staff %}
+                        <a class="sensor-edit" href="/sensors/edit/{{ fan.id }}">
+                            <i class="fa fa-pencil-alt"></i>
+                        </a>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <a class="sensor-delete" href="/sensors/delete/{{ fan.id }}">
+                            <i class="fa fa-times-circle"></i>
+                        </a>
+                    {% endif %}
+                    <h4 class="sensor-title">{{ fan.title }}</h4>
+                    <img class="fuse-detector-icon ok" src="{% static 'pinkdesh/images/fan-green.png' %}" />
+                    <img class="fuse-detector-icon danger" src="{% static 'pinkdesh/images/fan-red.png' %}" />
                 </div>
             </div>
         {% endfor %}
@@ -658,12 +658,19 @@
                             $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("danger")
                         }
                     }
+                    if(dt.sensor === "fan") {
+                        if(!dt.value){
+                            $("#fan-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("off")
+                        }else{
+                            $("#fan-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("off")
+                        }
+                    }
                     if(dt.sensor === "airconditioner") {
                         img_on = $("#airconditioner-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).find("img.on")
                         img_off = $("#airconditioner-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).find("img.off")
                         $("#average-temperature-" + dt.db_id + "-" + dt.bit_id).text(dt.avg_tmp)
                         $("#average-humidity-" + dt.db_id + "-" + dt.bit_id).text(dt.avg_hum)
-                        if(!dt.value){
+                        if(dt.value){
                             $(img_on).css("display", "block")
                             $(img_off).css("display", "none")
                         }else{
