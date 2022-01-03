@@ -5,7 +5,11 @@ app/migrations
 ems/settings.py
 .idea
 __pycache__
+app/classes/__pycache__
+app/views/__pycache__
+app/classes/Sensors/__pycache__
 logs
+celerybeat-schedule
 celerybeat-schedule.bak
 celerybeat-schedule.dat
 celerybeat-schedule.dir
