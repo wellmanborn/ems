@@ -209,4 +209,5 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
 
 SENSOR_NUMERIC = {'temperature','humidity','current', 'powerone', 'powerthree'}
+AIRCONDITIONER_REVERSE=True
 AIRCONDITIONER_STATUS_CHOICES=[(0,'روشن'),(1,'خاموش')]

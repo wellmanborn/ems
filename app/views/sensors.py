@@ -20,6 +20,8 @@ from app.forms import AirconditionerForm, AirconditionerSettingForm, SmsForm, Em
 from app.models import Sensor as SensorModel, Setting, SensorDataLog, AnalogSensorDataLog
 import time
 
+from ems.settings import AIRCONDITIONER_REVERSE
+
 
 def add_sensor(request, sensor_type):
     if request.method == 'POST':
@@ -32,7 +34,8 @@ def add_sensor(request, sensor_type):
                 start_value = request.POST['start_value'] if "start_value" in request.POST else 0
                 sensor_class = SensorFactory().get_sensor(sensor_type)
                 config = sensor_class.get_config(db_id)
-                sensor = SensorModel.objects.get_or_create(db_id=db_id, byte_id=byte_id, bit_id=bit_id, type=sensor_type)
+                sensor = SensorModel.objects.get_or_create(db_id=db_id, byte_id=byte_id, bit_id=bit_id,
+                                                           type=sensor_type)
                 sensor[0].title = request.POST['title']
                 sensor[0].start_value = start_value
                 sensor[0].byte_id = byte_id
@@ -55,6 +58,7 @@ def add_sensor(request, sensor_type):
     else:
         form = SensorFormFactory.get_sensor_form(sensor_type)
     return render(request, sensor_type + '.html', {'form': form})
+
 
 @login_required
 def edit_sensor(request, id):
@@ -97,14 +101,17 @@ def add_airconditioner(request):
                 byte_id = int(request.POST['byte_id']) if 'byte_id' in request.POST else 42
                 config = Airconditioner().get_config(db_id)
                 airconditioner = Setting.objects.get_or_create(key="air_conditioner")[0]
+                config_data = {}
+                config_data["config"] = {}
+                config_data["setting"] = {}
                 if type(airconditioner.config) == dict:
-                    config_data = {}
-                    for key in airconditioner.config:
-                        if key != db_id:
-                            config_data[key] = airconditioner.config[key]
-                    config_data[db_id] = config
-                else:
-                    config_data = {db_id: config}
+                    if "config" in airconditioner.config:
+                        for key in airconditioner.config["config"]:
+                            if int(key) != int(db_id):
+                                config_data["config"][int(key)] = airconditioner.config["config"][key]
+                config_data["config"][int(db_id)] = config
+                config_data["setting"]["count"] = len(config_data["config"])
+                config_data["setting"]["reverse"] = AIRCONDITIONER_REVERSE
                 airconditioner.config = config_data
                 airconditioner.save()
 
@@ -112,7 +119,7 @@ def add_airconditioner(request):
 
                 title = request.POST['title']
                 for bit in range(0, int(request.POST['airconditioner_count'])):
-                    sensor = SensorModel(title=title + " " + str(bit+1),db_id=db_id, byte_id=byte_id, bit_id=bit,
+                    sensor = SensorModel(title=title + " " + str(bit + 1), db_id=db_id, byte_id=byte_id, bit_id=bit,
                                          config={}, type="airconditioner")
                     sensor.save()
                 messages.success(request, 'با موفقیت افزوده شد')
@@ -126,7 +133,7 @@ def add_airconditioner(request):
 
 
 @login_required
-def setting_airconditioner(request):
+def setting_airconditioner(request, db_id):
     airconditioner = get_object_or_404(Setting, key="air_conditioner")
     if request.method == 'POST':
         form = AirconditionerSettingForm(request.POST)
@@ -150,22 +157,39 @@ def setting_airconditioner(request):
             messages.error(request, 'حطایی رخ داد، لطفا مجددا تلاش نمایید')
     else:
         form = AirconditionerSettingForm()
-        form.initial["set_point_on"] = airconditioner.config["set_point_on"]
-        form.initial["set_point_off"] = airconditioner.config["set_point_off"]
-        form.initial["control_method"] = 1 if airconditioner.config["control_method"] else 0
-        form.initial["start_first_hour"] = airconditioner.config["start_first_hour"]
-        form.initial["start_third_hour"] = airconditioner.config["start_third_hour"]
-        form.initial["start_second_hour"] = airconditioner.config["start_second_hour"]
-        form.initial["set_point_humidity"] = airconditioner.config["set_point_humidity"]
-        form.initial["time_for_over_range"] = airconditioner.config["time_for_over_range"]
+        form.initial["set_point_on"] = airconditioner.config["config"][db_id]["set_point_on"]
+        form.initial["set_point_off"] = airconditioner.config["config"][db_id]["set_point_off"]
+        form.initial["control_method"] = 1 if airconditioner.config["config"][db_id]["control_method"] else 0
+        form.initial["start_first_hour"] = airconditioner.config["config"][db_id]["start_first_hour"]
+        form.initial["start_third_hour"] = airconditioner.config["config"][db_id]["start_third_hour"]
+        form.initial["start_second_hour"] = airconditioner.config["config"][db_id]["start_second_hour"]
+        form.initial["set_point_humidity"] = airconditioner.config["config"][db_id]["set_point_humidity"]
+        form.initial["time_for_over_range"] = airconditioner.config["config"][db_id]["time_for_over_range"]
     return render(request, 'settings/airconditioner.html', {'form': form})
 
 
 @login_required
 def edit_airconditioner(request, id=None):
     airconditioner = get_object_or_404(SensorModel, pk=id, type="airconditioner")
-    setting = get_object_or_404(Setting, key="air_conditioner")
-    manual = setting.config["control_method"]
+    airconditioner_setting = get_object_or_404(Setting, key="air_conditioner")
+
+    if "config" in airconditioner_setting.config:
+        manual = airconditioner_setting.config["config"][str(airconditioner.db_id)]["control_method"]
+        config = airconditioner.config["config"][str(airconditioner.db_id)]
+    else:
+        manual = airconditioner_setting.config["control_method"]
+        config = airconditioner_setting.config
+
+    setting_form = AirconditionerSettingForm()
+    setting_form.initial["set_point_on"] = config["set_point_on"]
+    setting_form.initial["set_point_off"] = config["set_point_off"]
+    setting_form.initial["control_method"] = 1 if config["control_method"] else 0
+    setting_form.initial["start_first_hour"] = config["start_first_hour"]
+    setting_form.initial["start_third_hour"] = config["start_third_hour"]
+    setting_form.initial["start_second_hour"] = config["start_second_hour"]
+    setting_form.initial["set_point_humidity"] = config["set_point_humidity"]
+    setting_form.initial["time_for_over_range"] = config["time_for_over_range"]
+
     if request.method == 'POST':
         form = AirconditionerEditForm(request.POST)
         if form.is_valid():
@@ -175,7 +199,7 @@ def edit_airconditioner(request, id=None):
             if 'status' in request.POST:
                 status = 1 if int(request.POST["status"]) == 1 else 0
                 Airconditioner().set_airconditioner_status(airconditioner.db_id, airconditioner.bit_id, status)
-                setting.save()
+                airconditioner_setting.save()
 
             messages.success(request, 'با موفقیت ویرایش شد')
         else:
@@ -186,7 +210,8 @@ def edit_airconditioner(request, id=None):
         data = Sensor().get_sensor_data(airconditioner)
         form.initial["status"] = 0 if data["value"] else 1
 
-    return render(request, 'airconditioner_edit.html', {'form': form, "manual": manual})
+    return render(request, 'airconditioner_edit.html', {'form': form, "setting_form": setting_form, "manual": manual})
+
 
 @login_required
 def reset_airconditioner(request):
@@ -200,6 +225,7 @@ def reset_airconditioner(request):
             return JsonResponse({'success': False, 'message': 'حطایی رخ داد، لطفا مجددا تلاش نمایید'})
     pass
 
+
 @login_required
 def stop_snooze(request):
     if request.method == 'POST':
@@ -209,6 +235,7 @@ def stop_snooze(request):
         except Exception as e:
             return JsonResponse({'success': False, 'message': 'حطایی رخ داد، لطفا مجددا تلاش نمایید'})
     pass
+
 
 @login_required
 def setting_sms(request):
@@ -282,7 +309,6 @@ def setting_alarm(request):
 
 @login_required
 def sensor_log(request):
-
     form = SearchLogDataForm()
     filter = Q()
 
@@ -290,7 +316,7 @@ def sensor_log(request):
     if sensor_type is not None:
         filter &= Q(sensor_type=sensor_type)
         form.initial["sensor_type"] = sensor_type
-        CHOICE_LIST = list(SensorModel.objects.values_list("id","title").filter(type=sensor_type))
+        CHOICE_LIST = list(SensorModel.objects.values_list("id", "title").filter(type=sensor_type))
         form.fields["sensor_id"].choices = tuple([(u'', 'انتخاب نمایید ...')] + CHOICE_LIST)
 
         sensor_id = request.GET.get('sensor_id') if 'sensor_id' in request.GET else None
@@ -305,8 +331,8 @@ def sensor_log(request):
         from_date = from_date.split(' ')
         date = str(from_date[0]).split("-")
         time = str(from_date[1]).split(":")
-        filter &= Q(created_at__gte=jdatetime.datetime(int(date[0]),int(date[1]),int(date[2]),
-                                                       int(time[0]),int(time[1]),int(time[2])).togregorian())
+        filter &= Q(created_at__gte=jdatetime.datetime(int(date[0]), int(date[1]), int(date[2]),
+                                                       int(time[0]), int(time[1]), int(time[2])).togregorian())
 
     to_date = request.GET.get('to_date') if 'to_date' in request.GET else None
     if to_date is not None:
@@ -317,8 +343,6 @@ def sensor_log(request):
         time = str(to_date[1]).split(":")
         filter &= Q(created_at__lte=jdatetime.datetime(int(date[0]), int(date[1]), int(date[2]),
                                                        int(time[0]), int(time[1]), int(time[2])).togregorian())
-
-
 
     logs = AnalogSensorDataLog.objects.filter(filter)
     paginator = Paginator(logs, 100)
@@ -338,6 +362,7 @@ def to_persian_numbers(input_text):
 
     return input_text
 
+
 def to_english_numbers(input_text):
     fa = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"]
     en = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -347,8 +372,9 @@ def to_english_numbers(input_text):
 
     return input_text
 
+
 @login_required
 def get_sensor_by_type(request, sensor_type):
-    sensors = SensorModel.objects.values("id","title").filter(type=sensor_type)
+    sensors = SensorModel.objects.values("id", "title").filter(type=sensor_type)
     data = list(sensors)
     return JsonResponse(data, safe=False)

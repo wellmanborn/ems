@@ -34,7 +34,7 @@ urlpatterns = [
     path('charts', charts.index),
     path('charts/data', charts.sensor_data),
 
-    path('setting/airconditioner', sensors.setting_airconditioner),
+    path('setting/airconditioner/<db_id>', sensors.setting_airconditioner),
     path('setting/sms', sensors.setting_sms),
     path('setting/alarm', sensors.setting_alarm),
     # path('setting/email', sensors.setting_email),
