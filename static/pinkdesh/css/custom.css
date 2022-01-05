@@ -10,8 +10,8 @@
     float: left!important;
 }
 .topbar-first{
-    background: #f7b03e;
-    border-bottom: 1px solid #f7b03e;
+    background: #006ce1;
+    border-bottom: 1px solid #006ce1;
     float: left;
     height: 57px;
     line-height: 40px;
@@ -19,8 +19,67 @@
     width: 240px;
     z-index: 1;
 }
+body {
+    color: #bfbfbf;
+}
+.menu-toggle{
+    color: #006ce1;
+}
+.form-control:focus {
+    border-color: #006ce1;
+}
+.topbar .menu-toggle,
+.metismenu > li.active > a{
+    background: #15467d66;
+}
+.metismenu>li>a:hover {
+    background-color: #15467d66;
+}
+a {
+    color: #72b4fd;
+}
+.nav>li>a:hover, .nav>li>a:focus {
+    color: #006ce1;
+}
+.btn-theme {
+    padding: 6px 28px;
+    background: #006ce1;
+}
+.table-responsive table tr:nth-child(even) {background: #212122}
 div.grid-stack div .grid-stack-item-content{
-    background: #272a31;
+    background: #2a3142;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    background-color: #006ce1;
+    border: 1px solid #006ce1;
+}
+.form-control {
+    border-color: #c5c5c5;
+    color: #9d9d9d;
+}
+.nav>li>a {
+    color: #006ce1;
+    font-size: 13px;
+    text-transform: uppercase;
+    display: block;
+}
+.nav.nav-second-level li:first-child{
+    margin-top: 10px;
+}
+.nav.nav-second-level li:last-child{
+    margin-bottom: 10px;
+}
+.nav.nav-second-level li a{
+    color: #e8e8e8;
+}
+.nav.nav-second-level li:hover a{
+    color: #72b4fd;
+}
+.grid-stack-item-content .sensor-delete {
+    font-size: 1.6rem;
+}
+.panel-box {
+    margin: 5px 5px 10px 5px;
 }
 div.grid-stack div .grid-stack-item-content img.danger{
     display: none;
@@ -139,21 +198,24 @@ h4.sensor-title{
     display: none;
 }
 .grid-stack-item-content  .sensor-edit {
-    font-size: 13px;
+    font-size: 1.6rem;
     position: absolute;
-    left: 1.3rem;
-    top: 1.3rem;
+    left: 0.3rem;
+    top: 0.3rem;
     display: none;
+    cursor: pointer;
+    padding: 10px;
 }
 .grid-stack-item-content:hover  .sensor-edit{
     display: block;
 }
 .grid-stack-item-content .sensor-delete {
-    font-size: 13px;
+    font-size: 1.6rem;
     position: absolute;
-    right: 1.3rem;
-    top: 1.3rem;
+    right: 0.3rem;
+    top: 0.3rem;
     display: none;
+    padding: 10px;
     color: red;
 }
 .grid-stack-item-content:hover .sensor-delete{
@@ -182,7 +244,11 @@ h4.sensor-title{
     animation:         danger-alert 1s infinite !important; /* IE 10+, Fx 29+ */
 }
 .content-page > .content {
-    padding-top: 78px;
+    padding-top: 62px;
+}
+.content-page > .content .container{
+    padding-right: 0;
+    padding-left: 0;
 }
 .topbar .menu-toggle, .topbar .app-search, .topbar .profile-link img, .side-menu .profile-menu img, .widget-row .widget-box .first-widget {
     float: right!important;

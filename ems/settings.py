@@ -174,13 +174,13 @@ LOGGING ={
         'file4':{
             'level':'ERROR',
             'class': 'logging.FileHandler',
-            'filename':'/var/log/python/ems/error.log',
+            'filename':'./log/error.log',
             'formatter':'simpleRe',
         },
         'file5':{
             'level':'CRITICAL',
             'class': 'logging.FileHandler',
-            'filename':'/var/log/python/ems/critical.log',
+            'filename':'./log/critical.log',
             'formatter':'simpleRe',
         }
     },

@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from django.core.serializers import serialize
 from django.db.models import Q
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
 from app.classes.Sensor import Sensor
@@ -22,7 +22,7 @@ import time
 
 from ems.settings import AIRCONDITIONER_REVERSE
 
-
+@login_required
 def add_sensor(request, sensor_type):
     if request.method == 'POST':
         form = SensorFormFactory.get_sensor_form(sensor_type, request.POST)
@@ -91,6 +91,40 @@ def edit_sensor(request, id):
     return render(request, sensor.type + '.html', {'form': form, "edit": True, "id": id})
 
 
+def delete_air_conditioner(db_id):
+    sensors = SensorModel.objects.filter(type="airconditioner", db_id=db_id)
+    for sensor in sensors:
+        sensor.delete()
+    airconditioner_setting_filter = Setting.objects.filter(key="air_conditioner")
+    airconditioner_setting = airconditioner_setting_filter[0]
+
+    if "config" in airconditioner_setting.config:
+        config = airconditioner_setting.config["config"]
+        setting = airconditioner_setting.config["setting"]
+        if int(setting["count"]) == 1:
+            airconditioner_setting_filter.delete()
+        else:
+            setting["count"] = setting["count"] - 1
+            config_data = {}
+            for key in config:
+                if int(key) != int(db_id):
+                    config_data[key] = config[key]
+            airconditioner_setting.config["config"] = config_data
+            airconditioner_setting.save()
+    else:
+        airconditioner_setting_filter.delete()
+    return redirect("/")
+
+@login_required
+def delete_sensor(request, id):
+    sensor = get_object_or_404(SensorModel, pk=id)
+    if sensor.type == "airconditioner":
+        delete_air_conditioner(sensor.db_id)
+    else:
+        sensor.delete()
+    return redirect("/")
+
+
 @login_required
 def add_airconditioner(request):
     if request.method == 'POST':
@@ -133,63 +167,58 @@ def add_airconditioner(request):
 
 
 @login_required
-def setting_airconditioner(request, db_id):
-    airconditioner = get_object_or_404(Setting, key="air_conditioner")
+def setting_airconditioner(request, db_id, id):
+    airconditioner = get_object_or_404(SensorModel, pk=id, type="airconditioner")
+    airconditioner_setting = get_object_or_404(Setting, key="air_conditioner")
+    if "config" in airconditioner_setting.config:
+        config = airconditioner_setting.config["config"][str(db_id)]
+    else:
+        config = airconditioner_setting.config
     if request.method == 'POST':
         form = AirconditionerSettingForm(request.POST)
         if form.is_valid():
-            airconditioner.config["set_point_on"] = int(request.POST['set_point_on'])
-            airconditioner.config["set_point_off"] = int(request.POST['set_point_off'])
-            airconditioner.config["control_method"] = True if int(request.POST['control_method']) == 1 else False
-            airconditioner.config["start_first_hour"] = int(request.POST['start_first_hour'])
-            airconditioner.config["start_second_hour"] = int(request.POST['start_second_hour'])
-            airconditioner.config["start_third_hour"] = int(request.POST['start_third_hour'])
-            airconditioner.config["set_point_humidity"] = int(request.POST['set_point_humidity'])
-            airconditioner.config["time_for_over_range"] = int(request.POST['time_for_over_range'])
-            airconditioner.config["manual_air1_on"] = airconditioner.config["manual_air1_on"]
-            airconditioner.config["manual_air2_on"] = airconditioner.config["manual_air2_on"]
-            airconditioner.config["manual_air3_on"] = airconditioner.config["manual_air3_on"]
-            airconditioner.config["manual_air4_on"] = airconditioner.config["manual_air4_on"]
-            airconditioner.save()
-            Airconditioner().set_data(None, airconditioner.config, 64)
+            config["set_point_on"] = int(request.POST['set_point_on'])
+            config["set_point_off"] = int(request.POST['set_point_off'])
+            config["control_method"] = True if int(request.POST['control_method']) == 1 else False
+            config["start_first_hour"] = int(request.POST['start_first_hour'])
+            config["start_second_hour"] = int(request.POST['start_second_hour'])
+            config["start_third_hour"] = int(request.POST['start_third_hour'])
+            config["set_point_humidity"] = int(request.POST['set_point_humidity'])
+            config["time_for_over_range"] = int(request.POST['time_for_over_range'])
+            config["manual_air1_on"] = config["manual_air1_on"]
+            config["manual_air2_on"] = config["manual_air2_on"]
+            config["manual_air3_on"] = config["manual_air3_on"]
+            config["manual_air4_on"] = config["manual_air4_on"]
+            airconditioner_setting.save()
+            Airconditioner().set_data(None, config, db_id)
             messages.success(request, 'با موفقیت ویرایش شد')
         else:
             messages.error(request, 'حطایی رخ داد، لطفا مجددا تلاش نمایید')
     else:
         form = AirconditionerSettingForm()
-        form.initial["set_point_on"] = airconditioner.config["config"][db_id]["set_point_on"]
-        form.initial["set_point_off"] = airconditioner.config["config"][db_id]["set_point_off"]
-        form.initial["control_method"] = 1 if airconditioner.config["config"][db_id]["control_method"] else 0
-        form.initial["start_first_hour"] = airconditioner.config["config"][db_id]["start_first_hour"]
-        form.initial["start_third_hour"] = airconditioner.config["config"][db_id]["start_third_hour"]
-        form.initial["start_second_hour"] = airconditioner.config["config"][db_id]["start_second_hour"]
-        form.initial["set_point_humidity"] = airconditioner.config["config"][db_id]["set_point_humidity"]
-        form.initial["time_for_over_range"] = airconditioner.config["config"][db_id]["time_for_over_range"]
-    return render(request, 'settings/airconditioner.html', {'form': form})
+        form.initial["set_point_on"] = config["set_point_on"]
+        form.initial["set_point_off"] = config["set_point_off"]
+        form.initial["control_method"] = 1 if config["control_method"] else 0
+        form.initial["start_first_hour"] = config["start_first_hour"]
+        form.initial["start_third_hour"] = config["start_third_hour"]
+        form.initial["start_second_hour"] = config["start_second_hour"]
+        form.initial["set_point_humidity"] = config["set_point_humidity"]
+        form.initial["time_for_over_range"] = config["time_for_over_range"]
+    return render(request, 'settings/airconditioner.html', {'form': form,
+                                                            'title': airconditioner.title,
+                                                            'db_id': db_id,
+                                                            'id': airconditioner.id})
 
 
 @login_required
-def edit_airconditioner(request, id=None):
+def edit_airconditioner(request, db_id, id):
     airconditioner = get_object_or_404(SensorModel, pk=id, type="airconditioner")
     airconditioner_setting = get_object_or_404(Setting, key="air_conditioner")
 
     if "config" in airconditioner_setting.config:
         manual = airconditioner_setting.config["config"][str(airconditioner.db_id)]["control_method"]
-        config = airconditioner.config["config"][str(airconditioner.db_id)]
     else:
         manual = airconditioner_setting.config["control_method"]
-        config = airconditioner_setting.config
-
-    setting_form = AirconditionerSettingForm()
-    setting_form.initial["set_point_on"] = config["set_point_on"]
-    setting_form.initial["set_point_off"] = config["set_point_off"]
-    setting_form.initial["control_method"] = 1 if config["control_method"] else 0
-    setting_form.initial["start_first_hour"] = config["start_first_hour"]
-    setting_form.initial["start_third_hour"] = config["start_third_hour"]
-    setting_form.initial["start_second_hour"] = config["start_second_hour"]
-    setting_form.initial["set_point_humidity"] = config["set_point_humidity"]
-    setting_form.initial["time_for_over_range"] = config["time_for_over_range"]
-
     if request.method == 'POST':
         form = AirconditionerEditForm(request.POST)
         if form.is_valid():
@@ -210,7 +239,10 @@ def edit_airconditioner(request, id=None):
         data = Sensor().get_sensor_data(airconditioner)
         form.initial["status"] = 0 if data["value"] else 1
 
-    return render(request, 'airconditioner_edit.html', {'form': form, "setting_form": setting_form, "manual": manual})
+    return render(request, 'airconditioner_edit.html', {
+        'form': form,
+        "manual": manual,
+        "airconditioner": airconditioner})
 
 
 @login_required

@@ -21,12 +21,13 @@ urlpatterns = [
     path('', index.index),
 
     path('airconditioner/add', sensors.add_airconditioner),
-    path('airconditioner/edit/<id>', sensors.edit_airconditioner),
+    path('airconditioner/edit/<db_id>/<id>', sensors.edit_airconditioner),
     path('airconditioner/reset', sensors.reset_airconditioner),
     path('stop/snooze', sensors.stop_snooze),
 
     path('sensors/create/<sensor_type>', sensors.add_sensor),
     path('sensors/edit/<id>', sensors.edit_sensor),
+    path('sensors/delete/<id>', sensors.delete_sensor),
 
     path('sensors/log', sensors.sensor_log),
     path('sensors/get_names/<sensor_type>', sensors.get_sensor_by_type),
@@ -34,7 +35,7 @@ urlpatterns = [
     path('charts', charts.index),
     path('charts/data', charts.sensor_data),
 
-    path('setting/airconditioner/<db_id>', sensors.setting_airconditioner),
+    path('setting/airconditioner/<db_id>/<id>', sensors.setting_airconditioner),
     path('setting/sms', sensors.setting_sms),
     path('setting/alarm', sensors.setting_alarm),
     # path('setting/email', sensors.setting_email),

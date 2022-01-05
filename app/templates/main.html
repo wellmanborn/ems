@@ -8,7 +8,7 @@
                     <div class=" grid-stack-temperature">
                         {% if request.user.is_staff %}
                             <a class="sensor-edit" href="/sensors/edit/{{ temperature.id }}">
-                                <i class="fa fa-pencil-alt"></i>
+                                <i class="fa fa-edit"></i>
                             </a>
                         {% endif %}
                         {% if request.user.is_superuser %}
@@ -28,7 +28,7 @@
                     <div class=" grid-stack-humidity">
                         {% if request.user.is_staff %}
                             <a class="sensor-edit" href="/sensors/edit/{{ humidity.id }}">
-                                <i class="fa fa-pencil-alt"></i>
+                                <i class="fa fa-edit"></i>
                             </a>
                         {% endif %}
                         {% if request.user.is_superuser %}
@@ -48,7 +48,7 @@
                     <div class=" grid-stack-current">
                         {% if request.user.is_staff %}
                             <a class="sensor-edit" href="/sensors/edit/{{ current.id }}">
-                                <i class="fa fa-pencil-alt"></i>
+                                <i class="fa fa-edit"></i>
                             </a>
                         {% endif %}
                         {% if request.user.is_superuser %}
@@ -67,7 +67,7 @@
                 <div class="grid-stack-item-content" id="power-{{ power.db_id }}">
                     {% if request.user.is_staff %}
                         <a class="sensor-edit" href="/sensors/edit/{{ power.id }}">
-                            <i class="fa fa-pencil-alt"></i>
+                            <i class="fa fa-edit"></i>
                         </a>
                     {% endif %}
                     {% if request.user.is_superuser %}
@@ -86,7 +86,7 @@
                 <div class="grid-stack-item-content">
                     {% if request.user.is_staff %}
                         <a class="sensor-edit" href="/sensors/edit/{{ powerone.id }}">
-                            <i class="fa fa-pencil-alt"></i>
+                            <i class="fa fa-edit"></i>
                         </a>
                     {% endif %}
                     {% if request.user.is_superuser %}
@@ -104,7 +104,7 @@
                 <div class="grid-stack-item-content">
                     {% if request.user.is_staff %}
                         <a class="sensor-edit" href="/sensors/edit/{{ powerthree.id }}">
-                            <i class="fa fa-pencil-alt"></i>
+                            <i class="fa fa-edit"></i>
                         </a>
                     {% endif %}
                     {% if request.user.is_superuser %}
@@ -122,7 +122,7 @@
                 <div class="grid-stack-item-content" id="waterleakage-{{ waterleakage.db_id }}">
                     {% if request.user.is_staff %}
                         <a class="sensor-edit" href="/sensors/edit/{{ waterleakage.id }}">
-                            <i class="fa fa-pencil-alt"></i>
+                            <i class="fa fa-edit"></i>
                         </a>
                     {% endif %}
                     {% if request.user.is_superuser %}
@@ -141,7 +141,7 @@
                 <div class="grid-stack-item-content" id="door-{{ door.db_id }}">
                     {% if request.user.is_staff %}
                         <a class="sensor-edit" href="/sensors/edit/{{ door.id }}">
-                            <i class="fa fa-pencil-alt"></i>
+                            <i class="fa fa-edit"></i>
                         </a>
                     {% endif %}
                     {% if request.user.is_superuser %}
@@ -160,7 +160,7 @@
                 <div class="grid-stack-item-content" id="smoke-{{ smoke.db_id }}-{{ smoke.byte_id }}-{{ smoke.bit_id }}">
                     {% if request.user.is_staff %}
                         <a class="sensor-edit" href="/sensors/edit/{{ smoke.id }}">
-                            <i class="fa fa-pencil-alt"></i>
+                            <i class="fa fa-edit"></i>
                         </a>
                     {% endif %}
                     {% if request.user.is_superuser %}
@@ -179,7 +179,7 @@
                 <div class="grid-stack-item-content" id="fuse-{{ fuse.db_id }}-{{ fuse.byte_id }}-{{ fuse.bit_id }}">
                     {% if request.user.is_staff %}
                         <a class="sensor-edit" href="/sensors/edit/{{ fuse.id }}">
-                            <i class="fa fa-pencil-alt"></i>
+                            <i class="fa fa-edit"></i>
                         </a>
                     {% endif %}
                     {% if request.user.is_superuser %}
@@ -197,10 +197,15 @@
             <div class="grid-stack-item">
                 <div class="grid-stack-item-content" id="airconditioner-{{ airconditioner.db_id }}-{{ airconditioner.byte_id }}-{{ airconditioner.bit_id }}">
                     {% if request.user.is_staff %}
-                        <a class="sensor-edit" href="/airconditioner/edit/{{ airconditioner.id }}">
-                            <i class="fa fa-pencil-alt"></i>
+                        <a class="sensor-edit" href="/airconditioner/edit/{{ airconditioner.db_id }}/{{ airconditioner.id }}">
+                            <i class="fa fa-edit"></i>
                         </a>
                     {% endif %}
+                    {% if request.user.is_superuser %}
+                            <a class="sensor-delete" href="/sensors/delete/{{ airconditioner.id }}">
+                                <i class="fa fa-times-circle"></i>
+                            </a>
+                        {% endif %}
                     <h4 class="sensor-title">{{ airconditioner.title }}</h4>
                     <div class="airconditioner-averages">
                         <div style="margin: 0 auto;">
@@ -218,7 +223,7 @@
                 <div class="grid-stack-item-content" id="fan-{{ fan.db_id }}-{{ fan.byte_id }}-{{ fan.bit_id }}">
                     {% if request.user.is_staff %}
                         <a class="sensor-edit" href="/sensors/edit/{{ fan.id }}">
-                            <i class="fa fa-pencil-alt"></i>
+                            <i class="fa fa-edit"></i>
                         </a>
                     {% endif %}
                     {% if request.user.is_superuser %}

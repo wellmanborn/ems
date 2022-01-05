@@ -28,8 +28,6 @@ body{
     margin-right: 240px;
 }
 .topbar-first {
-    background: #f7b03e;
-    border-bottom: 1px solid #f7b03e;
     float: right;
     height: 57px;
     line-height: 40px;
@@ -53,7 +51,6 @@ body{
     font-size: 20px;
 }
 .top-right-nav {
-    padding-left: 30px;
     float: left !important;
 }
 @media (min-width: 768px){
