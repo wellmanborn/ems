@@ -33,14 +33,12 @@ def add_sensor(request, sensor_type):
                 bit_id = int(request.POST['bit_id'] if "bit_id" in request.POST else 0)
                 start_value = request.POST['start_value'] if "start_value" in request.POST else 0
                 sensor_class = SensorFactory().get_sensor(sensor_type)
-                config = sensor_class.get_config(db_id)
                 sensor = SensorModel.objects.get_or_create(db_id=db_id, byte_id=byte_id, bit_id=bit_id,
-                                                           type=sensor_type)
-                sensor[0].title = request.POST['title']
-                sensor[0].start_value = start_value
-                sensor[0].byte_id = byte_id
-                sensor[0].bit_id = bit_id
-                sensor[0].config = config
+                                                           type=sensor_type)[0]
+                sensor.title = request.POST['title']
+                sensor.start_value = start_value
+                sensor.byte_id = byte_id
+                sensor.bit_id = bit_id
 
                 settings = {}
                 for key, value in request.POST.items():
@@ -48,8 +46,11 @@ def add_sensor(request, sensor_type):
                         key = key.replace('setting__', '')
                         settings[key] = value
 
-                sensor[0].setting = settings
-                sensor[0].save()
+                sensor.setting = settings
+                sensor.save()
+                config = sensor_class.get_config(db_id, sensor)
+                sensor.config = config
+                sensor.save()
                 messages.success(request, 'با موفقیت افزوده شد')
             except Exception as e:
                 messages.error(request, e.__str__())
@@ -226,7 +227,10 @@ def edit_airconditioner(request, db_id, id):
             airconditioner.save()
 
             if 'status' in request.POST:
-                status = 0 if int(request.POST["status"]) == 1 else 1
+                if AIRCONDITIONER_REVERSE:
+                    status = 0 if int(request.POST["status"]) == 1 else 1
+                else:
+                    status = 1 if int(request.POST["status"]) == 1 else 0
                 Airconditioner().set_airconditioner_status(airconditioner.db_id, airconditioner.bit_id, status)
                 airconditioner_setting.save()
 
