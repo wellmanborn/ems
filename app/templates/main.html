@@ -233,7 +233,7 @@
                     {% endif %}
                     <h4 class="sensor-title">{{ fan.title }}</h4>
                     <img class="fuse-detector-icon ok" src="{% static 'pinkdesh/images/fan-green.png' %}" />
-                    <img class="fuse-detector-icon danger" src="{% static 'pinkdesh/images/fan-red.png' %}" />
+                    <img class="fuse-detector-icon danger" src="{% static 'pinkdesh/images/fan-off.png' %}" />
                 </div>
             </div>
         {% endfor %}
@@ -663,6 +663,7 @@
                             $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("danger")
                         }
                     }
+                    $("#fan-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("off")
                     if(dt.sensor === "fan") {
                         if(!dt.value){
                             $("#fan-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("off")
@@ -676,11 +677,11 @@
                         $("#average-temperature-" + dt.db_id + "-" + dt.bit_id).text(dt.avg_tmp)
                         $("#average-humidity-" + dt.db_id + "-" + dt.bit_id).text(dt.avg_hum)
                         if(dt.value){
-                            $(img_on).css("display", "block")
-                            $(img_off).css("display", "none")
+                            $(img_on).css("display", "block").css("opacity", 1);
+                            <!--$(img_off).css("display", "none")-->
                         }else{
-                            $(img_on).css("display", "none")
-                            $(img_off).css("display", "block")
+                            $(img_on).css("display", "block").css("opacity", 0.3);
+                            <!--$(img_off).css("display", "block")-->
                         }
                     }
                 });

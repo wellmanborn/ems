@@ -3,6 +3,7 @@ import re
 from django import forms
 from ems.settings import AIRCONDITIONER_STATUS_CHOICES
 FAN_STATUS_CHOICES=[(1,'روشن'),(0,'خاموش')]
+SMOKE_DATA_BLOCK_TYPE_CHOICES=[('boolean','Boolean'), ('word','Word')]
 
 AIR_CONDITIONER_CHOICES = (
     (1, 'یک'),
@@ -261,15 +262,15 @@ class PoweroneForm(forms.Form):
                                   }
                               ))
     low = forms.IntegerField(label="مقدار پایین برق تک فاز",
-                              required=False,
-                              widget=forms.TextInput(
-                                  attrs={
-                                      "placeholder": "مقدار پایین برق تک فاز را وارد نمایید",
-                                      "class": "form-control",
-                                      "value": 200,
-                                      "type": "number"
-                                  }
-                              ))
+                             required=False,
+                             widget=forms.TextInput(
+                                 attrs={
+                                     "placeholder": "مقدار پایین برق تک فاز را وارد نمایید",
+                                     "class": "form-control",
+                                     "value": 200,
+                                     "type": "number"
+                                 }
+                             ))
     time = forms.IntegerField(label="زمان خطا (به ثانیه وارد نمایید)",
                               required=False,
                               widget=forms.TextInput(
@@ -341,15 +342,15 @@ class PowerthreeForm(forms.Form):
     #                                  }
     #                              ))
     low = forms.IntegerField(label="مقدار پایین برق سه فاز ",
-                              required=False,
-                              widget=forms.TextInput(
-                                  attrs={
-                                      "placeholder": "مقدار پایین برق سه فاز را وارد نمایید",
-                                      "class": "form-control",
-                                      "value": 200,
-                                      "type": "number"
-                                  }
-                              ))
+                             required=False,
+                             widget=forms.TextInput(
+                                 attrs={
+                                     "placeholder": "مقدار پایین برق سه فاز را وارد نمایید",
+                                     "class": "form-control",
+                                     "value": 200,
+                                     "type": "number"
+                                 }
+                             ))
     # low_rt = forms.IntegerField(label="مقدار پایین برق سه فاز RT",
     #                             required=False,
     #                             widget=forms.TextInput(
@@ -419,7 +420,6 @@ class PowerForm(forms.Form):
                                              "type": "number"
                                          }
                                      ))
-
 
 class WaterleakageForm(forms.Form):
     title = forms.CharField(label="شناسه سنسور نشت آب",
@@ -540,6 +540,16 @@ class SmokeForm(forms.Form):
                                     "class": "form-control"
                                 }
                             ))
+    setting__data_block_type = forms.ChoiceField(label="نوع دیتا بلاک",
+                                                 choices=SMOKE_DATA_BLOCK_TYPE_CHOICES,
+                                                 initial='boolean',
+                                                 widget=forms.Select(
+                                                     attrs={
+                                                         'class': "form-control"
+                                                     }
+                                                 ),
+                                                 required=True)
+
     db_id = forms.IntegerField(label="شماره Data Block",
                                required=False,
                                widget=forms.TextInput(
@@ -668,15 +678,15 @@ class FanForm(forms.Form):
                                                       ))
 
     setting__fan_control_bit_id = forms.IntegerField(label="شماره Bit کنترل",
-                                required=False,
-                                widget=forms.TextInput(
-                                    attrs={
-                                        "placeholder": "مقدار شماره Bit کنترل را وارد نمایید",
-                                        "class": "form-control",
-                                        "value": 0,
-                                        "type": "number"
-                                    }
-                                ))
+                                                     required=False,
+                                                     widget=forms.TextInput(
+                                                         attrs={
+                                                             "placeholder": "مقدار شماره Bit کنترل را وارد نمایید",
+                                                             "class": "form-control",
+                                                             "value": 0,
+                                                             "type": "number"
+                                                         }
+                                                     ))
     status = forms.ChoiceField(label=" وضعیت ",
                                choices=FAN_STATUS_CHOICES,
                                required=False,
@@ -1147,14 +1157,14 @@ class SearchLogDataForm(forms.Form):
                                     required=False)
 
     sensor_digital_type = forms.ChoiceField(label='نوع سنسور',
-                                    choices=SENSOR_DIGITAL_TYPES,
-                                    initial='',
-                                    widget=forms.Select(
-                                        attrs={
-                                            'class': "form-control"
-                                        }
-                                    ),
-                                    required=False)
+                                            choices=SENSOR_DIGITAL_TYPES,
+                                            initial='',
+                                            widget=forms.Select(
+                                                attrs={
+                                                    'class': "form-control"
+                                                }
+                                            ),
+                                            required=False)
 
     sensor_id = forms.ChoiceField(label='عنوان سنسور',
                                   widget=forms.Select(
@@ -1188,107 +1198,107 @@ class SearchLogDataForm(forms.Form):
     from_date_value = forms.CharField(widget=forms.HiddenInput(), initial="")
 
     to_date = forms.CharField(label="تا تاریخ",
-                                required=False,
-                                widget=forms.TextInput(
-                                    attrs={
-                                        "placeholder": "تا تاریخ",
-                                        "class": "form-control form-datetime-picker",
-                                        "data-enabletimepicker": "true",
-                                        "dir": "ltr",
-                                        "data-mddatetimepicker": "true",
-                                        "data-placement": "right",
-                                        "data-value": ""
-                                    }
-                                ))
+                              required=False,
+                              widget=forms.TextInput(
+                                  attrs={
+                                      "placeholder": "تا تاریخ",
+                                      "class": "form-control form-datetime-picker",
+                                      "data-enabletimepicker": "true",
+                                      "dir": "ltr",
+                                      "data-mddatetimepicker": "true",
+                                      "data-placement": "right",
+                                      "data-value": ""
+                                  }
+                              ))
     to_date_value = forms.CharField(widget=forms.HiddenInput(), initial="")
 
 class AlarmForm(forms.Form):
     snooze_time = forms.IntegerField(label="زمان Snooze (به دقبقه وارد نمایید)",
-                              required=False,
-                              widget=forms.TextInput(
-                                  attrs={
-                                      "placeholder": "زمان Snooze (به دقبقه وارد نمایید)",
-                                      "class": "form-control",
-                                      "type": "number"
-                                  }
-                              ))
-
-    time_for_siren_on_day = forms.IntegerField(label="زمان روشن بودن آژیر خطر در روز (به ثانیه وارد نمایید)",
                                      required=False,
                                      widget=forms.TextInput(
                                          attrs={
-                                             "placeholder": "مدت زمان روشن بودن آژیر خطر در روز (به ثانیه وارد نمایید)",
+                                             "placeholder": "زمان Snooze (به دقبقه وارد نمایید)",
                                              "class": "form-control",
                                              "type": "number"
                                          }
                                      ))
 
-    time_for_siren_off_day = forms.IntegerField(label="زمان خاموش بودن آژیر خطر در روز (به دقیقه وارد نمایید)",
+    time_for_siren_on_day = forms.IntegerField(label="زمان روشن بودن آژیر خطر در روز (به ثانیه وارد نمایید)",
                                                required=False,
                                                widget=forms.TextInput(
                                                    attrs={
-                                                       "placeholder": "مدت زمان روشن بودن آژیر خطر در روز (به دقیقه وارد نمایید)",
+                                                       "placeholder": "مدت زمان روشن بودن آژیر خطر در روز (به ثانیه وارد نمایید)",
                                                        "class": "form-control",
                                                        "type": "number"
                                                    }
                                                ))
+
+    time_for_siren_off_day = forms.IntegerField(label="زمان خاموش بودن آژیر خطر در روز (به دقیقه وارد نمایید)",
+                                                required=False,
+                                                widget=forms.TextInput(
+                                                    attrs={
+                                                        "placeholder": "مدت زمان روشن بودن آژیر خطر در روز (به دقیقه وارد نمایید)",
+                                                        "class": "form-control",
+                                                        "type": "number"
+                                                    }
+                                                ))
 
     time_for_siren_on_night = forms.IntegerField(label="زمان روشن بودن آژیر خطر در شب (به ثانیه وارد نمایید)",
-                                               required=False,
-                                               widget=forms.TextInput(
-                                                   attrs={
-                                                       "placeholder": "مدت زمان روشن بودن آژیر خطر در شب (به ثانیه وارد نمایید)",
-                                                       "class": "form-control",
-                                                       "type": "number"
-                                                   }
-                                               ))
+                                                 required=False,
+                                                 widget=forms.TextInput(
+                                                     attrs={
+                                                         "placeholder": "مدت زمان روشن بودن آژیر خطر در شب (به ثانیه وارد نمایید)",
+                                                         "class": "form-control",
+                                                         "type": "number"
+                                                     }
+                                                 ))
 
     time_for_siren_off_night = forms.IntegerField(label="زمان خاموش بودن آژیر خطر در شب (به دقیقه وارد نمایید)",
-                                               required=False,
-                                               widget=forms.TextInput(
-                                                   attrs={
-                                                       "placeholder": "مدت زمان خاموش بودن آژیر خطر در شب (به دقیقه وارد نمایید)",
-                                                       "class": "form-control",
-                                                       "type": "number"
-                                                   }
-                                               ))
+                                                  required=False,
+                                                  widget=forms.TextInput(
+                                                      attrs={
+                                                          "placeholder": "مدت زمان خاموش بودن آژیر خطر در شب (به دقیقه وارد نمایید)",
+                                                          "class": "form-control",
+                                                          "type": "number"
+                                                      }
+                                                  ))
 
     start_work_time = forms.IntegerField(label="زمان شروع به کار (به ساعت وارد نمایید)",
-                                               required=False,
-                                               widget=forms.TextInput(
-                                                   attrs={
-                                                       "placeholder": "زمان شروع به کار (به ساعت وارد نمایید)",
-                                                       "class": "form-control",
-                                                       "type": "number"
-                                                   }
-                                               ))
+                                         required=False,
+                                         widget=forms.TextInput(
+                                             attrs={
+                                                 "placeholder": "زمان شروع به کار (به ساعت وارد نمایید)",
+                                                 "class": "form-control",
+                                                 "type": "number"
+                                             }
+                                         ))
 
     end_work_time = forms.IntegerField(label="زمان پایان ساعت کاری (به ساعت وارد نمایید)",
-                                               required=False,
-                                               widget=forms.TextInput(
-                                                   attrs={
-                                                       "placeholder": "زمان پایان ساعت کاری (به ساعت وارد نمایید)",
-                                                       "class": "form-control",
-                                                       "type": "number"
-                                                   }
-                                               ))
+                                       required=False,
+                                       widget=forms.TextInput(
+                                           attrs={
+                                               "placeholder": "زمان پایان ساعت کاری (به ساعت وارد نمایید)",
+                                               "class": "form-control",
+                                               "type": "number"
+                                           }
+                                       ))
 
     total_sms = forms.IntegerField(label="تعداد پیام ها",
-                                               required=False,
-                                               widget=forms.TextInput(
-                                                   attrs={
-                                                       "placeholder": "تعداد پیام ها",
-                                                       "class": "form-control",
-                                                       "type": "number"
-                                                   }
-                                               ))
+                                   required=False,
+                                   widget=forms.TextInput(
+                                       attrs={
+                                           "placeholder": "تعداد پیام ها",
+                                           "class": "form-control",
+                                           "type": "number"
+                                       }
+                                   ))
 
     time_for_repeat_send_sms = forms.IntegerField(label="زمان تکرار پیام (به دقیقه وارد نمایید)",
-                                               required=False,
-                                               widget=forms.TextInput(
-                                                   attrs={
-                                                       "placeholder": "زمان تکرار پیام (به دقیقه وارد نمایید)",
-                                                       "class": "form-control",
-                                                       "type": "number"
-                                                   }
-                                               ))
+                                                  required=False,
+                                                  widget=forms.TextInput(
+                                                      attrs={
+                                                          "placeholder": "زمان تکرار پیام (به دقیقه وارد نمایید)",
+                                                          "class": "form-control",
+                                                          "type": "number"
+                                                      }
+                                                  ))
