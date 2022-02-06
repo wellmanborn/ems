@@ -1,0 +1,981 @@
+ERROR 2022-01-02 02:35:13,271 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /sensors/create/fan
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\app\classes\SensorFormFactory.py", line 30, in get_sensor_form
+    raise AssertionError("Sensor Form Not Fount")
+AssertionError: Sensor Form Not Fount
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 48, in add_sensor
+    form = SensorFormFactory.get_sensor_form(sensor_type)
+  File "E:\Project\Python\ems\app\classes\SensorFormFactory.py", line 32, in get_sensor_form
+    raise AssertionError(e)
+AssertionError: Sensor Form Not Fount
+ERROR 2022-01-02 02:35:13,287 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /sensors/create/fan 500 [4.28, 127.0.0.1:5825][0m
+ERROR 2022-01-02 02:35:53,029 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /sensors/create/fan
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\app\classes\SensorFormFactory.py", line 30, in get_sensor_form
+    if sensor_type == "fan":
+AssertionError: Sensor Form Not Fount
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 48, in add_sensor
+    form = SensorFormFactory.get_sensor_form(sensor_type)
+  File "E:\Project\Python\ems\app\classes\SensorFormFactory.py", line 32, in get_sensor_form
+    raise AssertionError("Sensor Form Not Fount")
+AssertionError: Sensor Form Not Fount
+ERROR 2022-01-02 03:11:02,200 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /sensors/edit/161
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\app\classes\SensorHelperFactory.py", line 38, in get_sensor_helper
+    raise AssertionError("Sensor Form Not Fount")
+AssertionError: Sensor Form Not Fount
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 63, in edit_sensor
+    sensor_helper_class = SensorHelperFactory.get_sensor_helper(sensor.type)
+  File "E:\Project\Python\ems\app\classes\SensorHelperFactory.py", line 40, in get_sensor_helper
+    raise AssertionError(e)
+AssertionError: Sensor Form Not Fount
+ERROR 2022-01-02 03:11:02,212 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /sensors/edit/161 500 [1.00, 127.0.0.1:14342][0m
+ERROR 2022-01-02 03:15:08,542 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /sensors/edit/160
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\app\classes\SensorHelperFactory.py", line 38, in get_sensor_helper
+    raise AssertionError("Sensor Form Not Fount")
+AssertionError: Sensor Form Not Fount
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 63, in edit_sensor
+    sensor_helper_class = SensorHelperFactory.get_sensor_helper(sensor.type)
+  File "E:\Project\Python\ems\app\classes\SensorHelperFactory.py", line 40, in get_sensor_helper
+    raise AssertionError(e)
+AssertionError: Sensor Form Not Fount
+ERROR 2022-01-02 03:15:08,548 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /sensors/edit/160 500 [0.71, 127.0.0.1:1516][0m
+ERROR 2022-01-02 03:20:08,286 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 103 - 'dict' object has no attribute 'fan_control_byte_id'
+ERROR 2022-01-02 03:20:08,286 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 104 - sensor db id: 82
+ERROR 2022-01-02 03:20:41,282 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 103 - 'fan_control_byte_id'
+ERROR 2022-01-02 03:20:41,282 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 104 - sensor db id: 82
+ERROR 2022-01-02 03:20:45,592 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 103 - 'fan_control_byte_id'
+ERROR 2022-01-02 03:20:45,593 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 104 - sensor db id: 82
+ERROR 2022-01-02 03:21:14,907 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 103 - 'fan_control_byte_id'
+ERROR 2022-01-02 03:21:14,908 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 104 - sensor db id: 82
+ERROR 2022-01-02 03:22:10,785 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 103 - 'fan_control_byte_id'
+ERROR 2022-01-02 03:22:10,785 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 104 - sensor db id: 82
+ERROR 2022-01-02 03:26:50,103 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 103 - 'fan_control_byte_id'
+ERROR 2022-01-02 03:26:50,104 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 104 - sensor db id: 82
+ERROR 2022-01-02 03:30:26,201 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 104 - 'fan_control_byte_id'
+ERROR 2022-01-02 03:30:26,201 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 105 - sensor db id: 82
+ERROR 2022-01-02 03:30:30,320 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 104 - 'fan_control_byte_id'
+ERROR 2022-01-02 03:30:30,320 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 105 - sensor db id: 82
+ERROR 2022-01-02 08:13:05,432 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/modernizr.js 500 [0.99, 127.0.0.1:14339][0m
+ERROR 2022-01-02 08:13:05,433 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/gridstack-h5.js 500 [0.97, 127.0.0.1:14340][0m
+ERROR 2022-01-02 08:13:05,434 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/bootstrap.min.js 500 [0.93, 127.0.0.1:13917][0m
+ERROR 2022-01-02 08:13:05,435 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/justgage.js 500 [0.91, 127.0.0.1:14341][0m
+ERROR 2022-01-02 08:13:05,436 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/mediaquery.js 500 [0.88, 127.0.0.1:14338][0m
+ERROR 2022-01-02 08:13:05,437 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/equalize.js 500 [0.86, 127.0.0.1:14342][0m
+ERROR 2022-01-02 08:19:05,675 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/exporting.js 500 [0.05, 127.0.0.1:2742][0m
+ERROR 2022-01-02 08:19:06,676 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.min.js 500 [0.90, 127.0.0.1:2744][0m
+ERROR 2022-01-02 08:19:06,676 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/bootstrap.min.js 500 [0.62, 127.0.0.1:2742][0m
+ERROR 2022-01-02 08:19:06,677 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/raphael-2.2.8.min.js 500 [0.56, 127.0.0.1:2743][0m
+ERROR 2022-01-02 08:19:06,678 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/equalize.js 500 [0.35, 127.0.0.1:2745][0m
+ERROR 2022-01-02 08:19:06,679 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/fonts/IranSans/IRANSansWeb_Bold.43a0ecf.woff2 500 [0.28, 127.0.0.1:2694][0m
+ERROR 2022-01-02 08:19:06,680 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/fonts/fa-solid-900.woff2 500 [0.19, 127.0.0.1:2746][0m
+ERROR 2022-01-02 08:19:07,681 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-green.png 500 [0.93, 127.0.0.1:2744][0m
+ERROR 2022-01-02 08:19:07,682 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/bootstrap.min.js 500 [0.89, 127.0.0.1:2746][0m
+ERROR 2022-01-02 08:19:07,683 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-green.png 500 [0.82, 127.0.0.1:2742][0m
+ERROR 2022-01-02 08:19:07,684 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/user.png 500 [0.71, 127.0.0.1:2743][0m
+ERROR 2022-01-02 08:19:07,685 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/electricity.png 500 [0.68, 127.0.0.1:2694][0m
+ERROR 2022-01-02 08:19:07,686 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/waterleakage.png 500 [0.64, 127.0.0.1:2745][0m
+ERROR 2022-01-04 22:39:06,613 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/gridstack-extra.min.css 500 [0.45, 127.0.0.1:1098][0m
+ERROR 2022-01-04 22:39:06,615 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/toastr.min.css 500 [0.43, 127.0.0.1:1103][0m
+ERROR 2022-01-04 22:39:06,616 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.css 500 [0.41, 127.0.0.1:1104][0m
+ERROR 2022-01-04 22:39:06,617 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/raphael-2.2.8.min.js 500 [0.29, 127.0.0.1:1106][0m
+ERROR 2022-01-04 22:39:06,618 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.min.js 500 [0.16, 127.0.0.1:1105][0m
+ERROR 2022-01-04 22:39:06,618 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/equalize.js 500 [0.15, 127.0.0.1:1107][0m
+ERROR 2022-01-04 22:39:07,621 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/exporting.js 500 [0.98, 127.0.0.1:1107][0m
+ERROR 2022-01-04 22:39:07,622 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/export-data.js 500 [0.97, 127.0.0.1:1105][0m
+ERROR 2022-01-04 22:39:07,623 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/highstock.js 500 [0.95, 127.0.0.1:1098][0m
+ERROR 2022-01-04 22:39:07,624 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/logo.png 500 [0.92, 127.0.0.1:1103][0m
+ERROR 2022-01-04 22:39:07,625 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/avatar.png 500 [0.92, 127.0.0.1:1106][0m
+ERROR 2022-01-04 22:39:07,626 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/electricity-green.png 500 [0.85, 127.0.0.1:1104][0m
+ERROR 2022-01-04 22:39:08,629 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/electricity.png 500 [0.81, 127.0.0.1:1098][0m
+ERROR 2022-01-04 22:39:08,630 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/waterleakage.png 500 [0.78, 127.0.0.1:1105][0m
+ERROR 2022-01-04 22:39:08,631 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-red.png 500 [0.66, 127.0.0.1:1104][0m
+ERROR 2022-01-04 22:39:14,635 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/bootstrap.min.js 500 [0.79, 127.0.0.1:1104][0m
+ERROR 2022-01-04 22:39:25,927 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /airconditioner/edit/212
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 178, in edit_airconditioner
+    config = airconditioner.config["config"][str(airconditioner.db_id)]
+KeyError: 'config'
+ERROR 2022-01-04 22:39:25,933 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /airconditioner/edit/212 500 [0.77, 127.0.0.1:1107][0m
+ERROR 2022-01-04 22:40:29,730 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /airconditioner/edit/216
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 178, in edit_airconditioner
+    config = airconditioner.config["config"][str(airconditioner.db_id)]
+KeyError: 'config'
+ERROR 2022-01-04 22:40:29,736 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /airconditioner/edit/216 500 [0.56, 127.0.0.1:1107][0m
+ERROR 2022-01-04 22:41:42,682 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /airconditioner/edit/216
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 178, in edit_airconditioner
+    config = airconditioner.config["config"][str(airconditioner.db_id)]
+KeyError: 'config'
+ERROR 2022-01-04 22:41:42,687 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /airconditioner/edit/216 500 [0.70, 127.0.0.1:1301][0m
+ERROR 2022-01-04 22:42:10,348 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /airconditioner/edit/216
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 178, in edit_airconditioner
+    config = airconditioner_setting.config["config"][str(airconditioner.db_id)]
+KeyError: 'config'
+ERROR 2022-01-04 22:42:10,357 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /airconditioner/edit/216 500 [0.86, 127.0.0.1:1301][0m
+ERROR 2022-01-04 22:42:21,597 E:\Project\Python\ems\app\classes\Device.py Device 43 - Device is not connected, please be sure the device is ready and accessible
+ERROR 2022-01-04 22:42:21,598 E:\Project\Python\ems\app\classes\Device.py Device 44 - b' ISO : An error occurred during recv TCP : Connection timed out'
+ERROR 2022-01-04 23:10:11,023 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /airconditioner/edit/216
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 213, in edit_airconditioner
+    return render(request, 'airconditioner_edit.html', {'form': form, "setting_form": setting_form, "manual": manual})
+NameError: name 'setting_form' is not defined
+ERROR 2022-01-04 23:10:11,030 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /airconditioner/edit/216 500 [3.04, 127.0.0.1:2477][0m
+ERROR 2022-01-04 23:31:29,119 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/modernizr.js 500 [0.31, 127.0.0.1:2920][0m
+ERROR 2022-01-04 23:31:29,138 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/gridstack-h5.js 500 [0.29, 127.0.0.1:2916][0m
+ERROR 2022-01-04 23:35:50,495 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /setting/airconditioner/64
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+TypeError: setting_airconditioner() missing 1 required positional argument: 'id'
+ERROR 2022-01-04 23:40:29,214 E:\Project\Python\ems\app\classes\Device.py Device 43 - Device is not connected, please be sure the device is ready and accessible
+ERROR 2022-01-04 23:40:29,215 E:\Project\Python\ems\app\classes\Device.py Device 44 - b' TCP : Unreachable peer'
+ERROR 2022-01-04 23:40:29,715 E:\Project\Python\ems\app\classes\Device.py Device 43 - Device is not connected, please be sure the device is ready and accessible
+ERROR 2022-01-04 23:40:29,715 E:\Project\Python\ems\app\classes\Device.py Device 44 - b' TCP : Unreachable peer'
+ERROR 2022-01-04 23:40:30,219 E:\Project\Python\ems\app\classes\Device.py Device 43 - Device is not connected, please be sure the device is ready and accessible
+ERROR 2022-01-04 23:40:30,219 E:\Project\Python\ems\app\classes\Device.py Device 44 - b' TCP : Unreachable peer'
+ERROR 2022-01-04 23:40:30,719 E:\Project\Python\ems\app\classes\Device.py Device 43 - Device is not connected, please be sure the device is ready and accessible
+ERROR 2022-01-04 23:40:30,719 E:\Project\Python\ems\app\classes\Device.py Device 44 - b' TCP : Unreachable peer'
+ERROR 2022-01-04 23:40:31,214 E:\Project\Python\ems\app\classes\Device.py Device 43 - Device is not connected, please be sure the device is ready and accessible
+ERROR 2022-01-04 23:40:31,214 E:\Project\Python\ems\app\classes\Device.py Device 44 - b' TCP : Unreachable peer'
+ERROR 2022-01-04 23:40:31,714 E:\Project\Python\ems\app\classes\Device.py Device 43 - Device is not connected, please be sure the device is ready and accessible
+ERROR 2022-01-04 23:40:31,714 E:\Project\Python\ems\app\classes\Device.py Device 44 - b' TCP : Unreachable peer'
+ERROR 2022-01-04 23:40:31,715 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 56 - 'bool' object has no attribute 'db_read'
+ERROR 2022-01-04 23:40:31,715 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 57 - error ---> 64
+ERROR 2022-01-04 23:41:20,651 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 233, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "E:\Project\Python\ems\venv\lib\site-packages\MySQLdb\__init__.py", line 123, in Connect
+    return Connection(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\MySQLdb\connections.py", line 185, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb._exceptions.OperationalError: (2002, "Can't connect to server on '212.16.66.13' (10065)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 20, in _wrapped_view
+    if test_func(request.user):
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 44, in <lambda>
+    lambda u: u.is_authenticated,
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\functional.py", line 246, in inner
+    self._setup()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\functional.py", line 382, in _setup
+    self._wrapped = self._setupfunc()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\middleware.py", line 23, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\__init__.py", line 177, in get_user
+    user_id = _get_user_session_key(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\__init__.py", line 60, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 65, in __getitem__
+    return self._session[key]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 238, in _get_session
+    self._session_cache = self.load()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\sessions\backends\db.py", line 43, in load
+    s = self._get_session_from_db()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\sessions\backends\db.py", line 32, in _get_session_from_db
+    return self.model.objects.get(
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1173, in execute_sql
+    cursor = self.connection.cursor()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 259, in cursor
+    return self._cursor()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 218, in ensure_connection
+    with self.wrap_database_errors:
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "E:\Project\Python\ems\venv\lib\site-packages\MySQLdb\__init__.py", line 123, in Connect
+    return Connection(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\MySQLdb\connections.py", line 185, in __init__
+    super().__init__(*args, **kwargs2)
+django.db.utils.OperationalError: (2002, "Can't connect to server on '212.16.66.13' (10065)")
+ERROR 2022-01-04 23:41:20,706 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET / 500 [30.98, 127.0.0.1:3864][0m
+ERROR 2022-01-05 00:04:28,214 E:\Project\Python\ems\app\classes\Device.py Device 43 - Device is not connected, please be sure the device is ready and accessible
+ERROR 2022-01-05 00:04:28,214 E:\Project\Python\ems\app\classes\Device.py Device 44 - b' TCP : Unreachable peer'
+ERROR 2022-01-05 00:04:35,690 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 56 - b' ISO : An error occurred during recv TCP : Connection timed out'
+ERROR 2022-01-05 00:04:35,690 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 57 - error ---> 64
+ERROR 2022-01-05 00:04:36,119 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /airconditioner/edit/64/216
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\app\classes\SensorABC.py", line 48, in get_data
+    response = self.get_sensor_data()
+  File "E:\Project\Python\ems\app\classes\Sensors\Airconditioner.py", line 16, in get_sensor_data
+    average_data["avg_tmp"] = self.get_real(self.client.db_read(int(self.db_id), 2, 4))
+  File "E:\Project\Python\ems\venv\lib\site-packages\snap7\client.py", line 228, in db_read
+    check_error(result, context="client")
+  File "E:\Project\Python\ems\venv\lib\site-packages\snap7\common.py", line 92, in check_error
+    raise Snap7Exception(error)
+snap7.exceptions.Snap7Exception: b' ISO : An error occurred during recv TCP : Connection timed out'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 215, in edit_airconditioner
+    data = Sensor().get_sensor_data(airconditioner)
+  File "E:\Project\Python\ems\app\classes\Sensor.py", line 22, in get_sensor_data
+    return sensor.get_data(SensorData)
+  File "E:\Project\Python\ems\app\classes\SensorABC.py", line 58, in get_data
+    raise Exception(e)
+Exception: b' ISO : An error occurred during recv TCP : Connection timed out'
+ERROR 2022-01-05 00:04:36,128 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /airconditioner/edit/64/216 500 [19.04, 127.0.0.1:5236][0m
+ERROR 2022-01-05 00:09:35,266 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /setting/airconditioner/64/216
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 233, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "E:\Project\Python\ems\venv\lib\site-packages\MySQLdb\__init__.py", line 123, in Connect
+    return Connection(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\MySQLdb\connections.py", line 185, in __init__
+    super().__init__(*args, **kwargs2)
+MySQLdb._exceptions.OperationalError: (1159, 'Got timeout reading communication packets')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 20, in _wrapped_view
+    if test_func(request.user):
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 44, in <lambda>
+    lambda u: u.is_authenticated,
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\functional.py", line 246, in inner
+    self._setup()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\functional.py", line 382, in _setup
+    self._wrapped = self._setupfunc()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\middleware.py", line 23, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\__init__.py", line 177, in get_user
+    user_id = _get_user_session_key(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\__init__.py", line 60, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 65, in __getitem__
+    return self._session[key]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 238, in _get_session
+    self._session_cache = self.load()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\sessions\backends\db.py", line 43, in load
+    s = self._get_session_from_db()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\sessions\backends\db.py", line 32, in _get_session_from_db
+    return self.model.objects.get(
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1173, in execute_sql
+    cursor = self.connection.cursor()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 259, in cursor
+    return self._cursor()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 218, in ensure_connection
+    with self.wrap_database_errors:
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\utils\asyncio.py", line 33, in inner
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+  File "E:\Project\Python\ems\venv\lib\site-packages\MySQLdb\__init__.py", line 123, in Connect
+    return Connection(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\MySQLdb\connections.py", line 185, in __init__
+    super().__init__(*args, **kwargs2)
+django.db.utils.OperationalError: (1159, 'Got timeout reading communication packets')
+ERROR 2022-01-05 00:09:35,281 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /setting/airconditioner/64/216 500 [44.33, 127.0.0.1:5746][0m
+ERROR 2022-01-05 00:45:03,348 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /setting/airconditioner/64/216
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 154, in setting_airconditioner
+    config["manual_air1_on"] = airconditioner_setting.config["manual_air1_on"]
+KeyError: 'manual_air1_on'
+ERROR 2022-01-05 00:45:03,355 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP POST /setting/airconditioner/64/216 500 [0.55, 127.0.0.1:7669][0m
+ERROR 2022-01-05 00:45:52,519 E:\Project\Python\ems\app\classes\SensorABC.py SensorABC 89 - 'set_point_on'
+ERROR 2022-01-05 00:45:52,592 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /setting/airconditioner/64/216
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\app\classes\SensorABC.py", line 85, in set_data
+    self.set_sensor_data()
+  File "E:\Project\Python\ems\app\classes\Sensors\Airconditioner.py", line 44, in set_sensor_data
+    self.client.db_write(int(self.db_id), 10, self.set_real(int(self.config['set_point_on'])))
+KeyError: 'set_point_on'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 159, in setting_airconditioner
+    Airconditioner().set_data(None, airconditioner_setting.config, db_id)
+  File "E:\Project\Python\ems\app\classes\SensorABC.py", line 90, in set_data
+    raise Exception(e)
+Exception: 'set_point_on'
+ERROR 2022-01-05 00:45:52,603 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP POST /setting/airconditioner/64/216 500 [0.89, 127.0.0.1:7711][0m
+ERROR 2022-01-05 00:53:14,630 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/metisMenu.js 500 [0.61, 127.0.0.1:8029][0m
+ERROR 2022-01-05 00:53:14,631 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/justgage.js 500 [0.45, 127.0.0.1:8025][0m
+ERROR 2022-01-05 00:53:14,631 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/core.js 500 [0.36, 127.0.0.1:8028][0m
+ERROR 2022-01-05 00:53:14,632 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/mediaquery.js 500 [0.31, 127.0.0.1:8030][0m
+ERROR 2022-01-05 00:53:14,632 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/app.js 500 [0.04, 127.0.0.1:8031][0m
+ERROR 2022-01-05 00:53:14,633 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/calendar.js 500 [0.03, 127.0.0.1:8032][0m
+ERROR 2022-01-05 00:53:15,633 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/justgage.js 500 [0.92, 127.0.0.1:8030][0m
+ERROR 2022-01-05 00:53:15,634 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/avatar.png 500 [0.78, 127.0.0.1:8032][0m
+ERROR 2022-01-05 00:53:15,634 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/waterleakage-green.png 500 [0.73, 127.0.0.1:8031][0m
+ERROR 2022-01-05 00:53:15,635 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-green.png 500 [0.64, 127.0.0.1:8028][0m
+ERROR 2022-01-05 00:53:25,645 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/gridstack-extra.min.css 500 [0.73, 127.0.0.1:8043][0m
+ERROR 2022-01-05 00:53:25,647 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/custom.css 500 [0.71, 127.0.0.1:8045][0m
+ERROR 2022-01-05 00:53:25,648 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/rtl.css 500 [0.69, 127.0.0.1:8048][0m
+ERROR 2022-01-05 00:53:25,650 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/modernizr.js 500 [0.68, 127.0.0.1:8049][0m
+ERROR 2022-01-05 00:53:25,651 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/gridstack-h5.js 500 [0.67, 127.0.0.1:8047][0m
+ERROR 2022-01-05 00:53:25,652 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.slimscroll.js 500 [0.65, 127.0.0.1:8046][0m
+ERROR 2022-01-05 00:53:26,653 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/equalize.js 500 [0.97, 127.0.0.1:8049][0m
+ERROR 2022-01-05 00:53:26,654 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/parsley.min.js 500 [0.95, 127.0.0.1:8048][0m
+ERROR 2022-01-05 00:53:26,655 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/app.js 500 [0.93, 127.0.0.1:8047][0m
+ERROR 2022-01-05 00:53:26,656 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/calendar.js 500 [0.92, 127.0.0.1:8045][0m
+ERROR 2022-01-05 00:53:26,657 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.js 500 [0.90, 127.0.0.1:8043][0m
+ERROR 2022-01-05 00:53:26,658 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/exporting.js 500 [0.88, 127.0.0.1:8046][0m
+ERROR 2022-01-05 00:53:27,660 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/electricity-green.png 500 [0.97, 127.0.0.1:8049][0m
+ERROR 2022-01-05 00:53:27,661 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/electricity.png 500 [0.96, 127.0.0.1:8043][0m
+ERROR 2022-01-05 00:53:27,661 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/waterleakage-green.png 500 [0.95, 127.0.0.1:8048][0m
+ERROR 2022-01-05 00:53:27,662 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/waterleakage.png 500 [0.94, 127.0.0.1:8046][0m
+ERROR 2022-01-05 00:53:27,662 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/door.png 500 [0.92, 127.0.0.1:8047][0m
+ERROR 2022-01-05 00:53:27,663 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/smoke-green.png 500 [0.90, 127.0.0.1:8045][0m
+ERROR 2022-01-05 00:53:54,708 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.slimscroll.js 500 [0.90, 127.0.0.1:8077][0m
+ERROR 2022-01-05 00:53:54,708 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/metisMenu.js 500 [0.89, 127.0.0.1:8078][0m
+ERROR 2022-01-05 00:53:54,709 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/raphael-2.2.8.min.js 500 [0.88, 127.0.0.1:8075][0m
+ERROR 2022-01-05 00:53:54,710 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/mediaquery.js 500 [0.85, 127.0.0.1:8072][0m
+ERROR 2022-01-05 00:53:54,710 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/persiandate.min.js 500 [0.74, 127.0.0.1:8079][0m
+ERROR 2022-01-05 00:53:54,711 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/fonts/fa-solid-900.woff2 500 [0.22, 127.0.0.1:8076][0m
+ERROR 2022-01-05 00:53:55,713 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/humidity-icon.png 500 [0.97, 127.0.0.1:8079][0m
+ERROR 2022-01-05 00:53:55,714 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-red.png 500 [0.91, 127.0.0.1:8072][0m
+ERROR 2022-01-05 00:57:43,937 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/door.png 500 [0.16, 127.0.0.1:8261][0m
+ERROR 2022-01-05 00:57:43,938 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-green.png 500 [0.15, 127.0.0.1:8260][0m
+ERROR 2022-01-05 01:09:43,307 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/custom.css 500 [0.99, 127.0.0.1:9119][0m
+ERROR 2022-01-05 01:09:43,308 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/rtl.css 500 [0.98, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:09:43,310 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/modernizr.js 500 [0.97, 127.0.0.1:9121][0m
+ERROR 2022-01-05 01:09:43,312 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.min.js 500 [0.96, 127.0.0.1:9114][0m
+ERROR 2022-01-05 01:09:43,313 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/raphael-2.2.8.min.js 500 [0.91, 127.0.0.1:9117][0m
+ERROR 2022-01-05 01:09:43,315 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/core.js 500 [0.89, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:09:44,317 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/calendar.js 500 [0.96, 127.0.0.1:9117][0m
+ERROR 2022-01-05 01:09:44,318 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/exporting.js 500 [0.94, 127.0.0.1:9114][0m
+ERROR 2022-01-05 01:09:44,319 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/export-data.js 500 [0.94, 127.0.0.1:9119][0m
+ERROR 2022-01-05 01:09:44,321 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.min.js 500 [0.75, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:09:44,322 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/electricity-green.png 500 [0.67, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:09:45,322 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/smoke-green.png 500 [0.98, 127.0.0.1:9117][0m
+ERROR 2022-01-05 01:09:45,323 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/smoke.png 500 [0.97, 127.0.0.1:9114][0m
+ERROR 2022-01-05 01:09:45,323 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-green.png 500 [0.95, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:09:45,323 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-green.png 500 [0.94, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:09:45,324 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-red.png 500 [0.93, 127.0.0.1:9121][0m
+ERROR 2022-01-05 01:09:48,333 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-green.png 500 [0.20, 127.0.0.1:9119][0m
+ERROR 2022-01-05 01:10:02,353 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-green.png 500 [0.24, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:10:25,384 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.css 500 [0.74, 127.0.0.1:9117][0m
+ERROR 2022-01-05 01:10:25,385 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/custom.css 500 [0.73, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:10:25,386 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/rtl.css 500 [0.72, 127.0.0.1:9119][0m
+ERROR 2022-01-05 01:10:25,386 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/modernizr.js 500 [0.71, 127.0.0.1:9121][0m
+ERROR 2022-01-05 01:10:25,386 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.min.js 500 [0.70, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:10:25,387 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/gridstack-h5.js 500 [0.69, 127.0.0.1:9114][0m
+ERROR 2022-01-05 01:10:26,388 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/calendar.js 500 [0.94, 127.0.0.1:9117][0m
+ERROR 2022-01-05 01:10:26,389 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.js 500 [0.93, 127.0.0.1:9114][0m
+ERROR 2022-01-05 01:10:26,389 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-green.png 500 [0.88, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:10:26,390 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.min.js 500 [0.52, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:10:26,390 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-green.png 500 [0.44, 127.0.0.1:9119][0m
+ERROR 2022-01-05 01:10:30,393 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/modernizr.js 500 [0.19, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:10:30,394 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.slimscroll.js 500 [0.18, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:10:30,395 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/metisMenu.js 500 [0.17, 127.0.0.1:9114][0m
+ERROR 2022-01-05 01:10:30,396 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/bootstrap.min.js 500 [0.16, 127.0.0.1:9119][0m
+ERROR 2022-01-05 01:10:30,397 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/justgage.js 500 [0.14, 127.0.0.1:9121][0m
+ERROR 2022-01-05 01:10:30,397 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/mediaquery.js 500 [0.10, 127.0.0.1:9117][0m
+ERROR 2022-01-05 01:10:31,398 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/highstock.js 500 [0.97, 127.0.0.1:9114][0m
+ERROR 2022-01-05 01:10:31,399 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-green.png 500 [0.95, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:10:31,400 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-red.png 500 [0.36, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:10:31,400 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/fonts/IranSans/IRANSansWeb.0b5055a.woff2 500 [0.33, 127.0.0.1:9121][0m
+ERROR 2022-01-05 01:10:31,401 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/fonts/fa-solid-900.woff2 500 [0.32, 127.0.0.1:9117][0m
+ERROR 2022-01-05 01:11:35,439 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.css 500 [0.09, 127.0.0.1:9212][0m
+ERROR 2022-01-05 01:11:35,440 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/rtl.css 500 [0.07, 127.0.0.1:9214][0m
+ERROR 2022-01-05 01:11:35,440 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/modernizr.js 500 [0.06, 127.0.0.1:9215][0m
+ERROR 2022-01-05 01:11:35,441 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/gridstack-h5.js 500 [0.05, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:11:35,442 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/metisMenu.js 500 [0.03, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:11:36,443 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/justgage.js 500 [1.00, 127.0.0.1:9213][0m
+ERROR 2022-01-05 01:11:36,444 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/i18n/fa.js 500 [0.98, 127.0.0.1:9214][0m
+ERROR 2022-01-05 01:11:36,445 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/calendar.js 500 [0.97, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:11:36,447 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.js 500 [0.96, 127.0.0.1:9215][0m
+ERROR 2022-01-05 01:11:36,448 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/highstock.js 500 [0.95, 127.0.0.1:9212][0m
+ERROR 2022-01-05 01:11:36,449 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/export-data.js 500 [0.93, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:11:37,451 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-green.png 500 [0.94, 127.0.0.1:9212][0m
+ERROR 2022-01-05 01:11:37,452 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/temperature-icon.png 500 [0.93, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:11:37,452 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/current-icon.png 500 [0.91, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:11:37,452 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-red.png 500 [0.90, 127.0.0.1:9213][0m
+ERROR 2022-01-05 01:11:37,453 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/waterleakage.png 500 [0.88, 127.0.0.1:9215][0m
+ERROR 2022-01-05 01:11:37,453 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/door.png 500 [0.87, 127.0.0.1:9214][0m
+ERROR 2022-01-05 01:11:42,458 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/gridstack-extra.min.css 500 [0.30, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:11:42,460 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/toastr.min.css 500 [0.30, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:11:42,461 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.css 500 [0.29, 127.0.0.1:9213][0m
+ERROR 2022-01-05 01:11:42,461 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/custom.css 500 [0.28, 127.0.0.1:9212][0m
+ERROR 2022-01-05 01:11:42,462 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.slimscroll.js 500 [0.22, 127.0.0.1:9214][0m
+ERROR 2022-01-05 01:11:42,463 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/metisMenu.js 500 [0.22, 127.0.0.1:9215][0m
+ERROR 2022-01-05 01:11:43,465 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/i18n/fa.js 500 [0.97, 127.0.0.1:9212][0m
+ERROR 2022-01-05 01:11:43,466 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.slimscroll.js 500 [0.29, 127.0.0.1:9214][0m
+ERROR 2022-01-05 01:11:43,467 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/fonts/fa-solid-900.woff2 500 [0.28, 127.0.0.1:9213][0m
+ERROR 2022-01-05 01:11:43,468 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/smoke-green.png 500 [0.25, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:11:48,471 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/gridstack-extra.min.css 500 [0.50, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:11:48,472 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/toastr.min.css 500 [0.49, 127.0.0.1:9214][0m
+ERROR 2022-01-05 01:11:48,472 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.css 500 [0.48, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:11:48,472 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/rtl.css 500 [0.47, 127.0.0.1:9212][0m
+ERROR 2022-01-05 01:11:48,473 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/modernizr.js 500 [0.46, 127.0.0.1:9215][0m
+ERROR 2022-01-05 01:11:48,473 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.min.js 500 [0.45, 127.0.0.1:9213][0m
+ERROR 2022-01-05 01:11:49,474 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/core.js 500 [0.98, 127.0.0.1:9214][0m
+ERROR 2022-01-05 01:11:49,474 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/toastr.min.js 500 [0.97, 127.0.0.1:9212][0m
+ERROR 2022-01-05 01:11:49,474 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/parsley.min.js 500 [0.95, 127.0.0.1:9213][0m
+ERROR 2022-01-05 01:11:49,474 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/i18n/fa.js 500 [0.94, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:11:49,475 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/calendar.js 500 [0.93, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:11:49,475 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/highstock.js 500 [0.90, 127.0.0.1:9215][0m
+ERROR 2022-01-05 01:11:50,476 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/electricity-green.png 500 [0.97, 127.0.0.1:9120][0m
+ERROR 2022-01-05 01:11:50,477 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/door-green.png 500 [0.95, 127.0.0.1:9215][0m
+ERROR 2022-01-05 01:11:50,478 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-green.png 500 [0.94, 127.0.0.1:9213][0m
+ERROR 2022-01-05 01:11:50,478 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/temperature-icon.png 500 [0.93, 127.0.0.1:9214][0m
+ERROR 2022-01-05 01:11:50,479 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/humidity-icon.png 500 [0.92, 127.0.0.1:9212][0m
+ERROR 2022-01-05 01:11:50,480 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/electricity.png 500 [0.88, 127.0.0.1:9118][0m
+ERROR 2022-01-05 01:11:53,487 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/gridstack-extra.min.css 500 [0.92, 127.0.0.1:9231][0m
+ERROR 2022-01-05 01:11:53,488 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/toastr.min.css 500 [0.91, 127.0.0.1:9235][0m
+ERROR 2022-01-05 01:11:53,488 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.css 500 [0.89, 127.0.0.1:9236][0m
+ERROR 2022-01-05 01:11:53,488 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/custom.css 500 [0.89, 127.0.0.1:9237][0m
+ERROR 2022-01-05 01:11:53,489 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/rtl.css 500 [0.88, 127.0.0.1:9238][0m
+ERROR 2022-01-05 01:11:53,489 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/modernizr.js 500 [0.87, 127.0.0.1:9239][0m
+ERROR 2022-01-05 01:11:54,490 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/justgage.js 500 [0.97, 127.0.0.1:9236][0m
+ERROR 2022-01-05 01:11:54,491 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/toastr.min.js 500 [0.94, 127.0.0.1:9237][0m
+ERROR 2022-01-05 01:11:54,492 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/parsley.min.js 500 [0.93, 127.0.0.1:9239][0m
+ERROR 2022-01-05 01:11:54,493 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/i18n/fa.js 500 [0.92, 127.0.0.1:9238][0m
+ERROR 2022-01-05 01:11:54,493 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/app.js 500 [0.91, 127.0.0.1:9235][0m
+ERROR 2022-01-05 01:11:54,494 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/calendar.js 500 [0.90, 127.0.0.1:9231][0m
+ERROR 2022-01-05 01:11:55,494 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/electricity-green.png 500 [0.98, 127.0.0.1:9236][0m
+ERROR 2022-01-05 01:11:55,495 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/door-green.png 500 [0.97, 127.0.0.1:9238][0m
+ERROR 2022-01-05 01:11:55,495 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/waterleakage-green.png 500 [0.93, 127.0.0.1:9231][0m
+ERROR 2022-01-05 01:11:55,496 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/smoke.png 500 [0.90, 127.0.0.1:9235][0m
+ERROR 2022-01-05 01:11:55,496 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-red.png 500 [0.88, 127.0.0.1:9239][0m
+ERROR 2022-01-05 01:11:55,496 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-red.png 500 [0.87, 127.0.0.1:9237][0m
+ERROR 2022-01-05 01:11:59,499 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.min.js 500 [0.39, 127.0.0.1:9231][0m
+ERROR 2022-01-05 01:11:59,499 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/gridstack-h5.js 500 [0.38, 127.0.0.1:9236][0m
+ERROR 2022-01-05 01:11:59,500 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.slimscroll.js 500 [0.36, 127.0.0.1:9235][0m
+ERROR 2022-01-05 01:11:59,501 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/bootstrap.min.js 500 [0.35, 127.0.0.1:9238][0m
+ERROR 2022-01-05 01:11:59,502 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/raphael-2.2.8.min.js 500 [0.34, 127.0.0.1:9237][0m
+ERROR 2022-01-05 01:11:59,503 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/justgage.js 500 [0.33, 127.0.0.1:9239][0m
+ERROR 2022-01-05 01:12:00,505 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/app.js 500 [0.98, 127.0.0.1:9236][0m
+ERROR 2022-01-05 01:12:00,506 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/calendar.js 500 [0.97, 127.0.0.1:9231][0m
+ERROR 2022-01-05 01:12:00,506 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.js 500 [0.96, 127.0.0.1:9238][0m
+ERROR 2022-01-05 01:12:00,506 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/exporting.js 500 [0.94, 127.0.0.1:9237][0m
+ERROR 2022-01-05 01:12:00,507 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/fonts/IranSans/IRANSansWeb.0b5055a.woff2 500 [0.91, 127.0.0.1:9239][0m
+ERROR 2022-01-05 01:12:00,507 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/humidity-icon.png 500 [0.63, 127.0.0.1:9235][0m
+ERROR 2022-01-05 01:12:10,515 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/toastr.min.css 500 [0.67, 127.0.0.1:9235][0m
+ERROR 2022-01-05 01:12:10,516 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/modernizr.js 500 [0.64, 127.0.0.1:9238][0m
+ERROR 2022-01-05 01:12:10,516 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.min.js 500 [0.63, 127.0.0.1:9231][0m
+ERROR 2022-01-05 01:12:10,516 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/gridstack-h5.js 500 [0.58, 127.0.0.1:9236][0m
+ERROR 2022-01-05 01:12:10,517 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.slimscroll.js 500 [0.57, 127.0.0.1:9237][0m
+ERROR 2022-01-05 01:12:10,517 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/justgage.js 500 [0.53, 127.0.0.1:9239][0m
+ERROR 2022-01-05 01:12:11,517 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/app.js 500 [0.99, 127.0.0.1:9236][0m
+ERROR 2022-01-05 01:12:11,518 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/export-data.js 500 [0.95, 127.0.0.1:9239][0m
+ERROR 2022-01-05 01:12:11,518 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/waterleakage-green.png 500 [0.61, 127.0.0.1:9238][0m
+ERROR 2022-01-05 01:12:11,518 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-green.png 500 [0.58, 127.0.0.1:9235][0m
+ERROR 2022-01-05 01:12:11,519 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/fonts/IranSans/IRANSansWeb_Bold.43a0ecf.woff2 500 [0.57, 127.0.0.1:9231][0m
+ERROR 2022-01-05 01:12:11,519 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-green.png 500 [0.48, 127.0.0.1:9237][0m
+ERROR 2022-01-05 01:14:55,614 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/modernizr.js 500 [0.71, 127.0.0.1:9467][0m
+ERROR 2022-01-05 01:24:50,911 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/morris-0.4.3.min.css 500 [0.08, 127.0.0.1:10477][0m
+ERROR 2022-01-05 01:24:50,912 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/rtl.css 500 [0.04, 127.0.0.1:10484][0m
+ERROR 2022-01-05 01:24:50,912 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/gridstack-h5.js 500 [0.02, 127.0.0.1:10482][0m
+ERROR 2022-01-05 01:24:50,913 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.slimscroll.js 500 [0.01, 127.0.0.1:10483][0m
+ERROR 2022-01-05 01:24:51,914 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/metisMenu.js 500 [1.00, 127.0.0.1:10485][0m
+ERROR 2022-01-05 01:24:51,915 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/equalize.js 500 [0.98, 127.0.0.1:10482][0m
+ERROR 2022-01-05 01:24:51,915 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/highstock.js 500 [0.82, 127.0.0.1:10477][0m
+ERROR 2022-01-05 01:24:51,916 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/exporting.js 500 [0.82, 127.0.0.1:10481][0m
+ERROR 2022-01-05 01:24:51,917 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/export-data.js 500 [0.81, 127.0.0.1:10483][0m
+ERROR 2022-01-05 01:24:51,917 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/persiandate.min.js 500 [0.80, 127.0.0.1:10484][0m
+ERROR 2022-01-05 01:24:52,918 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/door-green.png 500 [0.98, 127.0.0.1:10483][0m
+ERROR 2022-01-05 01:24:52,919 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/smoke-green.png 500 [0.97, 127.0.0.1:10477][0m
+ERROR 2022-01-05 01:24:52,919 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-green.png 500 [0.96, 127.0.0.1:10481][0m
+ERROR 2022-01-05 01:24:52,920 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-green.png 500 [0.95, 127.0.0.1:10484][0m
+ERROR 2022-01-05 01:24:52,920 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/temperature-icon.png 500 [0.94, 127.0.0.1:10482][0m
+ERROR 2022-01-05 01:24:52,921 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/current-icon.png 500 [0.87, 127.0.0.1:10485][0m
+ERROR 2022-01-05 01:24:53,922 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/air-conditioner-red.png 500 [0.99, 127.0.0.1:10482][0m
+ERROR 2022-01-05 01:24:53,923 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-red.png 500 [0.98, 127.0.0.1:10483][0m
+ERROR 2022-01-05 01:27:56,084 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.css 500 [0.36, 127.0.0.1:10829][0m
+ERROR 2022-01-05 01:27:56,085 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/metisMenu.js 500 [0.31, 127.0.0.1:10835][0m
+ERROR 2022-01-05 01:27:56,085 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/raphael-2.2.8.min.js 500 [0.29, 127.0.0.1:10836][0m
+ERROR 2022-01-05 01:27:56,086 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/toastr.min.js 500 [0.24, 127.0.0.1:10838][0m
+ERROR 2022-01-05 01:27:56,086 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/i18n/fa.js 500 [0.22, 127.0.0.1:10837][0m
+ERROR 2022-01-05 01:27:56,087 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.js 500 [0.19, 127.0.0.1:10834][0m
+ERROR 2022-01-05 01:27:57,088 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/door-green.png 500 [0.33, 127.0.0.1:10836][0m
+ERROR 2022-01-05 01:27:57,089 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/fan-red.png 500 [0.22, 127.0.0.1:10829][0m
+ERROR 2022-01-05 01:28:30,115 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/morris-0.4.3.min.css 500 [0.18, 127.0.0.1:10829][0m
+ERROR 2022-01-05 01:28:30,115 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/toastr.min.css 500 [0.16, 127.0.0.1:10836][0m
+ERROR 2022-01-05 01:28:30,116 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/Bootstrap-PersianDateTimePicker/PersianDateTimePicker.css 500 [0.15, 127.0.0.1:10834][0m
+ERROR 2022-01-05 01:28:30,116 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/custom.css 500 [0.14, 127.0.0.1:10837][0m
+ERROR 2022-01-05 01:28:30,116 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/css/rtl.css 500 [0.13, 127.0.0.1:10835][0m
+ERROR 2022-01-05 01:28:30,117 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/jquery.min.js 500 [0.11, 127.0.0.1:10838][0m
+ERROR 2022-01-05 01:28:31,118 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/mediaquery.js 500 [0.98, 127.0.0.1:10838][0m
+ERROR 2022-01-05 01:28:31,119 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/equalize.js 500 [0.96, 127.0.0.1:10829][0m
+ERROR 2022-01-05 01:28:31,119 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/toastr.min.js 500 [0.95, 127.0.0.1:10837][0m
+ERROR 2022-01-05 01:28:31,120 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/parsley.min.js 500 [0.93, 127.0.0.1:10836][0m
+ERROR 2022-01-05 01:28:31,120 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/app.js 500 [0.91, 127.0.0.1:10835][0m
+ERROR 2022-01-05 01:28:31,120 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/js/Bootstrap-PersianDateTimePicker/calendar.js 500 [0.86, 127.0.0.1:10834][0m
+ERROR 2022-01-05 01:28:32,121 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/avatar.png 500 [0.95, 127.0.0.1:10837][0m
+ERROR 2022-01-05 01:28:32,122 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/electricity-green.png 500 [0.94, 127.0.0.1:10836][0m
+ERROR 2022-01-05 01:28:32,122 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/electricity.png 500 [0.93, 127.0.0.1:10835][0m
+ERROR 2022-01-05 01:28:32,122 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/waterleakage-green.png 500 [0.91, 127.0.0.1:10838][0m
+ERROR 2022-01-05 01:28:32,123 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/waterleakage.png 500 [0.90, 127.0.0.1:10829][0m
+ERROR 2022-01-05 01:28:32,123 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/door.png 500 [0.88, 127.0.0.1:10834][0m
+ERROR 2022-01-05 01:28:36,125 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /static/pinkdesh/images/door.png 500 [0.56, 127.0.0.1:10838][0m
+ERROR 2022-01-05 01:44:01,214 E:\Project\Python\ems\app\classes\Device.py Device 43 - Device is not connected, please be sure the device is ready and accessible
+ERROR 2022-01-05 01:44:01,214 E:\Project\Python\ems\app\classes\Device.py Device 44 - b' TCP : Unreachable peer'
+ERROR 2022-01-05 04:13:28,907 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /sensors/delete/216
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 116, in delete_sensor
+    if sensor.type == "airconditioner":
+AttributeError: 'QuerySet' object has no attribute 'type'
+ERROR 2022-01-05 04:13:28,914 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /sensors/delete/216 500 [18.92, 127.0.0.1:2118][0m
+ERROR 2022-01-05 04:14:00,401 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /sensors/delete/216
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 116, in delete_sensor
+    if sensor.type == "airconditioner":
+AttributeError: 'QuerySet' object has no attribute 'type'
+ERROR 2022-01-05 04:14:00,411 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /sensors/delete/216 500 [1.10, 127.0.0.1:2118][0m
+ERROR 2022-01-05 04:14:56,235 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /sensors/delete/216
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 117, in delete_sensor
+    if sensor.type == "airconditioner":
+AttributeError: 'QuerySet' object has no attribute 'type'
+ERROR 2022-01-05 04:14:56,243 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /sensors/delete/216 500 [1.42, 127.0.0.1:2308][0m
+ERROR 2022-01-05 04:15:44,451 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /sensors/delete/216
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 118, in delete_sensor
+    delete_air_conditioner(sensor.db_id)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 99, in delete_air_conditioner
+    if "config" in airconditioner_setting.config:
+AttributeError: 'QuerySet' object has no attribute 'config'
+ERROR 2022-01-05 04:15:44,458 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /sensors/delete/216 500 [1.89, 127.0.0.1:2342][0m
+ERROR 2022-01-05 04:17:11,167 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /sensors/delete/218
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 118, in delete_sensor
+    delete_air_conditioner(sensor.db_id)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 103, in delete_air_conditioner
+    airconditioner_setting["setting"]["count"] = airconditioner_setting["setting"]["count"] - 1
+TypeError: 'Setting' object is not subscriptable
+ERROR 2022-01-05 04:17:11,175 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /sensors/delete/218 500 [1.49, 127.0.0.1:2424][0m
+ERROR 2022-01-05 04:18:57,714 E:\Project\Python\ems\app\classes\Device.py Device 43 - Device is not connected, please be sure the device is ready and accessible
+ERROR 2022-01-05 04:18:57,715 E:\Project\Python\ems\app\classes\Device.py Device 44 - b' TCP : Unreachable peer'
+ERROR 2022-01-05 04:21:02,574 E:\Project\Python\ems\venv\lib\site-packages\django\utils\log.py log 224 - Internal Server Error: /sensors/delete/222
+Traceback (most recent call last):
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 482, in thread_handler
+    raise exc_info[1]
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 444, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "C:\Program Files\Python310\lib\asyncio\tasks.py", line 408, in wait_for
+    return await fut
+  File "C:\Program Files\Python310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\asgiref\sync.py", line 486, in thread_handler
+    return func(*args, **kwargs)
+  File "E:\Project\Python\ems\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 118, in delete_sensor
+    delete_air_conditioner(sensor.db_id)
+  File "E:\Project\Python\ems\app\views\sensors.py", line 99, in delete_air_conditioner
+    if "config" in airconditioner_setting.config:
+AttributeError: 'QuerySet' object has no attribute 'config'
+ERROR 2022-01-05 04:21:02,584 E:\Project\Python\ems\venv\lib\site-packages\channels\management\commands\runserver.py runserver 160 - [35;1mHTTP GET /sensors/delete/222 500 [1.62, 127.0.0.1:2602][0m
