@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.utils import timezone
 
 from app.models import Sensor, AnalogSensorDataLog
+from ems.settings import AIRCONDITIONER_REVERSE
+
 
 @login_required
 def index(request):
@@ -20,6 +22,7 @@ def index(request):
     powerones = Sensor.objects.filter(type="powerone")
     powerthrees = Sensor.objects.filter(type="powerthree")
     fans = Sensor.objects.filter(type="fan")
+
     return render(request, "main.html", {
         "temperatures": temperatures,
         "humidities": humidities,
@@ -32,5 +35,6 @@ def index(request):
         "currents": currents,
         "powerones": powerones,
         "powerthrees": powerthrees,
-        "fans": fans
+        "fans": fans,
+        "ariconditioner_reverse": AIRCONDITIONER_REVERSE
     })

@@ -1,7 +1,12 @@
 import re
 
 from django import forms
-from ems.settings import AIRCONDITIONER_STATUS_CHOICES
+from ems.settings import AIRCONDITIONER_REVERSE
+if AIRCONDITIONER_REVERSE == True:
+    AIRCONDITIONER_STATUS_CHOICES = [(1, 'روشن'), (0, 'خاموش')]
+else:
+    AIRCONDITIONER_STATUS_CHOICES = [(0, 'روشن'), (1, 'خاموش')]
+
 FAN_STATUS_CHOICES=[(1,'روشن'),(0,'خاموش')]
 SMOKE_DATA_BLOCK_TYPE_CHOICES=[('boolean','Boolean'), ('word','Word')]
 
@@ -22,7 +27,6 @@ STATUS_CHOICES = (
 AIRCONDITIONER_MANUAL_CHOICES=[(1,'تنظیمات دستی'),
                                (0,'اتوماتیک')]
 
-# AIRCONDITIONER_STATUS_CHOICES=AIRCONDITIONER_STATUS_CHOICES
 SENSOR_TYPES = (
     ("", 'انتخاب کنید ...'),
     ("temperature", 'دما'),

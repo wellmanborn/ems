@@ -228,9 +228,9 @@ def edit_airconditioner(request, db_id, id):
 
             if 'status' in request.POST:
                 if AIRCONDITIONER_REVERSE:
-                    status = 0 if int(request.POST["status"]) == 1 else 1
-                else:
                     status = 1 if int(request.POST["status"]) == 1 else 0
+                else:
+                    status = 0 if int(request.POST["status"]) == 1 else 1
                 Airconditioner().set_airconditioner_status(airconditioner.db_id, airconditioner.bit_id, status)
                 airconditioner_setting.save()
 
