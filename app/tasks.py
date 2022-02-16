@@ -47,11 +47,20 @@ def read_from_plc_and_insert_to_database():
     except Exception as e:
         logger.error(e.__str__())
 
+    is_air_conditioner_inserted = False
     for dt in data:
         if 'sensor' in dt:
             try:
-                digital_sensor_log(dt["sensor_title"], dt["sensor"], dt["sensor_id"], dt["db_id"],
-                                       dt["byte_id"],dt["bit_id"],dt["value"], dt["alarm"])
+                if dt["sensor"] == "airconditioner":
+                    if not is_air_conditioner_inserted:
+                        digital_sensor_log("average temperature", "temperature", dt["sensor_id"], dt["db_id"],
+                                           dt["byte_id"], dt["bit_id"], dt["avg_tmp"], dt["alarm"])
+                        digital_sensor_log("average humidity", "humidity", dt["sensor_id"], dt["db_id"],
+                                           dt["byte_id"], dt["bit_id"], dt["avg_hum"], dt["alarm"])
+                        is_air_conditioner_inserted = True
+                else:
+                    digital_sensor_log(dt["sensor_title"], dt["sensor"], dt["sensor_id"], dt["db_id"],
+                                           dt["byte_id"],dt["bit_id"],dt["value"], dt["alarm"])
             except Exception as e:
                 logger.error(e.__str__())
     return None

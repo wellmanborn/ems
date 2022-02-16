@@ -4,9 +4,9 @@ from django.shortcuts import render
 from django.utils import timezone
 from datetime import timedelta
 from django.http import JsonResponse
-from app.forms import SearchLogDataForm
 import jdatetime
 
+from app.forms.search import SearchLogDataForm
 from app.models import SensorDataLog as SensorDataLogModel, Sensor
 from app.views.sensors import to_persian_numbers, to_english_numbers
 
@@ -35,5 +35,21 @@ def sensor_data(request):
             for dt in data:
                 result.append([int(dt[0].timestamp()) * 1000, dt[1]])
             response.append({"name": sensor.title, "data": result})
+
+        if sensor_type == "humidity":
+            data = SensorDataLogModel.objects.values_list("created_at", "value") \
+                .filter(filter).filter(db_id=64).order_by('created_at')
+            result = []
+            for dt in data:
+                result.append([int(dt[0].timestamp()) * 1000, round(dt[1], 2)])
+            response.append({"name": "Average Humidity", "data": result})
+
+        if sensor_type == "temperature":
+            data = SensorDataLogModel.objects.values_list("created_at", "value") \
+                .filter(filter).filter(db_id=64).order_by('created_at')
+            result = []
+            for dt in data:
+                result.append([int(dt[0].timestamp()) * 1000, round(dt[1], 2)])
+            response.append({"name": "Average Temperature", "data": result})
 
     return JsonResponse({'success': True, 'name': 'humidity', 'data': response})

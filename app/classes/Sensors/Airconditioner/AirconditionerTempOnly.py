@@ -1,11 +1,7 @@
-from app.classes.Device import Device
-from app.classes.SensorABC import SensorABC
+from app.classes.Sensors.IAirConditioner import IAirConditioner
 
 
-class Airconditioner(SensorABC):
-
-    sensor_type = "airconditioner"
-    config = {}
+class AirConditionerTempOnly(IAirConditioner):
 
     def get_sensor_data(self):
         data = self.client.db_read(int(self.db_id), int(self.byte_id), 1)
@@ -33,7 +29,6 @@ class Airconditioner(SensorABC):
         self.config["manual_air3_on"] = self.get_bool(data, 0, 4)
         self.config["manual_air4_on"] = self.get_bool(data, 0, 5)
         return self.config
-
 
     def set_sensor_data(self):
         self.client.db_write(int(self.db_id), 4, self.set_real(float(self.config['set_point_on'])))
