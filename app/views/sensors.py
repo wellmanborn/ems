@@ -104,16 +104,6 @@ def delete_sensor(request, id):
         sensor.delete()
     return redirect("/")
 
-
-
-
-
-
-
-
-
-
-
 @login_required
 def stop_snooze(request):
     if request.method == 'POST':
