@@ -58,9 +58,7 @@ class AirConditionerForm(forms.Form):
                                              required=True)
 
 
-
-
-class AirconditionerSettingForm(forms.Form):
+class AirConditionerSettingForm(forms.Form):
     set_point_on = forms.IntegerField(label="ست پوینت روشن",
                                       required=True,
                                       widget=forms.TextInput(
@@ -134,7 +132,50 @@ class AirconditionerSettingForm(forms.Form):
                                        ))
 
 
-class AirconditionerEditForm(forms.Form):
+class AirConditionerSettingTempOnlyForm(forms.Form):
+    set_point_on = forms.FloatField(label="ست پوینت روشن",
+                                   required=True,
+                                   widget=forms.TextInput(
+                                       attrs={
+                                           "placeholder": "ست پوینت روشن",
+                                           "class": "form-control"
+                                       }
+                                   ))
+    set_point_off = forms.FloatField(label="ست پوینت خاموش",
+                                     required=True,
+                                     widget=forms.TextInput(
+                                         attrs={
+                                             "placeholder": "ست پوینت خاموش",
+                                             "class": "form-control"
+                                         }
+                                     ))
+    alarm_time = forms.IntegerField(label="زمان alarm",
+                                    required=True,
+                                    widget=forms.TextInput(
+                                        attrs={
+                                            "placeholder": "زمان alarm به دقیقه وارد نمایید",
+                                            "class": "form-control",
+                                            "type": "number"
+                                        }
+                                    ))
+    warning_time = forms.IntegerField(label="زمان warning",
+                                      required=True,
+                                      widget=forms.TextInput(
+                                          attrs={
+                                              "placeholder": "زمان warning به دقیقه وارد نمایید",
+                                              "class": "form-control",
+                                              "type": "number"
+                                          }
+                                      ))
+    control_method = forms.ChoiceField(label=" تنظیمات ",
+                                       choices=AIRCONDITIONER_MANUAL_CHOICES,
+                                       required=True,
+                                       widget=forms.RadioSelect(
+                                           attrs={
+                                               "placeholder": "تنظیمات"
+                                           }
+                                       ))
+class AirConditionerEditForm(forms.Form):
     title = forms.CharField(label=" شناسه air conditioner",
                             required=True,
                             widget=forms.TextInput(

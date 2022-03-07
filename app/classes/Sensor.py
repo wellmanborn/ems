@@ -17,8 +17,8 @@ class Sensor():
                 raise Exception("Error reading data from device \n Check device connection \n " + e.__str__())
         return {"data": response, "message": message}
 
-    def get_sensor_data(self, SensorData):
-        sensor = SensorFactory.get_sensor(SensorData.type)
+    def get_sensor_data(self, SensorData, additional_data=None):
+        sensor = SensorFactory.get_sensor(SensorData.type, additional_data)
         return sensor.get_data(SensorData)
 
     def get_sensor_config(self, SensorData):

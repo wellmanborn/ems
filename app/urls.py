@@ -20,8 +20,8 @@ from app.views import index, sensors, accounts, charts, air_conditioner
 urlpatterns = [
     path('', index.index),
 
-    path('airconditioner/add', air_conditioner.add),
-    path('airconditioner/edit/<db_id>/<id>', air_conditioner.edit),
+    path('airconditioner/create', air_conditioner.create),
+    path('airconditioner/<id>/edit', air_conditioner.edit),
     path('airconditioner/reset', air_conditioner.reset),
     path('stop/snooze', sensors.stop_snooze),
 
@@ -35,7 +35,7 @@ urlpatterns = [
     path('charts', charts.index),
     path('charts/data', charts.sensor_data),
 
-    path('setting/airconditioner/<db_id>/<id>', air_conditioner.setting),
+    path('setting/airconditioner/<id>', air_conditioner.setting),
     path('setting/sms', sensors.setting_sms),
     path('setting/alarm', sensors.setting_alarm),
     # path('setting/email', sensors.setting_email),

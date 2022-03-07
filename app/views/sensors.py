@@ -19,6 +19,7 @@ from app.forms.setting.sms import SmsForm
 from app.forms.search import SearchLogDataForm
 from app.forms.setting.alarm import AlarmForm
 from app.models import Sensor as SensorModel, Setting, AnalogSensorDataLog
+from app.views.air_conditioner import delete as DeleteAirConditioner
 
 
 @login_required
@@ -97,9 +98,7 @@ def edit_sensor(request, id):
 def delete_sensor(request, id):
     sensor = get_object_or_404(SensorModel, pk=id)
     if sensor.type == "airconditioner":
-        pass
-        #### TODO
-        #delete_air_conditioner(sensor.db_id)
+        DeleteAirConditioner(sensor.db_id)
     else:
         sensor.delete()
     return redirect("/")

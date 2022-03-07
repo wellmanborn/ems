@@ -197,7 +197,7 @@
             <div class="grid-stack-item">
                 <div class="grid-stack-item-content" id="airconditioner-{{ airconditioner.db_id }}-{{ airconditioner.byte_id }}-{{ airconditioner.bit_id }}">
                     {% if request.user.is_staff %}
-                        <a class="sensor-edit" href="/airconditioner/edit/{{ airconditioner.db_id }}/{{ airconditioner.id }}">
+                        <a class="sensor-edit" href="/airconditioner/{{ airconditioner.id }}/edit">
                             <i class="fa fa-edit"></i>
                         </a>
                     {% endif %}
