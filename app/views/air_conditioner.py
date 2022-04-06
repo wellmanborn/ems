@@ -161,8 +161,8 @@ def edit(request, id):
                     status = 0 if int(request.POST["status"]) == 1 else 1
                 else:
                     status = 1 if int(request.POST["status"]) == 1 else 0
-                # TODO
-                AirConditionerFactory.get_air_conditioner("full").set_airconditioner_status(airconditioner.db_id, airconditioner.bit_id, status)
+                AirConditionerFactory.get_air_conditioner(airconditioner_setting.config["setting"]["type"]).\
+                    set_airconditioner_status(airconditioner.db_id, airconditioner.bit_id, status)
                 airconditioner_setting.save()
 
             messages.success(request, 'با موفقیت ویرایش شد')

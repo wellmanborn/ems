@@ -9,7 +9,7 @@ from datetime import timedelta
 from app.classes.DataLog import digital_sensor_log
 from ems.settings import SENSOR_NUMERIC
 
-from app.models import SensorDataLog as SensorDataLogModel, AnalogSensorDataLog as AnalogSensorDataLogModel
+from app.models import SensorDataLog as SensorDataLogModel, AnalogSensorDataLog as AnalogSensorDataLogModel, Setting
 from app.classes.Sensor import Sensor
 from app.models import Sensor as SensorModel
 from channels.layers import get_channel_layer
@@ -18,6 +18,7 @@ logger = logging.getLogger('django')
 channel_layer = get_channel_layer()
 sensors = SensorModel.objects.all()
 digital_sensors = SensorModel.objects.filter(type__in=SENSOR_NUMERIC)
+air_conditioner_setting = Setting.objects.filter(key="air_conditioner")
 
 
 @shared_task
@@ -55,8 +56,9 @@ def read_from_plc_and_insert_to_database():
                     if not is_air_conditioner_inserted:
                         digital_sensor_log("average temperature", "temperature", dt["sensor_id"], dt["db_id"],
                                            dt["byte_id"], dt["bit_id"], dt["avg_tmp"], dt["alarm"])
-                        digital_sensor_log("average humidity", "humidity", dt["sensor_id"], dt["db_id"],
-                                           dt["byte_id"], dt["bit_id"], dt["avg_hum"], dt["alarm"])
+                        if air_conditioner_setting.config["setting"]["type"] != "temponly":
+                            digital_sensor_log("average humidity", "humidity", dt["sensor_id"], dt["db_id"],
+                                               dt["byte_id"], dt["bit_id"], dt["avg_hum"], dt["alarm"])
                         is_air_conditioner_inserted = True
                 else:
                     digital_sensor_log(dt["sensor_title"], dt["sensor"], dt["sensor_id"], dt["db_id"],
