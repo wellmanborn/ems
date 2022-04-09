@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 
-from app.forms import CreateUserForm, EditUserForm, ChangeUserPasswordForm
+from app.forms.users import CreateUserForm, EditUserForm, ChangeUserPasswordForm
 from app.models import Profile
 from django.contrib import messages
 

@@ -197,7 +197,7 @@
             <div class="grid-stack-item">
                 <div class="grid-stack-item-content" id="airconditioner-{{ airconditioner.db_id }}-{{ airconditioner.byte_id }}-{{ airconditioner.bit_id }}">
                     {% if request.user.is_staff %}
-                        <a class="sensor-edit" href="/airconditioner/edit/{{ airconditioner.db_id }}/{{ airconditioner.id }}">
+                        <a class="sensor-edit" href="/airconditioner/{{ airconditioner.id }}/edit">
                             <i class="fa fa-edit"></i>
                         </a>
                     {% endif %}
@@ -209,8 +209,11 @@
                     <h4 class="sensor-title">{{ airconditioner.title }}</h4>
                     <div class="airconditioner-averages">
                         <div style="margin: 0 auto;">
-                            <span>Tmp: <span id="average-temperature-{{ airconditioner.db_id }}-{{ airconditioner.bit_id }}"></span></span> -
+                            <span>Tmp: <span id="average-temperature-{{ airconditioner.db_id }}-{{ airconditioner.bit_id }}"></span></span>
+                            {% if air_conditioner_setting.config.setting.type != "temponly" %}
+                            -
                             <span>Hum: <span id="average-humidity-{{ airconditioner.db_id }}-{{ airconditioner.bit_id }}"></span></span>
+                            {% endif %}
                         </div>
                     </div>
                     <img class="air-conditioner-icon on" style="display:block;" src="{% static 'pinkdesh/images/air-conditioner-green.png' %}" />

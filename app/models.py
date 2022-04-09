@@ -3,6 +3,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_jalali.db import models as jmodels
 
+from ems.settings import AIRCONDITIONER_REVERSE
+
 SENSOR_TYPE = (
     ('temperature', 'دما'),
     ('humidity', 'رطوبت'),
@@ -24,6 +26,7 @@ NOTIFICATION_TYPE = (
     ('warning', _('warning')),
     ('error', _('error')),
 )
+
 
 # Create your models here.
 class Sensor(models.Model):
@@ -75,7 +78,7 @@ class Profile(models.Model):
     )
     job_title = models.CharField(max_length=300, blank=False)
     mobile = models.CharField(db_index=True, max_length=20, blank=False)
-    send_sms= models.BooleanField(default=True)
+    send_sms = models.BooleanField(default=True)
     dashboard_row_num = models.IntegerField(null=True)
 
 
@@ -110,6 +113,7 @@ class AnalogSensorDataLog(models.Model):
     class Meta:
         ordering = ['-created_at']
         db_table = 'app_analog_sensor_data_log'
+
 
 class Notification(models.Model):
     message = models.TextField(blank=False)

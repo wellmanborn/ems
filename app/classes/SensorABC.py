@@ -59,7 +59,7 @@ class SensorABC(ABC, ConvertData):
 
     @abstractmethod
     def get_sensor_data(self):
-        """ must be implemented in child classes """
+        raise NotImplementedError
 
     def send_response_data(self, additional_data = None):
         data = {"sensor_title": self.sensor_title, "sensor_id": self.sensor_id,
@@ -91,7 +91,7 @@ class SensorABC(ABC, ConvertData):
 
     @abstractmethod
     def set_sensor_data(self):
-        """ must be implemented in child classes"""
+        raise NotImplementedError
 
     def get_config(self, db_id, SensorDetail = None):
         try:
@@ -112,4 +112,4 @@ class SensorABC(ABC, ConvertData):
 
     @abstractmethod
     def get_sensor_config(self):
-        """ must be implemented in child classes"""
+        raise NotImplementedError

@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.utils import timezone
 
-from app.models import Sensor, AnalogSensorDataLog
+from app.models import Sensor, AnalogSensorDataLog, Setting
 from ems.settings import AIRCONDITIONER_REVERSE
 
 
@@ -22,6 +22,7 @@ def index(request):
     powerones = Sensor.objects.filter(type="powerone")
     powerthrees = Sensor.objects.filter(type="powerthree")
     fans = Sensor.objects.filter(type="fan")
+    air_conditioner_setting = Setting.objects.filter(key="air_conditioner").first()
 
     return render(request, "main.html", {
         "temperatures": temperatures,
@@ -36,5 +37,6 @@ def index(request):
         "powerones": powerones,
         "powerthrees": powerthrees,
         "fans": fans,
+        "air_conditioner_setting": air_conditioner_setting,
         "ariconditioner_reverse": AIRCONDITIONER_REVERSE
     })

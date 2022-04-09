@@ -100,7 +100,7 @@ def add_airconditioner(request):
             messages.error(request, 'حطایی رخ داد، لطفا مجددا تلاش نمایید')
     else:
         form = AirconditionerForm()
-    return render(request, 'airconditioner.html', {'form': form})
+    return render(request, 'setting/airconditioner.html', {'form': form})
 
 
 @login_required
