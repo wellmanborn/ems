@@ -54,7 +54,6 @@ def read_from_plc_and_insert_to_database():
     except Exception as e:
         logger.error(e.__str__())
 
-    is_air_conditioner_inserted = False
     for dt in data:
         if 'sensor' in dt:
             try:
