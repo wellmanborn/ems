@@ -103,9 +103,12 @@ div.grid-stack div .grid-stack-item-content.danger{
     animation:         danger-alert 1s infinite; /* IE 10+, Fx 29+ */
 }
 div.grid-stack div .grid-stack-item-content.danger img.danger,
-div.grid-stack div .grid-stack-item-content.off img.danger
 {
     display: block;
+}
+div.grid-stack div .grid-stack-item-content.off img.danger{
+    display: block;
+    opacity: 0.3
 }
 div.grid-stack div .grid-stack-item-content.danger img.ok,
 div.grid-stack div .grid-stack-item-content.off img.ok

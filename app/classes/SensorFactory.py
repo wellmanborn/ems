@@ -1,7 +1,11 @@
+from app.classes.Sensors.AirConditionerFactory import AirConditionerFactory
+import logging
+logger = logging.getLogger('django')
+
 class SensorFactory():
 
     @staticmethod
-    def get_sensor(SensorType):
+    def get_sensor(SensorType, additional_data=None):
         try:
             if SensorType == "power":
                 from app.classes.Sensors.Power import Power
@@ -40,8 +44,7 @@ class SensorFactory():
                 from app.classes.Sensors.Alarm import Alarm
                 return Alarm()
             if SensorType == "airconditioner":
-                from app.classes.Sensors.Airconditioner import Airconditioner
-                return Airconditioner()
+                return AirConditionerFactory().get_air_conditioner(additional_data["type"])
             raise AssertionError("Sensor Not Fount")
         except AssertionError as e:
             raise AssertionError(e)

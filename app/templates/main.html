@@ -197,7 +197,7 @@
             <div class="grid-stack-item">
                 <div class="grid-stack-item-content" id="airconditioner-{{ airconditioner.db_id }}-{{ airconditioner.byte_id }}-{{ airconditioner.bit_id }}">
                     {% if request.user.is_staff %}
-                        <a class="sensor-edit" href="/airconditioner/edit/{{ airconditioner.db_id }}/{{ airconditioner.id }}">
+                        <a class="sensor-edit" href="/airconditioner/{{ airconditioner.id }}/edit">
                             <i class="fa fa-edit"></i>
                         </a>
                     {% endif %}
@@ -209,8 +209,11 @@
                     <h4 class="sensor-title">{{ airconditioner.title }}</h4>
                     <div class="airconditioner-averages">
                         <div style="margin: 0 auto;">
-                            <span>Tmp: <span id="average-temperature-{{ airconditioner.db_id }}-{{ airconditioner.bit_id }}"></span></span> -
+                            <span>Tmp: <span id="average-temperature-{{ airconditioner.db_id }}-{{ airconditioner.bit_id }}"></span></span>
+                            {% if air_conditioner_setting.config.setting.type != "temponly" %}
+                            -
                             <span>Hum: <span id="average-humidity-{{ airconditioner.db_id }}-{{ airconditioner.bit_id }}"></span></span>
+                            {% endif %}
                         </div>
                     </div>
                     <img class="air-conditioner-icon on" style="display:block;" src="{% static 'pinkdesh/images/air-conditioner-green.png' %}" />
@@ -233,7 +236,7 @@
                     {% endif %}
                     <h4 class="sensor-title">{{ fan.title }}</h4>
                     <img class="fuse-detector-icon ok" src="{% static 'pinkdesh/images/fan-green.png' %}" />
-                    <img class="fuse-detector-icon danger" src="{% static 'pinkdesh/images/fan-red.png' %}" />
+                    <img class="fuse-detector-icon danger" src="{% static 'pinkdesh/images/fan-off.png' %}" />
                 </div>
             </div>
         {% endfor %}
@@ -663,6 +666,7 @@
                             $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("danger")
                         }
                     }
+                    $("#fan-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("off")
                     if(dt.sensor === "fan") {
                         if(!dt.value){
                             $("#fan-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("off")
@@ -676,11 +680,19 @@
                         $("#average-temperature-" + dt.db_id + "-" + dt.bit_id).text(dt.avg_tmp)
                         $("#average-humidity-" + dt.db_id + "-" + dt.bit_id).text(dt.avg_hum)
                         if(dt.value){
-                            $(img_on).css("display", "block")
-                            $(img_off).css("display", "none")
+                            {% if ariconditioner_reverse %}
+                                $(img_on).css("display", "block").css("opacity", 0.3);
+                            {% else %}
+                                $(img_on).css("display", "block").css("opacity", 1);
+                            {% endif %}
+                            <!--$(img_off).css("display", "none")-->
                         }else{
-                            $(img_on).css("display", "none")
-                            $(img_off).css("display", "block")
+                            {% if ariconditioner_reverse %}
+                                $(img_on).css("display", "block").css("opacity", 1);
+                            {% else %}
+                                $(img_on).css("display", "block").css("opacity", 0.3);
+                            {% endif %}
+                            <!--$(img_off).css("display", "block")-->
                         }
                     }
                 });

@@ -1,5 +1,14 @@
-from app.forms import TemperatureForm, HumidityForm, PowerForm, WaterleakageForm, DoorForm, \
-    SmokeForm, FuseForm, CurrentForm, PoweroneForm, PowerthreeForm, FanForm
+from app.forms.sensors.temperature import TemperatureForm
+from app.forms.sensors.humidity import HumidityForm
+from app.forms.sensors.current import CurrentForm
+from app.forms.sensors.door import DoorForm
+from app.forms.sensors.electricity import PowerForm
+from app.forms.sensors.fan import FanForm
+from app.forms.sensors.fuse import FuseForm
+from app.forms.sensors.one_phase_electricity import OnePhaseElectricityForm
+from app.forms.sensors.smoke import SmokeForm
+from app.forms.sensors.three_phase_electricity import ThreePhaseElectricityForm
+from app.forms.sensors.water_leakage import WaterleakageForm
 
 
 class SensorFormFactory():
@@ -24,9 +33,9 @@ class SensorFormFactory():
             if sensor_type == "current":
                 return CurrentForm(post_data)
             if sensor_type == "powerone":
-                return PoweroneForm(post_data)
+                return OnePhaseElectricityForm(post_data)
             if sensor_type == "powerthree":
-                return PowerthreeForm(post_data)
+                return ThreePhaseElectricityForm(post_data)
             if sensor_type == "fan":
                 return FanForm(post_data)
             raise AssertionError("Sensor Form Not Fount")
