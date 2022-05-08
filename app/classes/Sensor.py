@@ -14,12 +14,10 @@ class Sensor():
                 response.append(data)
             except Exception as e:
                 logger.critical(e.__str__() + " db_id: " + str(SensorData.db_id))
-                raise Exception("Error reading data from device \n Check device connection \n " + e.__str__())
         return {"data": response, "message": message}
 
     def get_sensor_data(self, SensorData, additional_data=None):
         sensor = SensorFactory.get_sensor(SensorData.type, additional_data)
-        logger.critical(sensor)
         return sensor.get_data(SensorData)
 
     def get_sensor_config(self, SensorData):

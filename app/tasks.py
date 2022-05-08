@@ -50,10 +50,11 @@ def read_from_plc():
 def read_from_plc_and_insert_to_database():
     data = {}
     try:
-        data = Sensor().get_all_sensors_data(digital_sensors)["data"]
+        data = Sensor().get_all_sensors_data(digital_sensors, air_conditioner_setting.config["setting"])["data"]
     except Exception as e:
         logger.error(e.__str__())
 
+    is_air_conditioner_inserted = False
     for dt in data:
         if 'sensor' in dt:
             try:

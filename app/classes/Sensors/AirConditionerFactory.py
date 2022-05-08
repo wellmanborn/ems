@@ -7,10 +7,7 @@ class AirConditionerFactory():
 
     @staticmethod
     def get_air_conditioner(air_conditioner_type="full"):
-        logger.warning("here")
         if air_conditioner_type == "full":
-            logger.warning("fullllllllllll")
             return AirConditionerFull()
         elif air_conditioner_type == "temponly":
-            logger.warning("temponlyyyyyyyyyyyyyyyyyyyyyyy")
             return AirConditionerTempOnly()

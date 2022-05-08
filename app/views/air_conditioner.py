@@ -12,7 +12,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.http import JsonResponse
 from app.classes.Sensor import Sensor
-from ems.settings import AIRCONDITIONER_REVERSE
+# from ems.settings import AIRCONDITIONER_REVERSES
 
 
 

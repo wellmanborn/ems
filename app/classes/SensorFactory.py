@@ -44,6 +44,7 @@ class SensorFactory():
                 from app.classes.Sensors.Alarm import Alarm
                 return Alarm()
             if SensorType == "airconditioner":
+                logger.error(additional_data)
                 return AirConditionerFactory().get_air_conditioner(additional_data["type"])
             raise AssertionError("Sensor Not Fount")
         except AssertionError as e:
