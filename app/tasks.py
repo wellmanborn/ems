@@ -28,11 +28,14 @@ def read_from_plc():
     time = "-"
     reset_airconditioner = 0
     allow_to_snooze = False
+
+    air_conditioner_config_setting = air_conditioner_setting.config["setting"] if "config" in air_conditioner_setting else None
+
     try:
-        response["data"] = Sensor().get_all_sensors_data(sensors, air_conditioner_setting.config["setting"])["data"]
+        response["data"] = Sensor().get_all_sensors_data(sensors, air_conditioner_config_setting)["data"]
         reset_airconditioner = False
         allow_to_snooze = False
-        if air_conditioner_setting.config["setting"]["type"] != "temponly":
+        if "config" in air_conditioner_setting and (air_conditioner_setting.config["setting"]["type"] != "temponly"):
             reset_airconditioner = Sensor().get_reset_airconditioner()
             allow_to_snooze = 1 if Sensor().get_allow_to_snooze() else 0
         response["data"].append({"time": str(jdatetime.now().replace(microsecond=0))})
