@@ -52,8 +52,9 @@ def read_from_plc():
 @shared_task
 def read_from_plc_and_insert_to_database():
     data = {}
+    air_conditioner_config_setting = air_conditioner_setting.config["setting"] if "config" in air_conditioner_setting else None
     try:
-        data = Sensor().get_all_sensors_data(digital_sensors, air_conditioner_setting.config["setting"])["data"]
+        data = Sensor().get_all_sensors_data(digital_sensors, air_conditioner_config_setting)["data"]
     except Exception as e:
         logger.error(e.__str__())
 
