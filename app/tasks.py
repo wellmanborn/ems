@@ -25,13 +25,10 @@ air_conditioner_setting = Setting.objects.filter(key="air_conditioner").first()
 @shared_task
 def read_from_plc():
     response = {"data": {}, "message": ""}
-    time = "-"
-    reset_airconditioner = 0
-    allow_to_snooze = False
-
-    air_conditioner_config_setting = air_conditioner_setting.config["setting"] if "config" in air_conditioner_setting else None
 
     try:
+        air_conditioner_config_setting = air_conditioner_setting.config[
+            "setting"] if air_conditioner_setting is not None else None
         response["data"] = Sensor().get_all_sensors_data(sensors, air_conditioner_config_setting)["data"]
         reset_airconditioner = False
         allow_to_snooze = False
@@ -43,7 +40,7 @@ def read_from_plc():
         response["allow_to_snooze"] = allow_to_snooze
         response["time"] = str(jdatetime.now().replace(microsecond=0))
     except Exception as e:
-        logger.critical(e)
+        logger.critical(e.__str__())
         logger.error(e.__str__())
         response["message"] = e.__str__()
     async_to_sync(channel_layer.group_send)('snap7', {'type': 'send_data', 'response': response})
@@ -52,8 +49,9 @@ def read_from_plc():
 @shared_task
 def read_from_plc_and_insert_to_database():
     data = {}
-    air_conditioner_config_setting = air_conditioner_setting.config["setting"] if "config" in air_conditioner_setting else None
     try:
+        air_conditioner_config_setting = air_conditioner_setting.config[
+            "setting"] if air_conditioner_setting is not None else None
         data = Sensor().get_all_sensors_data(digital_sensors, air_conditioner_config_setting)["data"]
     except Exception as e:
         logger.error(e.__str__())
