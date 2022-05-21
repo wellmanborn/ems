@@ -102,7 +102,7 @@ div.grid-stack div .grid-stack-item-content.danger{
     -o-animation:      danger-alert 1s infinite; /* Opera 12+ */
     animation:         danger-alert 1s infinite; /* IE 10+, Fx 29+ */
 }
-div.grid-stack div .grid-stack-item-content.danger img.danger,
+div.grid-stack div .grid-stack-item-content.danger img.danger
 {
     display: block;
 }
