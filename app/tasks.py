@@ -32,7 +32,7 @@ def read_from_plc():
         response["data"] = Sensor().get_all_sensors_data(sensors, air_conditioner_config_setting)["data"]
         reset_airconditioner = False
         allow_to_snooze = False
-        if "config" in air_conditioner_setting and (air_conditioner_setting.config["setting"]["type"] != "temponly"):
+        if (air_conditioner_setting is not None) and (air_conditioner_setting.config["setting"]["type"] != "temponly"):
             reset_airconditioner = Sensor().get_reset_airconditioner()
             allow_to_snooze = 1 if Sensor().get_allow_to_snooze() else 0
         response["data"].append({"time": str(jdatetime.now().replace(microsecond=0))})
@@ -74,6 +74,7 @@ def read_from_plc_and_insert_to_database():
             except Exception as e:
                 logger.error(e.__str__())
     return None
+
 
 @shared_task
 def remove_old_data_log_from_database():
