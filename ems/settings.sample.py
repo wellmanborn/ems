@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+import pymysql
+pymysql.install_as_MySQLdb()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -25,9 +27,8 @@ SECRET_KEY = 'django-insecure-z(^oxs90=(&@0qv=-r@6&x6xsrl0$knx1of@imit@+ulieb^dh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#__MUST_CHANGE__
+# __MUST_CHANGE__
 ALLOWED_HOSTS = ["127.0.0.1"]
-
 
 # Application definition
 
@@ -77,7 +78,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ems.wsgi.application'
 ASGI_APPLICATION = 'ems.asgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -86,8 +86,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ems',
         'USER': 'root',
-        'PASSWORD': 'AZMAems81571@',
-        'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',  # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
@@ -150,7 +150,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEVICE_ADDRESS="212.16.66.11"
+DEVICE_ADDRESS = "127.0.0.1"
 
 LOGGING ={
     'version':1,
@@ -190,13 +190,13 @@ CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
 # CELERY_TASK_SERIALIZER='json'
 # CELERY_RESULT_SERIALIZER='json'
 # CELERY_RESULT_BACKEND='django-db'
-#CELERY_CAHCE_BACKEND='django-cache'
-#CELERY_TIMZEZONE='Asia/Tehran'
+# CELERY_CAHCE_BACKEND='django-cache'
+# CELERY_TIMZEZONE='Asia/Tehran'
 # CELERY_BEAT_SCHEDULER='django_celery_beat.schedulers:DatabaseScheduler'
-#CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+# CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
-#__MUST_CHANGE__
-SENSOR_NUMERIC = {'temperature','humidity', 'current', 'powerone', 'powerthree','airconditioner'}
-#AIRCONDITIONER_STATUS_CHOICES=[(0,'روشن'),(1,'خاموش')]
-AIRCONDITIONER_STATUS_CHOICES=[(1,'روشن'),(0,'خاموش')]
-AIRCONDITIONER_REVERSE=True
+# __MUST_CHANGE__
+SENSOR_NUMERIC = {'temperature', 'humidity', 'current', 'powerone', 'powerthree', 'airconditioner'}
+# AIRCONDITIONER_STATUS_CHOICES=[(0,'روشن'),(1,'خاموش')]
+AIRCONDITIONER_STATUS_CHOICES = [(1, 'روشن'), (0, 'خاموش')]
+AIRCONDITIONER_REVERSE = True

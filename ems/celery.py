@@ -2,6 +2,7 @@ import os
 
 from celery import Celery
 from celery.schedules import crontab
+
 # from app.tasks import read_from_plc
 
 # Set the default Django settings module for the 'celery' program.
@@ -37,13 +38,14 @@ app.conf.beat_schedule = {
 #     },
 # }
 
-#@app.on_after_configure.connect
-#def setup_periodic_tasks(sender, **kwargs):
+# @app.on_after_configure.connect
+# def setup_periodic_tasks(sender, **kwargs):
 #    # Calls read_from_plc() every 1 seconds.
 #    sender.add_periodic_task(1.0, read_from_plc.s(), name='add every 1')
 
 # Load task modules from all registered Django apps.
 app.autodiscover_tasks()
+
 
 @app.task(bind=True)
 def debug_task(self):
