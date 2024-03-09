@@ -41,3 +41,14 @@ class FuseForm(forms.Form):
                                         "type": "number"
                                     }
                                 ))
+
+    start_value = forms.IntegerField(label="مقدار نرمال (0 یا 1 وارد گردد)",
+                                     required=False,
+                                     widget=forms.TextInput(
+                                         attrs={
+                                             "placeholder": "مقدار نرمال را وارد نمایید",
+                                             "class": "form-control",
+                                             "value": 1,
+                                             "type": "number"
+                                         }
+                                     ))

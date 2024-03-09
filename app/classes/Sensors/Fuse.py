@@ -8,7 +8,8 @@ class Fuse(SensorABC):
     def get_sensor_data(self):
         data = self.client.db_read(int(self.db_id), int(self.byte_id), 1)
         self.value = self.get_bool(data, 0, int(self.bit_id))
-        self.alarm = 4 if self.value == False else 0
+        default_value = False if self.start_value == 1 else False
+        self.alarm = 4 if self.value == default_value else 0
         return self.send_response_data()
 
     def get_sensor_config(self):
