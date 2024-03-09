@@ -1,6 +1,7 @@
 from django import forms
 
-SMOKE_DATA_BLOCK_TYPE_CHOICES=[('boolean','Boolean'), ('word','Word')]
+SMOKE_DATA_BLOCK_TYPE_CHOICES = [('boolean', 'Boolean'), ('word', 'Word')]
+
 
 class SmokeForm(forms.Form):
     title = forms.CharField(label="شناسه سنسور دود",

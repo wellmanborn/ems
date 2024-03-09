@@ -11,7 +11,7 @@ class Smoke(SensorABC):
         else:
             data = self.client.db_read(int(self.db_id), int(self.byte_id), 1)
             self.value = self.get_bool(data, 0, int(self.bit_id))
-            self.alarm = 4 if self.value == True else 0
+            self.alarm = 4 if self.value is True else 0
         return self.send_response_data()
 
     def get_sensor_config(self):

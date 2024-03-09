@@ -84,6 +84,12 @@ div.grid-stack div .grid-stack-item-content{
 div.grid-stack div .grid-stack-item-content img.danger{
     display: none;
 }
+div.grid-stack div .grid-stack-item-content img.gray{
+    display: none;
+}
+div.grid-stack div .grid-stack-item-content img.blue{
+    display: none;
+}
 div.grid-stack div .grid-stack-item-content img.ok{
     display: block;
 }
@@ -114,6 +120,26 @@ div.grid-stack div .grid-stack-item-content.danger img.ok,
 div.grid-stack div .grid-stack-item-content.off img.ok
 {
     display: none;
+}
+div.grid-stack div .grid-stack-item-content.gray img.danger,
+div.grid-stack div .grid-stack-item-content.gray img.ok,
+div.grid-stack div .grid-stack-item-content.gray img.blue
+{
+    display: none;
+}
+div.grid-stack div .grid-stack-item-content.gray img.gray
+{
+    display: block;
+}
+div.grid-stack div .grid-stack-item-content.blue img.danger,
+div.grid-stack div .grid-stack-item-content.blue img.ok,
+div.grid-stack div .grid-stack-item-content.blue img.gray
+{
+    display: none;
+}
+div.grid-stack div .grid-stack-item-content.blue img.blue
+{
+    display: block;
 }
 .grid-stack-item > .grid-stack-item-content {
     inset: 4px !important;

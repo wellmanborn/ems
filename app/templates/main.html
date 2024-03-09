@@ -190,6 +190,8 @@
                     <h4 class="sensor-title">{{ fuse.title }}</h4>
                     <img class="fuse-detector-icon ok" src="{% static 'pinkdesh/images/fuse-green.png' %}" />
                     <img class="fuse-detector-icon danger" src="{% static 'pinkdesh/images/fuse.png' %}" />
+                    <img class="fuse-detector-icon gray" src="{% static 'pinkdesh/images/fuse-gray.png' %}" />
+                    <img class="fuse-detector-icon blue" src="{% static 'pinkdesh/images/fuse-blue.png' %}" />
                 </div>
             </div>
         {% endfor %}
@@ -621,7 +623,7 @@
                         }
                     }
                     if(dt.sensor === "powerthree") {
-                        console.log(powerthrees)
+
                         powerthrees[dt.db_id][dt.byte_id].refresh(dt.value);
                         {% comment %}powerthrees[dt.db_id]["rs"].refresh(dt.value_rs);
                         powerthrees[dt.db_id]["st"].refresh(dt.value_st);
@@ -660,10 +662,27 @@
                         }
                     }
                     if(dt.sensor === "fuse") {
+                        console.log(dt)
                         if(dt.alarm == 3 || dt.alarm == 4){
                             $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("danger")
                         }else{
                             $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("danger")
+                            if(dt.setting.type === "phc" && dt.value == true){
+                                $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("gray")
+                                $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("blue")
+                                $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("off")
+                            }
+                            if(dt.setting.type === "rc" && dt.value == false){
+                                $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("gray")
+                                $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("blue")
+                                $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("off")
+                            }
+                            if(dt.setting.type === "auto_position" && dt.value == false){
+                                $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("gray")
+                                $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("blue")
+                                $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).removeClass("off")
+                            }
+
                         }
                     }
                     $("#fan-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("off")

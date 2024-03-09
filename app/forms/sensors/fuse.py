@@ -1,5 +1,8 @@
 from django import forms
 
+FUSE_TYPE_CHOICES = [('phc', 'PHC'), ('rf', 'RF'), ('rc', 'RC'), ('arr', 'ARR'), ('auto_position', 'AUTO_POSITION'),
+                      ('gauge_disconnected', 'GAUGE_DISCONNECTED')]
+
 
 class FuseForm(forms.Form):
     title = forms.CharField(label="شناسه سنسور فیوز",
@@ -52,3 +55,12 @@ class FuseForm(forms.Form):
                                              "type": "number"
                                          }
                                      ))
+
+    setting__type = forms.ChoiceField(label=" نوع ",
+                                       choices=FUSE_TYPE_CHOICES,
+                                       required=False,
+                                       widget=forms.Select(
+                                           attrs={
+                                               'class': "form-control"
+                                           }
+                                       ), )

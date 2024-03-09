@@ -65,7 +65,7 @@ class SensorABC(ABC, ConvertData):
         data = {"sensor_title": self.sensor_title, "sensor_id": self.sensor_id,
                 "sensor": self.sensor_type, "db_id": str(self.db_id),
                 "byte_id": self.byte_id, "bit_id": self.bit_id,
-                "value": self.value, "alarm": self.alarm}
+                "value": self.value, "alarm": self.alarm, "setting": self.setting}
         if additional_data != None:
             for dt, val in additional_data.items():
                 data[dt] = val
