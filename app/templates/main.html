@@ -662,7 +662,6 @@
                         }
                     }
                     if(dt.sensor === "fuse") {
-                        console.log(dt)
                         if(dt.alarm == 3 || dt.alarm == 4){
                             $("#fuse-" + dt.db_id + "-" + dt.byte_id + "-" + dt.bit_id).addClass("danger")
                         }else{
