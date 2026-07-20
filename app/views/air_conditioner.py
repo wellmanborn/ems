@@ -12,7 +12,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.http import JsonResponse
 from app.classes.Sensor import Sensor
-# from ems.settings import AIRCONDITIONER_REVERSES
 
 
 
@@ -143,6 +142,7 @@ def set_data_on_config_for_air_conditioner_temp_only(config, request):
 
 @login_required
 def edit(request, id):
+    from ems.settings import AIRCONDITIONER_REVERSES
     airconditioner = get_object_or_404(SensorModel, pk=id, type="airconditioner")
     airconditioner_setting = get_object_or_404(Setting, key="air_conditioner")
 
